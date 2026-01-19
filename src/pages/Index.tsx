@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Features from "@/components/Features";
+import AIAgents from "@/components/AIAgents";
 import Verticals from "@/components/Verticals";
 import Pricing from "@/components/Pricing";
 import SocialProof from "@/components/SocialProof";
@@ -13,6 +14,7 @@ const Index = () => {
       <Navbar />
       <Hero />
       <Features />
+      <AIAgents />
       <Verticals />
       <SocialProof />
       <Pricing />

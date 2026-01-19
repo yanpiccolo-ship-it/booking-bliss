@@ -1,16 +1,16 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Sparkles } from "lucide-react";
+import { Menu, X, Cpu } from "lucide-react";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const navLinks = [
-    { name: "Features", href: "#features" },
-    { name: "Verticals", href: "#verticals" },
-    { name: "Pricing", href: "#pricing" },
-    { name: "About", href: "#about" },
+    { name: "Módulos", href: "#features" },
+    { name: "Industrias", href: "#verticals" },
+    { name: "Membresías", href: "#pricing" },
+    { name: "Nosotros", href: "#about" },
   ];
 
   return (
@@ -23,12 +23,12 @@ const Navbar = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
-          <a href="/" className="flex items-center gap-2">
-            <div className="w-10 h-10 rounded-xl bg-gradient-primary flex items-center justify-center shadow-soft">
-              <Sparkles className="w-5 h-5 text-primary-foreground" />
+          <a href="/" className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-foreground flex items-center justify-center shadow-soft">
+              <Cpu className="w-5 h-5 text-background" />
             </div>
             <span className="font-display font-bold text-xl text-foreground">
-              Booking<span className="text-gradient">Intelligence</span>
+              Booking<span className="text-muted-foreground">Intelligence</span>
             </span>
           </a>
 
@@ -38,7 +38,7 @@ const Navbar = () => {
               <a
                 key={link.name}
                 href={link.href}
-                className="text-muted-foreground hover:text-foreground transition-colors duration-200 font-medium"
+                className="text-muted-foreground hover:text-foreground transition-colors duration-200 font-medium text-sm"
               >
                 {link.name}
               </a>
@@ -47,18 +47,18 @@ const Navbar = () => {
 
           {/* Desktop CTA */}
           <div className="hidden lg:flex items-center gap-4">
-            <Button variant="ghost" size="sm">
-              Log in
+            <Button variant="ghost" size="sm" className="text-muted-foreground">
+              Iniciar sesión
             </Button>
             <Button variant="hero" size="default">
-              Start Free Trial
+              Solicitar Demo
             </Button>
           </div>
 
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 rounded-lg hover:bg-accent transition-colors"
+            className="lg:hidden p-2 rounded-lg hover:bg-muted transition-colors"
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -86,11 +86,11 @@ const Navbar = () => {
                 </a>
               ))}
               <div className="pt-4 border-t border-border flex flex-col gap-2">
-                <Button variant="ghost" className="w-full">
-                  Log in
+                <Button variant="ghost" className="w-full text-muted-foreground">
+                  Iniciar sesión
                 </Button>
                 <Button variant="hero" className="w-full">
-                  Start Free Trial
+                  Solicitar Demo
                 </Button>
               </div>
             </div>
