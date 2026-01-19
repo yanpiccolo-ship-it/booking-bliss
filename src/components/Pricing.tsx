@@ -4,55 +4,61 @@ import { Check, Sparkles } from "lucide-react";
 
 const pricingPlans = [
   {
-    name: "Starter",
-    description: "Perfect for single-location businesses",
+    name: "Básico",
+    subtitle: "Booking + Chat",
+    description: "Atención 24/7 y gestión manual de reservas",
     setupFee: "€1,500",
     monthlyFee: "€299",
     features: [
-      "1 Business Location",
-      "AI Concierge (24/7)",
-      "3 Languages Supported",
-      "Google Calendar Sync",
-      "Stripe Payments",
-      "Basic Analytics",
-      "Email Support",
+      "Atención 24/7 vía chat web y WhatsApp",
+      "Creación manual de reservas y citas",
+      "Menús y documentos vía WhatsApp/PDF",
+      "Flujos de atención básica",
+      "PDF de bienvenida y material multimedia",
+      "Soporte por email",
     ],
     highlighted: false,
+    example: "Chef envía nota de voz → Menú digital listo para enviar",
   },
   {
-    name: "Professional",
-    description: "For growing businesses with multiple services",
-    setupFee: "€2,500",
+    name: "Avanzado",
+    subtitle: "Automatización Parcial",
+    description: "Multi-actividades y gestión de comunidades",
+    setupFee: "€2,000",
     monthlyFee: "€499",
     features: [
-      "Up to 3 Locations",
-      "AI Concierge (24/7)",
-      "All Languages",
-      "Google + Outlook Sync",
-      "Stripe + Custom Payments",
-      "Advanced Analytics",
-      "Priority Support",
-      "Custom AI Training",
+      "Todo lo del plan Básico",
+      "Menús y eventos parcialmente automatizados",
+      "QR dinámicos para mesas y reservas",
+      "Gestión de múltiples actividades/rubros",
+      "Historial de reservas y envíos",
+      "Segmentación por grupos (VIP, general)",
+      "Material educativo en el panel",
+      "Soporte prioritario",
     ],
     highlighted: true,
+    example: "Segmenta clientes VIP y envía promociones exclusivas automáticamente",
   },
   {
-    name: "Enterprise",
-    description: "Custom solutions for large organizations",
-    setupFee: "Custom",
+    name: "Personalizado",
+    subtitle: "Automatización Completa",
+    description: "Escalabilidad total y flujos avanzados",
+    setupFee: "€2,500+",
     monthlyFee: "Custom",
     features: [
-      "Unlimited Locations",
-      "Dedicated AI Instance",
-      "All Languages + Custom",
-      "Full Calendar Integration",
-      "Custom Payment Gateway",
-      "White-label Dashboard",
-      "24/7 Phone Support",
-      "API Access",
-      "SLA Guarantee",
+      "Todo lo del plan Avanzado",
+      "Automatización total de menús diarios",
+      "Programación semanal/mensual",
+      "Gestión de stock y proveedores",
+      "Envío automático a comunidades WhatsApp",
+      "Flujos de venta con upselling multi-idioma",
+      "Integración Stripe + calendarios externos",
+      "Entrenamiento personalizado de agentes",
+      "Reportes y métricas avanzadas",
+      "QR y materiales generados automáticamente",
     ],
     highlighted: false,
+    example: "Planifica menús del mes, stock se ajusta automáticamente",
   },
 ];
 
@@ -72,12 +78,12 @@ const Pricing = () => {
             Pricing
           </span>
           <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mt-3 mb-6">
-            Simple, transparent{" "}
-            <span className="text-gradient">pricing</span>
+            Planes que escalan{" "}
+            <span className="text-gradient">contigo</span>
           </h2>
           <p className="text-lg text-muted-foreground">
-            One-time setup, predictable monthly costs. No hidden fees, no surprises.
-            Your AI concierge pays for itself with increased bookings.
+            Desde atención básica hasta automatización completa. 
+            Cada actividad adicional: €300. Sin sorpresas.
           </p>
         </motion.div>
 
@@ -107,13 +113,18 @@ const Pricing = () => {
               )}
 
               {/* Plan Header */}
-              <div className="mb-8">
-                <h3 className={`font-display font-bold text-2xl mb-2 ${
+              <div className="mb-6">
+                <h3 className={`font-display font-bold text-2xl mb-1 ${
                   plan.highlighted ? "text-primary-foreground" : "text-foreground"
                 }`}>
                   {plan.name}
                 </h3>
-                <p className={`text-sm ${
+                <span className={`text-xs font-semibold uppercase tracking-wider ${
+                  plan.highlighted ? "text-primary-foreground/70" : "text-primary"
+                }`}>
+                  {plan.subtitle}
+                </span>
+                <p className={`text-sm mt-2 ${
                   plan.highlighted ? "text-primary-foreground/80" : "text-muted-foreground"
                 }`}>
                   {plan.description}
@@ -147,13 +158,13 @@ const Pricing = () => {
               </div>
 
               {/* Features */}
-              <ul className="space-y-3 mb-8">
+              <ul className="space-y-2.5 mb-6">
                 {plan.features.map((feature) => (
-                  <li key={feature} className="flex items-start gap-3">
-                    <Check className={`w-5 h-5 mt-0.5 flex-shrink-0 ${
+                  <li key={feature} className="flex items-start gap-2.5">
+                    <Check className={`w-4 h-4 mt-0.5 flex-shrink-0 ${
                       plan.highlighted ? "text-primary-foreground" : "text-primary"
                     }`} />
-                    <span className={`text-sm ${
+                    <span className={`text-sm leading-tight ${
                       plan.highlighted ? "text-primary-foreground/90" : "text-muted-foreground"
                     }`}>
                       {feature}
@@ -161,6 +172,19 @@ const Pricing = () => {
                   </li>
                 ))}
               </ul>
+
+              {/* Example */}
+              <div className={`p-3 rounded-xl mb-6 ${
+                plan.highlighted 
+                  ? "bg-primary-foreground/10" 
+                  : "bg-muted/50"
+              }`}>
+                <p className={`text-xs italic ${
+                  plan.highlighted ? "text-primary-foreground/80" : "text-muted-foreground"
+                }`}>
+                  💡 {plan.example}
+                </p>
+              </div>
 
               {/* CTA Button */}
               <Button
@@ -178,16 +202,49 @@ const Pricing = () => {
           ))}
         </div>
 
+        {/* Value Propositions */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.5 }}
+          className="mt-16 max-w-4xl mx-auto"
+        >
+          <div className="grid md:grid-cols-3 gap-6 text-center">
+            <div className="p-6 rounded-2xl bg-card border border-border">
+              <div className="text-3xl mb-3">🍽️</div>
+              <h4 className="font-semibold text-foreground mb-2">Menús del día</h4>
+              <p className="text-sm text-muted-foreground">
+                Chef envía nota de voz → Agente genera menú digital + PDF + WhatsApp + QR
+              </p>
+            </div>
+            <div className="p-6 rounded-2xl bg-card border border-border">
+              <div className="text-3xl mb-3">📅</div>
+              <h4 className="font-semibold text-foreground mb-2">Programación avanzada</h4>
+              <p className="text-sm text-muted-foreground">
+                Planifica menús, talleres y eventos por días, semanas o meses
+              </p>
+            </div>
+            <div className="p-6 rounded-2xl bg-card border border-border">
+              <div className="text-3xl mb-3">📈</div>
+              <h4 className="font-semibold text-foreground mb-2">Upselling inteligente</h4>
+              <p className="text-sm text-muted-foreground">
+                Cada actividad extra: €300. Activa nuevos servicios desde tu panel
+              </p>
+            </div>
+          </div>
+        </motion.div>
+
         {/* Money Back Guarantee */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.5 }}
+          transition={{ delay: 0.6 }}
           className="text-center mt-12"
         >
           <p className="text-muted-foreground">
-            💰 30-day money-back guarantee on all plans. No questions asked.
+            💰 30 días de garantía en todos los planes. Sin preguntas.
           </p>
         </motion.div>
       </div>
