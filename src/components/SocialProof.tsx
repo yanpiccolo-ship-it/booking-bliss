@@ -1,40 +1,37 @@
 import { motion } from "framer-motion";
-import { Star } from "lucide-react";
+import { Star, Quote } from "lucide-react";
 
 const testimonials = [
   {
-    quote: "Our booking rate increased by 240% in the first month. The AI handles late-night inquiries better than we ever could.",
+    quote: "El sistema de agentes AI ha transformado cómo gestionamos nuestro restaurante. Los menús del día se generan en minutos.",
     author: "María García",
-    role: "Owner, Serenity Spa Barcelona",
+    role: "Chef Ejecutiva, Barcelona",
     avatar: "MG",
-    rating: 5,
   },
   {
-    quote: "Finally, an AI that doesn't just answer questions—it actually closes appointments. Our no-show rate dropped to almost zero with the payment integration.",
-    author: "Dr. Alessandro Rossi",
-    role: "Director, Milano Health Clinic",
+    quote: "La programación anticipada nos permite planificar semanas enteras. La logística y las compras nunca fueron tan fáciles.",
+    author: "Alessandro Rossi",
+    role: "Director de Hotel, Milano",
     avatar: "AR",
-    rating: 5,
   },
   {
-    quote: "The multilingual support is incredible. We serve clients from across Europe, and the AI switches languages seamlessly mid-conversation.",
+    quote: "Finalmente una plataforma que entiende hospitality. El soporte multilingüe es excepcional para nuestros huéspedes internacionales.",
     author: "James Mitchell",
-    role: "Partner, Sterling Legal Consultants",
+    role: "Gerente de Retiros, Ibiza",
     avatar: "JM",
-    rating: 5,
   },
 ];
 
 const stats = [
-  { value: "3.2x", label: "Average booking increase" },
-  { value: "94%", label: "Customer satisfaction" },
-  { value: "15min", label: "Average response time saved" },
-  { value: "€45K", label: "Avg. additional revenue/month" },
+  { value: "24/7", label: "Atención continua" },
+  { value: "6", label: "Idiomas soportados" },
+  { value: "∞", label: "Escalabilidad" },
+  { value: "AI", label: "Agentes especializados" },
 ];
 
 const SocialProof = () => {
   return (
-    <section className="py-20 lg:py-32 bg-muted/30">
+    <section className="py-24 lg:py-32 bg-muted/30">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Stats Bar */}
         <motion.div
@@ -52,7 +49,7 @@ const SocialProof = () => {
               transition={{ delay: index * 0.1 }}
               className="text-center"
             >
-              <div className="text-4xl lg:text-5xl font-bold font-display text-gradient mb-2">
+              <div className="text-4xl lg:text-5xl font-bold font-display text-foreground mb-2">
                 {stat.value}
               </div>
               <div className="text-muted-foreground text-sm lg:text-base">
@@ -69,12 +66,12 @@ const SocialProof = () => {
           viewport={{ once: true }}
           className="text-center max-w-3xl mx-auto mb-16"
         >
-          <span className="text-sm font-semibold text-primary uppercase tracking-wider">
-            Testimonials
+          <span className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
+            Testimonios
           </span>
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mt-3 mb-6">
-            Trusted by businesses{" "}
-            <span className="text-gradient">across Europe</span>
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mt-4 mb-6 leading-display">
+            Negocios que{" "}
+            <span className="text-gradient-premium">confían en nosotros</span>
           </h2>
         </motion.div>
 
@@ -89,21 +86,17 @@ const SocialProof = () => {
               transition={{ duration: 0.5, delay: index * 0.1 }}
               className="bg-card rounded-2xl p-8 border border-border shadow-soft hover:shadow-medium transition-shadow duration-300"
             >
-              {/* Stars */}
-              <div className="flex gap-1 mb-4">
-                {[...Array(testimonial.rating)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 fill-amber-400 text-amber-400" />
-                ))}
-              </div>
+              {/* Quote Icon */}
+              <Quote className="w-10 h-10 text-muted-foreground/30 mb-4" />
 
               {/* Quote */}
-              <blockquote className="text-foreground leading-relaxed mb-6">
+              <blockquote className="text-foreground leading-relaxed mb-8 text-lg">
                 "{testimonial.quote}"
               </blockquote>
 
               {/* Author */}
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-gradient-primary flex items-center justify-center text-primary-foreground font-semibold">
+                <div className="w-12 h-12 rounded-full bg-foreground flex items-center justify-center text-background font-semibold">
                   {testimonial.avatar}
                 </div>
                 <div>

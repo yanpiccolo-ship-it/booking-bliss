@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Send, Bot, User } from "lucide-react";
+import { Send, Cpu, User } from "lucide-react";
 
 interface Message {
   id: number;
@@ -14,11 +14,11 @@ const ChatPreview = () => {
   const [currentStep, setCurrentStep] = useState(0);
 
   const conversation: Message[] = [
-    { id: 1, text: "¡Hola! 👋 Bienvenido a Wellness Spa. ¿En qué puedo ayudarte hoy?", isBot: true },
-    { id: 2, text: "Hi! I'd like to book a massage for this weekend", isBot: false },
-    { id: 3, text: "Perfect! I'd love to help you book a massage. We have availability on Saturday at 10am, 2pm, and 4pm. Which works best for you?", isBot: true },
-    { id: 4, text: "2pm sounds great!", isBot: false },
-    { id: 5, text: "Excellent choice! ✨ Saturday at 2pm is confirmed. To secure your spot, I'll send you a quick payment link. Your relaxation awaits!", isBot: true },
+    { id: 1, text: "¡Hola! 👋 Soy el agente AI. ¿En qué puedo ayudarte hoy?", isBot: true },
+    { id: 2, text: "Quiero reservar un masaje para el sábado", isBot: false },
+    { id: 3, text: "Perfecto. Tenemos disponibilidad a las 10h, 14h y 16h. ¿Cuál prefieres?", isBot: true },
+    { id: 4, text: "14h está genial!", isBot: false },
+    { id: 5, text: "Excelente ✨ Sábado a las 14h confirmado. Te envío el link de pago para asegurar tu reserva.", isBot: true },
   ];
 
   useEffect(() => {
@@ -38,7 +38,6 @@ const ChatPreview = () => {
 
       return () => clearTimeout(timer);
     } else {
-      // Reset after conversation ends
       const resetTimer = setTimeout(() => {
         setMessages([]);
         setCurrentStep(0);
@@ -54,23 +53,23 @@ const ChatPreview = () => {
       transition={{ duration: 0.6, delay: 0.3 }}
       className="w-full max-w-sm mx-auto"
     >
-      <div className="bg-card rounded-2xl shadow-strong border border-border overflow-hidden">
+      <div className="bg-card rounded-3xl shadow-float border border-border overflow-hidden">
         {/* Chat Header */}
-        <div className="bg-gradient-primary px-4 py-3 flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-primary-foreground/20 flex items-center justify-center">
-            <Bot className="w-5 h-5 text-primary-foreground" />
+        <div className="bg-foreground px-5 py-4 flex items-center gap-3">
+          <div className="w-10 h-10 rounded-xl bg-background/20 flex items-center justify-center">
+            <Cpu className="w-5 h-5 text-background" />
           </div>
           <div>
-            <p className="text-primary-foreground font-semibold text-sm">AI Concierge</p>
+            <p className="text-background font-semibold text-sm">Agente AI</p>
             <div className="flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse-soft" />
-              <span className="text-primary-foreground/80 text-xs">Online 24/7</span>
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+              <span className="text-background/70 text-xs">Activo 24/7</span>
             </div>
           </div>
         </div>
 
         {/* Chat Messages */}
-        <div className="h-72 overflow-y-auto p-4 space-y-3 bg-muted/30">
+        <div className="h-72 overflow-y-auto p-4 space-y-3 bg-muted/20">
           <AnimatePresence mode="popLayout">
             {messages.map((message) => (
               <motion.div
@@ -82,15 +81,15 @@ const ChatPreview = () => {
                 className={`flex gap-2 ${message.isBot ? "justify-start" : "justify-end"}`}
               >
                 {message.isBot && (
-                  <div className="w-7 h-7 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <Bot className="w-4 h-4 text-primary" />
+                  <div className="w-7 h-7 rounded-lg bg-foreground flex items-center justify-center flex-shrink-0">
+                    <Cpu className="w-4 h-4 text-background" />
                   </div>
                 )}
                 <div
-                  className={`max-w-[75%] px-3 py-2 rounded-2xl text-sm ${
+                  className={`max-w-[75%] px-4 py-2.5 rounded-2xl text-sm ${
                     message.isBot
-                      ? "bg-card border border-border text-foreground rounded-bl-md"
-                      : "bg-gradient-primary text-primary-foreground rounded-br-md"
+                      ? "bg-card border border-border text-foreground rounded-bl-lg"
+                      : "bg-foreground text-background rounded-br-lg"
                   }`}
                 >
                   {message.typing ? (
@@ -104,7 +103,7 @@ const ChatPreview = () => {
                   )}
                 </div>
                 {!message.isBot && (
-                  <div className="w-7 h-7 rounded-full bg-secondary flex items-center justify-center flex-shrink-0">
+                  <div className="w-7 h-7 rounded-lg bg-muted flex items-center justify-center flex-shrink-0">
                     <User className="w-4 h-4 text-muted-foreground" />
                   </div>
                 )}
@@ -114,16 +113,16 @@ const ChatPreview = () => {
         </div>
 
         {/* Chat Input */}
-        <div className="p-3 border-t border-border bg-card">
-          <div className="flex items-center gap-2 bg-muted rounded-xl px-3 py-2">
+        <div className="p-4 border-t border-border bg-card">
+          <div className="flex items-center gap-2 bg-muted rounded-xl px-4 py-2.5">
             <input
               type="text"
-              placeholder="Type a message..."
+              placeholder="Escribe un mensaje..."
               className="flex-1 bg-transparent text-sm outline-none placeholder:text-muted-foreground"
               disabled
             />
-            <button className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center hover:bg-primary/90 transition-colors">
-              <Send className="w-4 h-4 text-primary-foreground" />
+            <button className="w-8 h-8 rounded-lg bg-foreground flex items-center justify-center hover:bg-foreground/90 transition-colors">
+              <Send className="w-4 h-4 text-background" />
             </button>
           </div>
         </div>
