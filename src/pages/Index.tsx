@@ -1,6 +1,7 @@
 import Navbar from "@/components/Navbar";
-import Hero from "@/components/Hero";
-import Features from "@/components/Features";
+import HeroVideo from "@/components/HeroVideo";
+import ModuleCarousel from "@/components/ModuleCarousel";
+import EditorialSection from "@/components/EditorialSection";
 import AIAgents from "@/components/AIAgents";
 import Verticals from "@/components/Verticals";
 import Pricing from "@/components/Pricing";
@@ -12,8 +13,9 @@ const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      <Hero />
-      <Features />
+      <HeroVideo />
+      <ModuleCarousel />
+      <EditorialSection />
       <AIAgents />
       <Verticals />
       <SocialProof />
