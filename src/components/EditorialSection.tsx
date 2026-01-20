@@ -1,0 +1,132 @@
+import { motion } from "framer-motion";
+import { ArrowRight } from "lucide-react";
+
+const EditorialSection = () => {
+  return (
+    <section className="relative overflow-hidden">
+      {/* First Panel - Full bleed image with text overlay */}
+      <div className="relative min-h-[80vh] flex items-center">
+        <div className="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1600891964092-4316c288032e?w=1920&q=80"
+            alt="Restaurant ambiance"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-foreground/90 via-foreground/70 to-transparent" />
+        </div>
+        
+        <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="max-w-2xl"
+          >
+            <span className="text-background/70 text-sm font-medium tracking-widest uppercase">
+              Automatización Total
+            </span>
+            <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-background mt-4 mb-6 leading-[1.1]">
+              Menús del día
+              <br />
+              <span className="italic font-light">en minutos.</span>
+            </h2>
+            <p className="text-lg text-background/80 mb-8 max-w-lg">
+              El chef envía una nota de voz. El agente AI interpreta, 
+              estructura y genera el menú completo con precios y diseño 
+              profesional. Listo para PDF, WhatsApp y QR.
+            </p>
+            <button className="flex items-center gap-2 text-background font-semibold group">
+              Ver cómo funciona
+              <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-2" />
+            </button>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Second Panel - Split layout */}
+      <div className="grid lg:grid-cols-2">
+        <div className="relative min-h-[60vh] lg:min-h-[80vh]">
+          <img
+            src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1200&q=80"
+            alt="Hotel lobby"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 to-transparent" />
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="absolute bottom-0 left-0 right-0 p-8 lg:p-12"
+          >
+            <span className="text-background/70 text-xs font-medium tracking-widest uppercase">
+              Hospitality
+            </span>
+            <h3 className="font-display text-2xl lg:text-3xl font-bold text-background mt-2">
+              Reservas inteligentes
+              <br />
+              <span className="font-light">24/7</span>
+            </h3>
+          </motion.div>
+        </div>
+
+        <div className="relative min-h-[60vh] lg:min-h-[80vh]">
+          <img
+            src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=1200&q=80"
+            alt="Wellness experience"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 to-transparent" />
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="absolute bottom-0 left-0 right-0 p-8 lg:p-12"
+          >
+            <span className="text-background/70 text-xs font-medium tracking-widest uppercase">
+              Wellness
+            </span>
+            <h3 className="font-display text-2xl lg:text-3xl font-bold text-background mt-2">
+              Experiencias que
+              <br />
+              <span className="font-light">se venden solas</span>
+            </h3>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Third Panel - Full width with centered text */}
+      <div className="relative min-h-[70vh] flex items-center justify-center">
+        <div className="absolute inset-0">
+          <img
+            src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1920&q=80"
+            alt="Travel experience"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-foreground/50" />
+        </div>
+        
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          className="relative z-10 text-center px-4"
+        >
+          <span className="text-background/70 text-sm font-medium tracking-widest uppercase">
+            Travel & Experiences
+          </span>
+          <h2 className="font-display text-4xl sm:text-5xl lg:text-7xl font-bold text-background mt-4 mb-6">
+            Itinerarios que
+            <br />
+            <span className="italic font-light">inspiran.</span>
+          </h2>
+          <p className="text-lg text-background/80 max-w-xl mx-auto mb-8">
+            Safaris, retiros, travesías. Genera documentos premium 
+            para tus clientes automáticamente.
+          </p>
+        </motion.div>
+      </div>
+    </section>
+  );
+};
+
+export default EditorialSection;

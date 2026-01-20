@@ -221,6 +221,15 @@
   .animate-glow {
     animation: glow 3s ease-in-out infinite;
   }
+  
+  /* Hide scrollbar for carousels */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 @keyframes float {

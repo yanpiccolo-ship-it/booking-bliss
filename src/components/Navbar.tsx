@@ -1,16 +1,26 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Cpu } from "lucide-react";
+import LanguageSelector from "./LanguageSelector";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 100);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const navLinks = [
-    { name: "Módulos", href: "#features" },
+    { name: "Módulos", href: "#modules" },
     { name: "Industrias", href: "#verticals" },
     { name: "Membresías", href: "#pricing" },
-    { name: "Nosotros", href: "#about" },
+    { name: "Contacto", href: "#contact" },
   ];
 
   return (
@@ -18,17 +28,25 @@ const Navbar = () => {
       initial={{ y: -20, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className="fixed top-0 left-0 right-0 z-50 glass border-b border-border/50"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled 
+          ? "glass border-b border-border/50" 
+          : "bg-transparent"
+      }`}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <a href="/" className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-foreground flex items-center justify-center shadow-soft">
-              <Cpu className="w-5 h-5 text-background" />
+            <div className={`w-10 h-10 rounded-xl flex items-center justify-center shadow-soft transition-colors ${
+              isScrolled ? "bg-foreground" : "bg-background/20 backdrop-blur-sm"
+            }`}>
+              <Cpu className={`w-5 h-5 ${isScrolled ? "text-background" : "text-background"}`} />
             </div>
-            <span className="font-display font-bold text-xl text-foreground">
-              Booking<span className="text-muted-foreground">Intelligence</span>
+            <span className={`font-display font-bold text-xl transition-colors ${
+              isScrolled ? "text-foreground" : "text-background"
+            }`}>
+              Booking<span className={isScrolled ? "text-muted-foreground" : "text-background/70"}>Intelligence</span>
             </span>
           </a>
 
@@ -38,19 +56,34 @@ const Navbar = () => {
               <a
                 key={link.name}
                 href={link.href}
-                className="text-muted-foreground hover:text-foreground transition-colors duration-200 font-medium text-sm"
+                className={`hover:opacity-100 transition-all duration-200 font-medium text-sm ${
+                  isScrolled 
+                    ? "text-muted-foreground hover:text-foreground" 
+                    : "text-background/80 hover:text-background"
+                }`}
               >
                 {link.name}
               </a>
             ))}
           </div>
 
-          {/* Desktop CTA */}
-          <div className="hidden lg:flex items-center gap-4">
-            <Button variant="ghost" size="sm" className="text-muted-foreground">
+          {/* Desktop CTA + Language */}
+          <div className="hidden lg:flex items-center gap-3">
+            <LanguageSelector />
+            <Button 
+              variant="ghost" 
+              size="sm" 
+              className={isScrolled ? "text-muted-foreground" : "text-background/80 hover:text-background hover:bg-background/10"}
+            >
               Iniciar sesión
             </Button>
-            <Button variant="hero" size="default">
+            <Button 
+              size="default"
+              className={isScrolled 
+                ? "bg-foreground text-background hover:bg-foreground/90" 
+                : "bg-background text-foreground hover:bg-background/90"
+              }
+            >
               Solicitar Demo
             </Button>
           </div>
@@ -58,9 +91,15 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="lg:hidden p-2 rounded-lg hover:bg-muted transition-colors"
+            className={`lg:hidden p-2 rounded-lg transition-colors ${
+              isScrolled ? "hover:bg-muted" : "hover:bg-background/10"
+            }`}
           >
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+            {isOpen ? (
+              <X className={`w-6 h-6 ${isScrolled ? "text-foreground" : "text-background"}`} />
+            ) : (
+              <Menu className={`w-6 h-6 ${isScrolled ? "text-foreground" : "text-background"}`} />
+            )}
           </button>
         </div>
       </div>
@@ -89,7 +128,7 @@ const Navbar = () => {
                 <Button variant="ghost" className="w-full text-muted-foreground">
                   Iniciar sesión
                 </Button>
-                <Button variant="hero" className="w-full">
+                <Button className="w-full bg-foreground text-background">
                   Solicitar Demo
                 </Button>
               </div>
