@@ -1,44 +1,47 @@
 import { motion } from "framer-motion";
-import { Star, Quote } from "lucide-react";
-
-const testimonials = [
-  {
-    quote: "El sistema de agentes AI ha transformado cómo gestionamos nuestro restaurante. Los menús del día se generan en minutos.",
-    author: "María García",
-    role: "Chef Ejecutiva, Barcelona",
-    avatar: "MG",
-  },
-  {
-    quote: "La programación anticipada nos permite planificar semanas enteras. La logística y las compras nunca fueron tan fáciles.",
-    author: "Alessandro Rossi",
-    role: "Director de Hotel, Milano",
-    avatar: "AR",
-  },
-  {
-    quote: "Finalmente una plataforma que entiende hospitality. El soporte multilingüe es excepcional para nuestros huéspedes internacionales.",
-    author: "James Mitchell",
-    role: "Gerente de Retiros, Ibiza",
-    avatar: "JM",
-  },
-];
-
-const stats = [
-  { value: "24/7", label: "Atención continua" },
-  { value: "6", label: "Idiomas soportados" },
-  { value: "∞", label: "Escalabilidad" },
-  { value: "AI", label: "Agentes especializados" },
-];
+import { Quote } from "lucide-react";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 const SocialProof = () => {
+  const { t } = useLanguage();
+
+  const testimonials = [
+    {
+      quote: t.socialProof.testimonials.t1.quote,
+      author: t.socialProof.testimonials.t1.author,
+      role: t.socialProof.testimonials.t1.role,
+      avatar: "MG",
+    },
+    {
+      quote: t.socialProof.testimonials.t2.quote,
+      author: t.socialProof.testimonials.t2.author,
+      role: t.socialProof.testimonials.t2.role,
+      avatar: "AR",
+    },
+    {
+      quote: t.socialProof.testimonials.t3.quote,
+      author: t.socialProof.testimonials.t3.author,
+      role: t.socialProof.testimonials.t3.role,
+      avatar: "JM",
+    },
+  ];
+
+  const stats = [
+    { value: "24/7", label: t.socialProof.stats.attention },
+    { value: "6", label: t.socialProof.stats.languages },
+    { value: "∞", label: t.socialProof.stats.scalability },
+    { value: "AI", label: t.socialProof.stats.agents },
+  ];
+
   return (
-    <section className="py-24 lg:py-32 bg-muted/30">
+    <section className="py-16 sm:py-24 lg:py-32 bg-muted/30">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Stats Bar */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="grid grid-cols-2 lg:grid-cols-4 gap-8 mb-20"
+          className="grid grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 mb-16 sm:mb-20"
         >
           {stats.map((stat, index) => (
             <motion.div
@@ -49,10 +52,10 @@ const SocialProof = () => {
               transition={{ delay: index * 0.1 }}
               className="text-center"
             >
-              <div className="text-4xl lg:text-5xl font-bold font-display text-foreground mb-2">
+              <div className="text-3xl sm:text-4xl lg:text-5xl font-bold font-display text-foreground mb-2">
                 {stat.value}
               </div>
-              <div className="text-muted-foreground text-sm lg:text-base">
+              <div className="text-muted-foreground text-xs sm:text-sm lg:text-base">
                 {stat.label}
               </div>
             </motion.div>
@@ -64,19 +67,18 @@ const SocialProof = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center max-w-3xl mx-auto mb-16"
+          className="text-center max-w-3xl mx-auto mb-12 sm:mb-16"
         >
-          <span className="text-sm font-semibold text-muted-foreground uppercase tracking-wider">
-            Testimonios
+          <span className="text-xs sm:text-sm font-semibold text-muted-foreground uppercase tracking-wider">
+            {t.socialProof.sectionLabel}
           </span>
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mt-4 mb-6 leading-display">
-            Negocios que{" "}
-            <span className="text-gradient-premium">confían en nosotros</span>
+          <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-foreground mt-4 mb-4 sm:mb-6 leading-display">
+            {t.socialProof.sectionTitle}
           </h2>
         </motion.div>
 
         {/* Testimonials Grid */}
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="grid lg:grid-cols-3 gap-6 sm:gap-8">
           {testimonials.map((testimonial, index) => (
             <motion.div
               key={testimonial.author}
@@ -84,26 +86,26 @@ const SocialProof = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-card rounded-2xl p-8 border border-border shadow-soft hover:shadow-medium transition-shadow duration-300"
+              className="bg-card rounded-2xl p-6 sm:p-8 border border-border shadow-soft hover:shadow-medium transition-shadow duration-300"
             >
               {/* Quote Icon */}
-              <Quote className="w-10 h-10 text-muted-foreground/30 mb-4" />
+              <Quote className="w-8 h-8 sm:w-10 sm:h-10 text-muted-foreground/30 mb-4" />
 
               {/* Quote */}
-              <blockquote className="text-foreground leading-relaxed mb-8 text-lg">
+              <blockquote className="text-foreground leading-relaxed mb-6 sm:mb-8 text-base sm:text-lg">
                 "{testimonial.quote}"
               </blockquote>
 
               {/* Author */}
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-foreground flex items-center justify-center text-background font-semibold">
+              <div className="flex items-center gap-3 sm:gap-4">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-foreground flex items-center justify-center text-background font-semibold text-sm sm:text-base">
                   {testimonial.avatar}
                 </div>
                 <div>
-                  <div className="font-semibold text-foreground">
+                  <div className="font-semibold text-foreground text-sm sm:text-base">
                     {testimonial.author}
                   </div>
-                  <div className="text-sm text-muted-foreground">
+                  <div className="text-xs sm:text-sm text-muted-foreground">
                     {testimonial.role}
                   </div>
                 </div>

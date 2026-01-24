@@ -1,8 +1,11 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Play } from "lucide-react";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 const HeroVideo = () => {
+  const { t } = useLanguage();
+
   return (
     <section className="relative min-h-screen overflow-hidden">
       {/* Video Background */}
@@ -25,7 +28,7 @@ const HeroVideo = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 min-h-screen flex flex-col justify-center">
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8 min-h-screen flex flex-col justify-center pt-20 lg:pt-0">
         <div className="max-w-4xl">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -33,54 +36,49 @@ const HeroVideo = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             {/* Eyebrow */}
-            <span className="inline-block text-background/80 text-sm font-medium tracking-widest uppercase mb-6">
-              Intelligent Operating System
+            <span className="inline-block text-background/80 text-xs sm:text-sm font-medium tracking-widest uppercase mb-4 sm:mb-6">
+              {t.hero.badge}
             </span>
 
             {/* Headline - Apple style: large, bold, left-aligned */}
-            <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold text-background leading-[1.05] mb-8">
-              La plataforma
+            <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-background leading-[1.1] mb-6 sm:mb-8">
+              {t.hero.title}
               <br />
-              <span className="text-background/90">evolutiva</span>
-              <br />
-              impulsada por
-              <br />
-              <span className="italic font-light">Agentes AI</span>
+              <span className="italic font-light">{t.hero.titleHighlight}</span>
             </h1>
 
             {/* Subheadline */}
-            <p className="text-lg sm:text-xl text-background/80 max-w-xl mb-10 leading-relaxed">
-              No es una app. No es una web. Es un ecosistema inteligente premium 
-              que automatiza ventas, reservas y operaciones.
+            <p className="text-base sm:text-lg lg:text-xl text-background/80 max-w-xl mb-8 sm:mb-10 leading-relaxed">
+              {t.hero.subtitle}
             </p>
 
             {/* CTAs */}
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
               <Button 
-                size="xl" 
-                className="bg-background text-foreground hover:bg-background/90 font-semibold px-8"
+                size="lg" 
+                className="bg-background text-foreground hover:bg-background/90 font-semibold px-6 sm:px-8 h-12 sm:h-14 text-sm sm:text-base"
               >
-                Solicitar Demo
-                <ArrowRight className="w-5 h-5 ml-2" />
+                {t.hero.cta}
+                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2" />
               </Button>
               <Button 
-                size="xl" 
+                size="lg" 
                 variant="outline" 
-                className="border-background/30 text-background hover:bg-background/10 backdrop-blur-sm"
+                className="border-background/30 text-background hover:bg-background/10 backdrop-blur-sm h-12 sm:h-14 text-sm sm:text-base"
               >
-                <Play className="w-5 h-5 mr-2" />
-                Ver en acción
+                <Play className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+                {t.hero.ctaSecondary}
               </Button>
             </div>
           </motion.div>
         </div>
 
-        {/* Scroll Indicator */}
+        {/* Scroll Indicator - Hidden on mobile */}
         <motion.div 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.5 }}
-          className="absolute bottom-10 left-1/2 -translate-x-1/2"
+          className="hidden sm:block absolute bottom-10 left-1/2 -translate-x-1/2"
         >
           <motion.div
             animate={{ y: [0, 8, 0] }}

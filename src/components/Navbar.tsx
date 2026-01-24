@@ -2,11 +2,14 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Cpu } from "lucide-react";
+import { Link } from "react-router-dom";
 import LanguageSelector from "./LanguageSelector";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const { t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,10 +20,10 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: "Módulos", href: "#modules" },
-    { name: "Industrias", href: "#verticals" },
-    { name: "Membresías", href: "#pricing" },
-    { name: "Contacto", href: "#contact" },
+    { name: t.nav.modules, href: "#modules" },
+    { name: t.nav.industries, href: "#verticals" },
+    { name: t.nav.memberships, href: "#pricing" },
+    { name: t.nav.contact, href: "#contact" },
   ];
 
   return (
@@ -37,13 +40,13 @@ const Navbar = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
-          <a href="/" className="flex items-center gap-3">
-            <div className={`w-10 h-10 rounded-xl flex items-center justify-center shadow-soft transition-colors ${
+          <a href="/" className="flex items-center gap-2 sm:gap-3">
+            <div className={`w-8 h-8 sm:w-10 sm:h-10 rounded-xl flex items-center justify-center shadow-soft transition-colors ${
               isScrolled ? "bg-foreground" : "bg-background/20 backdrop-blur-sm"
             }`}>
-              <Cpu className={`w-5 h-5 ${isScrolled ? "text-background" : "text-background"}`} />
+              <Cpu className={`w-4 h-4 sm:w-5 sm:h-5 ${isScrolled ? "text-background" : "text-background"}`} />
             </div>
-            <span className={`font-display font-bold text-xl transition-colors ${
+            <span className={`font-display font-bold text-lg sm:text-xl transition-colors ${
               isScrolled ? "text-foreground" : "text-background"
             }`}>
               Booking<span className={isScrolled ? "text-muted-foreground" : "text-background/70"}>Intelligence</span>
@@ -70,13 +73,15 @@ const Navbar = () => {
           {/* Desktop CTA + Language */}
           <div className="hidden lg:flex items-center gap-3">
             <LanguageSelector />
-            <Button 
-              variant="ghost" 
-              size="sm" 
-              className={isScrolled ? "text-muted-foreground" : "text-background/80 hover:text-background hover:bg-background/10"}
-            >
-              Iniciar sesión
-            </Button>
+            <Link to="/auth">
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                className={isScrolled ? "text-muted-foreground" : "text-background/80 hover:text-background hover:bg-background/10"}
+              >
+                {t.nav.login}
+              </Button>
+            </Link>
             <Button 
               size="default"
               className={isScrolled 
@@ -84,23 +89,26 @@ const Navbar = () => {
                 : "bg-background text-foreground hover:bg-background/90"
               }
             >
-              Solicitar Demo
+              {t.nav.requestDemo}
             </Button>
           </div>
 
           {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className={`lg:hidden p-2 rounded-lg transition-colors ${
-              isScrolled ? "hover:bg-muted" : "hover:bg-background/10"
-            }`}
-          >
-            {isOpen ? (
-              <X className={`w-6 h-6 ${isScrolled ? "text-foreground" : "text-background"}`} />
-            ) : (
-              <Menu className={`w-6 h-6 ${isScrolled ? "text-foreground" : "text-background"}`} />
-            )}
-          </button>
+          <div className="flex lg:hidden items-center gap-2">
+            <LanguageSelector />
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className={`p-2 rounded-lg transition-colors ${
+                isScrolled ? "hover:bg-muted" : "hover:bg-background/10"
+              }`}
+            >
+              {isOpen ? (
+                <X className={`w-6 h-6 ${isScrolled ? "text-foreground" : "text-background"}`} />
+              ) : (
+                <Menu className={`w-6 h-6 ${isScrolled ? "text-foreground" : "text-background"}`} />
+              )}
+            </button>
+          </div>
         </div>
       </div>
 
@@ -125,11 +133,13 @@ const Navbar = () => {
                 </a>
               ))}
               <div className="pt-4 border-t border-border flex flex-col gap-2">
-                <Button variant="ghost" className="w-full text-muted-foreground">
-                  Iniciar sesión
-                </Button>
+                <Link to="/auth" onClick={() => setIsOpen(false)}>
+                  <Button variant="ghost" className="w-full text-muted-foreground">
+                    {t.nav.login}
+                  </Button>
+                </Link>
                 <Button className="w-full bg-foreground text-background">
-                  Solicitar Demo
+                  {t.nav.requestDemo}
                 </Button>
               </div>
             </div>
