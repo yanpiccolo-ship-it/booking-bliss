@@ -1,15 +1,18 @@
 import { Cpu } from "lucide-react";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 const Footer = () => {
+  const { t } = useLanguage();
+
   const footerLinks = {
-    Plataforma: ["Módulos", "Agentes AI", "Integraciones", "API"],
-    Industrias: ["Restaurantes", "Hoteles", "Travel", "Experiencias"],
-    Empresa: ["Nosotros", "Blog", "Contacto", "Carreras"],
-    Legal: ["Privacidad", "Términos", "Cookies", "GDPR"],
+    [t.footer.categories.platform.title]: t.footer.categories.platform.links,
+    [t.footer.categories.industries.title]: t.footer.categories.industries.links,
+    [t.footer.categories.company.title]: t.footer.categories.company.links,
+    [t.footer.categories.legal.title]: t.footer.categories.legal.links,
   };
 
   return (
-    <footer id="about" className="bg-foreground text-background py-16 lg:py-20">
+    <footer id="about" className="bg-foreground text-background py-12 sm:py-16 lg:py-20">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 lg:gap-12 mb-12">
           {/* Logo & Description */}
@@ -23,8 +26,7 @@ const Footer = () => {
               </span>
             </div>
             <p className="text-background/60 text-sm leading-relaxed mb-6">
-              Sistema operativo inteligente para negocios, impulsado por Agentes AI. 
-              Hospitality, gastronomía, travel y experiencias.
+              {t.footer.description}
             </p>
             <div className="flex gap-3">
               {["twitter", "linkedin", "instagram"].map((social) => (
@@ -43,8 +45,8 @@ const Footer = () => {
           {/* Links */}
           {Object.entries(footerLinks).map(([category, links]) => (
             <div key={category}>
-              <h4 className="font-semibold text-background mb-4">{category}</h4>
-              <ul className="space-y-3">
+              <h4 className="font-semibold text-background mb-4 text-sm sm:text-base">{category}</h4>
+              <ul className="space-y-2 sm:space-y-3">
                 {links.map((link) => (
                   <li key={link}>
                     <a
@@ -63,12 +65,12 @@ const Footer = () => {
         {/* Bottom */}
         <div className="pt-8 border-t border-background/10">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-background/40 text-sm">
-              © 2024 Booking Intelligence. Todos los derechos reservados.
+            <p className="text-background/40 text-sm text-center md:text-left">
+              {t.footer.copyright}
             </p>
-            <div className="flex gap-6 text-sm text-background/40">
-              <span>ES</span>
+            <div className="flex gap-4 sm:gap-6 text-sm text-background/40">
               <span>EN</span>
+              <span>ES</span>
               <span>IT</span>
               <span>FR</span>
               <span>PT</span>
