@@ -8,6 +8,7 @@ import Pricing from "@/components/Pricing";
 import SocialProof from "@/components/SocialProof";
 import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
+import { SalesChatWidget } from "@/components/SalesChat";
 
 const Index = () => {
   return (
@@ -22,6 +23,9 @@ const Index = () => {
       <Pricing />
       <CTA />
       <Footer />
+      
+      {/* AI Sales Agent Chat Widget */}
+      <SalesChatWidget />
     </div>
   );
 };

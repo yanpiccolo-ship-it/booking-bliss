@@ -180,6 +180,20 @@ export interface Translations {
       confirmation: string;
     };
   };
+  // Sales Chat Widget
+  salesChat: {
+    title: string;
+    status: string;
+    inputPlaceholder: string;
+    greeting: string;
+    errorMessage: string;
+    connectionError: string;
+    retry: string;
+    poweredBy: string;
+    quickAction1: string;
+    quickAction2: string;
+    quickAction3: string;
+  };
 }
 
 export const translations: Record<Language, Translations> = {
@@ -342,6 +356,19 @@ export const translations: Record<Language, Translations> = {
         confirmation: 'Perfect! I have availability for 4 people. What day and time works best for you?',
       },
     },
+    salesChat: {
+      title: 'AI Sales Assistant',
+      status: 'Online',
+      inputPlaceholder: 'Type your message...',
+      greeting: 'Hi! 👋 I\'m the Booking Intelligence assistant. How can I help you today?',
+      errorMessage: 'Sorry, there was an error. Please try again.',
+      connectionError: 'Connection lost',
+      retry: 'Retry',
+      poweredBy: 'Powered by',
+      quickAction1: 'I want to know more',
+      quickAction2: 'Request a demo',
+      quickAction3: 'See pricing',
+    },
   },
   es: {
     nav: {
@@ -501,6 +528,19 @@ export const translations: Record<Language, Translations> = {
         userResponse: 'Quiero reservar mesa para 4',
         confirmation: '¡Perfecto! Tengo disponibilidad para 4 personas. ¿Qué día y hora te viene mejor?',
       },
+    },
+    salesChat: {
+      title: 'Asistente de Ventas AI',
+      status: 'En línea',
+      inputPlaceholder: 'Escribe tu mensaje...',
+      greeting: '¡Hola! 👋 Soy el asistente de Booking Intelligence. ¿En qué puedo ayudarte hoy?',
+      errorMessage: 'Lo siento, hubo un error. Por favor intenta de nuevo.',
+      connectionError: 'Conexión perdida',
+      retry: 'Reintentar',
+      poweredBy: 'Impulsado por',
+      quickAction1: 'Quiero saber más',
+      quickAction2: 'Solicitar demo',
+      quickAction3: 'Ver precios',
     },
   },
   it: {
@@ -662,6 +702,19 @@ export const translations: Record<Language, Translations> = {
         confirmation: 'Perfetto! Ho disponibilità per 4 persone. Quale giorno e orario preferisci?',
       },
     },
+    salesChat: {
+      title: 'Assistente Vendite AI',
+      status: 'Online',
+      inputPlaceholder: 'Scrivi il tuo messaggio...',
+      greeting: 'Ciao! 👋 Sono l\'assistente di Booking Intelligence. Come posso aiutarti oggi?',
+      errorMessage: 'Spiacente, si è verificato un errore. Riprova.',
+      connectionError: 'Connessione persa',
+      retry: 'Riprova',
+      poweredBy: 'Powered by',
+      quickAction1: 'Voglio saperne di più',
+      quickAction2: 'Richiedi demo',
+      quickAction3: 'Vedi prezzi',
+    },
   },
   fr: {
     nav: {
@@ -821,6 +874,19 @@ export const translations: Record<Language, Translations> = {
         userResponse: 'Je voudrais réserver une table pour 4',
         confirmation: 'Parfait ! J\'ai des disponibilités pour 4 personnes. Quel jour et quelle heure vous conviennent ?',
       },
+    },
+    salesChat: {
+      title: 'Assistant Ventes IA',
+      status: 'En ligne',
+      inputPlaceholder: 'Écrivez votre message...',
+      greeting: 'Bonjour ! 👋 Je suis l\'assistant de Booking Intelligence. Comment puis-je vous aider aujourd\'hui ?',
+      errorMessage: 'Désolé, une erreur s\'est produite. Veuillez réessayer.',
+      connectionError: 'Connexion perdue',
+      retry: 'Réessayer',
+      poweredBy: 'Propulsé par',
+      quickAction1: 'Je veux en savoir plus',
+      quickAction2: 'Demander une démo',
+      quickAction3: 'Voir les tarifs',
     },
   },
   pt: {
@@ -982,6 +1048,19 @@ export const translations: Record<Language, Translations> = {
         confirmation: 'Perfeito! Tenho disponibilidade para 4 pessoas. Qual dia e horário prefere?',
       },
     },
+    salesChat: {
+      title: 'Assistente de Vendas IA',
+      status: 'Online',
+      inputPlaceholder: 'Escreva sua mensagem...',
+      greeting: 'Olá! 👋 Sou o assistente da Booking Intelligence. Como posso ajudar você hoje?',
+      errorMessage: 'Desculpe, ocorreu um erro. Por favor, tente novamente.',
+      connectionError: 'Conexão perdida',
+      retry: 'Tentar novamente',
+      poweredBy: 'Powered by',
+      quickAction1: 'Quero saber mais',
+      quickAction2: 'Solicitar demo',
+      quickAction3: 'Ver preços',
+    },
   },
   de: {
     nav: {
@@ -1141,6 +1220,19 @@ export const translations: Record<Language, Translations> = {
         userResponse: 'Ich möchte einen Tisch für 4 Personen reservieren',
         confirmation: 'Perfekt! Ich habe Verfügbarkeit für 4 Personen. Welcher Tag und welche Uhrzeit passen Ihnen?',
       },
+    },
+    salesChat: {
+      title: 'KI-Verkaufsassistent',
+      status: 'Online',
+      inputPlaceholder: 'Schreiben Sie Ihre Nachricht...',
+      greeting: 'Hallo! 👋 Ich bin der Assistent von Booking Intelligence. Wie kann ich Ihnen heute helfen?',
+      errorMessage: 'Entschuldigung, ein Fehler ist aufgetreten. Bitte versuchen Sie es erneut.',
+      connectionError: 'Verbindung verloren',
+      retry: 'Erneut versuchen',
+      poweredBy: 'Powered by',
+      quickAction1: 'Ich möchte mehr erfahren',
+      quickAction2: 'Demo anfordern',
+      quickAction3: 'Preise ansehen',
     },
   },
 };
