@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
+import editorialFoodImage from "@/assets/editorial-food.jpg";
 
 const EditorialSection = () => {
   const { t } = useLanguage();
@@ -11,7 +12,7 @@ const EditorialSection = () => {
       <div className="relative min-h-[60vh] sm:min-h-[70vh] lg:min-h-[80vh] flex items-center">
         <div className="absolute inset-0">
           <img
-            src="https://images.unsplash.com/photo-1600891964092-4316c288032e?w=1920&q=80"
+            src={editorialFoodImage}
             alt="Restaurant ambiance"
             className="w-full h-full object-cover"
           />

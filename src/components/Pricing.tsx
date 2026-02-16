@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Check, Sparkles, ArrowRight } from "lucide-react";
+import { Check, Sparkles, ArrowRight, Zap, Clock } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 
 const Pricing = () => {
@@ -10,21 +10,24 @@ const Pricing = () => {
     {
       name: t.pricing.plans.basic.name,
       description: t.pricing.plans.basic.description,
-      price: "€1,500",
+      setupPrice: "390 €",
+      monthlyPrice: "49 €",
       features: t.pricing.plans.basic.features,
       highlighted: false,
     },
     {
       name: t.pricing.plans.advanced.name,
       description: t.pricing.plans.advanced.description,
-      price: "€2,500",
+      setupPrice: "990 €",
+      monthlyPrice: "149 €",
       features: t.pricing.plans.advanced.features,
       highlighted: true,
     },
     {
       name: t.pricing.plans.custom.name,
       description: t.pricing.plans.custom.description,
-      price: "€3,000+",
+      setupPrice: "2.900 € – 3.900 €",
+      monthlyPrice: "299 €",
       features: t.pricing.plans.custom.features,
       highlighted: false,
     },
@@ -91,25 +94,39 @@ const Pricing = () => {
                 </p>
               </div>
 
-              {/* Pricing */}
-              <div className="mb-6 sm:mb-8">
-                <div className="flex items-baseline gap-1">
-                  <span className={`text-xs sm:text-sm ${
-                    plan.highlighted ? "text-background/60" : "text-muted-foreground"
-                  }`}>
-                    {t.pricing.startAt}
-                  </span>
+              {/* Pricing - Setup */}
+              <div className="mb-4">
+                <div className={`text-xs uppercase tracking-wider font-semibold mb-1 ${
+                  plan.highlighted ? "text-background/50" : "text-muted-foreground"
+                }`}>
+                  {t.pricing.setupLabel}
                 </div>
-                <div className={`text-3xl sm:text-4xl font-bold font-display mb-1 ${
+                <div className={`text-2xl sm:text-3xl font-bold font-display ${
                   plan.highlighted ? "text-background" : "text-foreground"
                 }`}>
-                  {plan.price}
+                  {plan.setupPrice}
                 </div>
-                <span className={`text-xs sm:text-sm ${
-                  plan.highlighted ? "text-background/60" : "text-muted-foreground"
+              </div>
+
+              {/* Pricing - Monthly */}
+              <div className="mb-6 sm:mb-8">
+                <div className={`text-xs uppercase tracking-wider font-semibold mb-1 ${
+                  plan.highlighted ? "text-background/50" : "text-muted-foreground"
                 }`}>
-                  {t.pricing.monthlyFee}
-                </span>
+                  {t.pricing.monthlyLabel}
+                </div>
+                <div className="flex items-baseline gap-1">
+                  <span className={`text-xl sm:text-2xl font-bold font-display ${
+                    plan.highlighted ? "text-background" : "text-foreground"
+                  }`}>
+                    {plan.monthlyPrice}
+                  </span>
+                  <span className={`text-sm ${
+                    plan.highlighted ? "text-background/60" : "text-muted-foreground"
+                  }`}>
+                    / {t.pricing.perMonth}
+                  </span>
+                </div>
               </div>
 
               {/* Features */}
@@ -128,31 +145,73 @@ const Pricing = () => {
                 ))}
               </ul>
 
-              {/* CTA Button */}
-              <Button
-                size="lg"
-                className={`w-full ${
-                  plan.highlighted 
-                    ? "bg-background text-foreground hover:bg-background/90" 
-                    : "bg-foreground text-background hover:bg-foreground/90"
-                }`}
-              >
-                {plan.highlighted ? t.pricing.selectPlan : t.pricing.contactSales}
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </Button>
+              {/* CTA Buttons */}
+              <div className="space-y-2">
+                <Button
+                  size="lg"
+                  className={`w-full ${
+                    plan.highlighted 
+                      ? "bg-background text-foreground hover:bg-background/90" 
+                      : "bg-foreground text-background hover:bg-foreground/90"
+                  }`}
+                >
+                  {t.pricing.ctaStart}
+                  <ArrowRight className="w-4 h-4 ml-2" />
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className={`w-full ${
+                    plan.highlighted 
+                      ? "text-background/70 hover:text-background hover:bg-background/10" 
+                      : "text-muted-foreground hover:text-foreground"
+                  }`}
+                >
+                  {t.pricing.ctaDemo}
+                </Button>
+              </div>
             </motion.div>
           ))}
         </div>
 
-        {/* Languages */}
+        {/* Bonus & Payment Info */}
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ delay: 0.6 }}
-          className="mt-12 sm:mt-16 text-center"
+          transition={{ delay: 0.5 }}
+          className="mt-12 sm:mt-16 max-w-3xl mx-auto"
         >
-          <p className="text-sm text-muted-foreground mb-4">{t.pricing.languagesSupported}</p>
+          <div className="grid sm:grid-cols-2 gap-4">
+            <div className="flex items-start gap-3 bg-card rounded-2xl p-5 border border-border shadow-soft">
+              <div className="w-10 h-10 rounded-xl bg-foreground flex items-center justify-center flex-shrink-0">
+                <Zap className="w-5 h-5 text-background" />
+              </div>
+              <div>
+                <p className="text-sm font-semibold text-foreground">{t.pricing.bonusTitle}</p>
+                <p className="text-xs text-muted-foreground mt-1">{t.pricing.bonusDescription}</p>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 bg-card rounded-2xl p-5 border border-border shadow-soft">
+              <div className="w-10 h-10 rounded-xl bg-foreground flex items-center justify-center flex-shrink-0">
+                <Clock className="w-5 h-5 text-background" />
+              </div>
+              <div>
+                <p className="text-sm font-semibold text-foreground">{t.pricing.installmentTitle}</p>
+                <p className="text-xs text-muted-foreground mt-1">{t.pricing.installmentDescription}</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Contact CTA */}
+          <div className="text-center mt-8">
+            <Button variant="outline" size="lg" className="rounded-xl">
+              {t.pricing.ctaAdvisor}
+              <ArrowRight className="w-4 h-4 ml-2" />
+            </Button>
+          </div>
+
+          <p className="text-sm text-muted-foreground text-center mt-6">{t.pricing.languagesSupported}</p>
         </motion.div>
       </div>
     </section>
