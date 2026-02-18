@@ -355,7 +355,7 @@ export const translations: Record<Language, Translations> = {
         company: { title: 'Company', links: ['About Us', 'Blog', 'Contact', 'Careers'] },
         legal: { title: 'Legal', links: ['Privacy', 'Terms', 'Cookies', 'GDPR'] },
       },
-      copyright: '© 2024 Booking Intelligence. All rights reserved.',
+      copyright: '© 2026 Booking Intelligence. Design by Just Bee Brand Agency.',
     },
     chat: {
       title: 'AI Assistant',
@@ -534,7 +534,7 @@ export const translations: Record<Language, Translations> = {
         company: { title: 'Empresa', links: ['Nosotros', 'Blog', 'Contacto', 'Carreras'] },
         legal: { title: 'Legal', links: ['Privacidad', 'Términos', 'Cookies', 'GDPR'] },
       },
-      copyright: '© 2024 Booking Intelligence. Todos los derechos reservados.',
+      copyright: '© 2026 Booking Intelligence. Design by Just Bee Brand Agency.',
     },
     chat: {
       title: 'Asistente AI',
@@ -713,7 +713,7 @@ export const translations: Record<Language, Translations> = {
         company: { title: 'Azienda', links: ['Chi siamo', 'Blog', 'Contatti', 'Carriere'] },
         legal: { title: 'Legale', links: ['Privacy', 'Termini', 'Cookie', 'GDPR'] },
       },
-      copyright: '© 2024 Booking Intelligence. Tutti i diritti riservati.',
+      copyright: '© 2026 Booking Intelligence. Design by Just Bee Brand Agency.',
     },
     chat: {
       title: 'Assistente AI',
@@ -892,7 +892,7 @@ export const translations: Record<Language, Translations> = {
         company: { title: 'Entreprise', links: ['À propos', 'Blog', 'Contact', 'Carrières'] },
         legal: { title: 'Légal', links: ['Confidentialité', 'Conditions', 'Cookies', 'RGPD'] },
       },
-      copyright: '© 2024 Booking Intelligence. Tous droits réservés.',
+      copyright: '© 2026 Booking Intelligence. Design by Just Bee Brand Agency.',
     },
     chat: {
       title: 'Assistant IA',
@@ -1071,7 +1071,7 @@ export const translations: Record<Language, Translations> = {
         company: { title: 'Empresa', links: ['Sobre nós', 'Blog', 'Contato', 'Carreiras'] },
         legal: { title: 'Legal', links: ['Privacidade', 'Termos', 'Cookies', 'LGPD'] },
       },
-      copyright: '© 2024 Booking Intelligence. Todos os direitos reservados.',
+      copyright: '© 2026 Booking Intelligence. Design by Just Bee Brand Agency.',
     },
     chat: {
       title: 'Assistente IA',
@@ -1250,7 +1250,7 @@ export const translations: Record<Language, Translations> = {
         company: { title: 'Unternehmen', links: ['Über uns', 'Blog', 'Kontakt', 'Karriere'] },
         legal: { title: 'Rechtliches', links: ['Datenschutz', 'AGB', 'Cookies', 'DSGVO'] },
       },
-      copyright: '© 2024 Booking Intelligence. Alle Rechte vorbehalten.',
+      copyright: '© 2026 Booking Intelligence. Design by Just Bee Brand Agency.',
     },
     chat: {
       title: 'KI-Assistent',

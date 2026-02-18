@@ -34,18 +34,27 @@ const SubscriptionGate = ({ children }: SubscriptionGateProps) => {
         return;
       }
 
-      // Check subscription status
-      const { data: sub } = await supabase
-        .from("business_subscriptions")
-        .select("is_active, setup_paid")
-        .eq("user_id", session.user.id)
+      // Check subscription status via business_memberships
+      const { data: business } = await supabase
+        .from("businesses")
+        .select("id")
+        .eq("owner_id", session.user.id)
         .maybeSingle();
 
-      if (sub?.is_active && sub?.setup_paid) {
-        setStatus("active");
-      } else {
-        setStatus("inactive");
+      if (business) {
+        const { data: membership } = await supabase
+          .from("business_memberships")
+          .select("status")
+          .eq("business_id", business.id)
+          .maybeSingle();
+
+        if (membership?.status === "active") {
+          setStatus("active");
+          return;
+        }
       }
+
+      setStatus("inactive");
     };
     check();
   }, [navigate]);
