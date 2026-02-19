@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Check, Sparkles, ArrowRight, Zap, Clock } from "lucide-react";
+import { Check, Sparkles, ArrowRight, Zap, Clock, Play } from "lucide-react";
+import { Link } from "react-router-dom";
 import { useLanguage } from "@/i18n/LanguageContext";
 
 const Pricing = () => {
@@ -204,7 +205,13 @@ const Pricing = () => {
           </div>
 
           {/* Contact CTA */}
-          <div className="text-center mt-8">
+          <div className="text-center mt-8 flex flex-col sm:flex-row gap-3 justify-center">
+            <Link to="/demo">
+              <Button size="lg" className="rounded-xl bg-foreground text-background hover:bg-foreground/90">
+                <Play className="w-4 h-4 mr-2" />
+                View Demo
+              </Button>
+            </Link>
             <Button variant="outline" size="lg" className="rounded-xl">
               {t.pricing.ctaAdvisor}
               <ArrowRight className="w-4 h-4 ml-2" />

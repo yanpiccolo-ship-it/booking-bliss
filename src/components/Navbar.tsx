@@ -49,7 +49,7 @@ const Navbar = () => {
             <span className={`font-display font-bold text-lg sm:text-xl transition-colors ${
               isScrolled ? "text-foreground" : "text-background"
             }`}>
-              Booking<span className={isScrolled ? "text-muted-foreground" : "text-background/70"}>Intelligence</span>
+              Flow<span className={isScrolled ? "text-muted-foreground" : "text-background/70"}>Booking</span>
             </span>
           </a>
 

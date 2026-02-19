@@ -16,12 +16,8 @@ export const LanguageProvider: React.FC<{ children: ReactNode }> = ({ children }
     if (stored && translations[stored]) {
       return stored;
     }
-    // Auto-detect from browser
-    const browserLang = navigator.language.split('-')[0] as Language;
-    if (translations[browserLang]) {
-      return browserLang;
-    }
-    return 'en'; // Default to English
+    // Default to English always (base language)
+    return 'en';
   });
 
   const setLanguage = (lang: Language) => {
