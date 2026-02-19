@@ -9,25 +9,25 @@ import {
 } from "lucide-react";
 
 const demoStats = [
-  { label: "Reservas Totales", value: "156", change: "+12%", icon: Calendar, color: "bg-blue-500" },
-  { label: "Ingresos (mes)", value: "€4,250", change: "+8%", icon: DollarSign, color: "bg-emerald-500" },
-  { label: "Clientes Activos", value: "48", change: "+5%", icon: Users, color: "bg-violet-500" },
-  { label: "Sesión media", value: "45min", change: "+2%", icon: Clock, color: "bg-orange-500" },
+  { label: "Total Bookings", value: "156", change: "+12%", icon: Calendar, color: "bg-blue-500" },
+  { label: "Revenue (month)", value: "€4,250", change: "+8%", icon: DollarSign, color: "bg-emerald-500" },
+  { label: "Active Clients", value: "48", change: "+5%", icon: Users, color: "bg-violet-500" },
+  { label: "Avg. Session", value: "45min", change: "+2%", icon: Clock, color: "bg-orange-500" },
 ];
 
 const menuItems = [
-  { icon: BarChart3, label: "Resumen", active: true },
-  { icon: Calendar, label: "Reservas" },
-  { icon: CreditCard, label: "Pagos" },
-  { icon: Users, label: "Clientes" },
-  { icon: Settings, label: "Ajustes" },
+  { icon: BarChart3, label: "Overview", active: true },
+  { icon: Calendar, label: "Bookings" },
+  { icon: CreditCard, label: "Payments" },
+  { icon: Users, label: "Clients" },
+  { icon: Settings, label: "Settings" },
 ];
 
 const activity = [
-  { title: "Nueva reserva confirmada", time: "hace 2 min", type: "booking" },
-  { title: "Pago recibido €85", time: "hace 1 hora", type: "payment" },
-  { title: "Nuevo cliente registrado", time: "hace 3 horas", type: "client" },
-  { title: "Servicio actualizado", time: "hace 5 horas", type: "service" },
+  { title: "New booking confirmed", time: "2 min ago", type: "booking" },
+  { title: "Payment received €85", time: "1 hour ago", type: "payment" },
+  { title: "New client registered", time: "3 hours ago", type: "client" },
+  { title: "Service updated", time: "5 hours ago", type: "service" },
 ];
 
 const Demo = () => {
@@ -38,10 +38,10 @@ const Demo = () => {
       {/* Demo Banner */}
       <div className="fixed top-0 left-0 right-0 z-50 bg-foreground text-background py-2 px-4 text-center text-sm flex items-center justify-center gap-3">
         <Sparkles className="w-4 h-4" />
-        <span className="font-medium">Modo Demo — Vista previa del panel de control</span>
+        <span className="font-medium">Demo Mode — Control panel preview</span>
         <Link to="/auth">
           <Button size="sm" variant="outline" className="h-7 px-3 text-xs border-background/30 text-background hover:bg-background/10 ml-2">
-            Activar mi cuenta →
+            Activate my account →
           </Button>
         </Link>
       </div>
@@ -100,7 +100,7 @@ const Demo = () => {
             <div className="flex items-center gap-4">
               <Link to="/" className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors lg:hidden">
                 <ArrowLeft className="w-4 h-4" />
-                Inicio
+                Home
               </Link>
               <h1 className="font-display font-bold text-lg sm:text-xl text-foreground">
                 Dashboard
@@ -114,7 +114,7 @@ const Demo = () => {
               <Link to="/auth">
                 <Button size="sm" className="bg-foreground text-background hover:bg-foreground/90 hidden sm:flex">
                   <Play className="w-4 h-4 mr-2" />
-                  Comenzar gratis
+                  Get started free
                 </Button>
               </Link>
             </div>
@@ -130,10 +130,10 @@ const Demo = () => {
             className="mb-8"
           >
             <h2 className="text-2xl sm:text-3xl font-display font-bold text-foreground mb-2">
-              Bienvenido al Demo 👋
+              Welcome to the Demo 👋
             </h2>
             <p className="text-muted-foreground">
-              Esto es una vista previa de tu panel de control inteligente con Booking Intelligence.
+              This is a preview of your intelligent control panel with Flow Booking.
             </p>
           </motion.div>
 
@@ -174,14 +174,14 @@ const Demo = () => {
               className="bg-card rounded-2xl p-6 border border-border shadow-soft"
             >
               <h3 className="font-display font-bold text-lg text-foreground mb-4">
-                Acciones rápidas
+                Quick Actions
               </h3>
               <div className="grid grid-cols-2 gap-3">
                 {[
-                  { label: "Nueva Reserva", icon: Calendar },
-                  { label: "Añadir Servicio", icon: Settings },
-                  { label: "Enviar Factura", icon: CreditCard },
-                  { label: "Ver Informes", icon: BarChart3 },
+                  { label: "New Booking", icon: Calendar },
+                  { label: "Add Service", icon: Settings },
+                  { label: "Send Invoice", icon: CreditCard },
+                  { label: "View Reports", icon: BarChart3 },
                 ].map((action) => (
                   <button
                     key={action.label}
@@ -205,10 +205,10 @@ const Demo = () => {
             >
               <div className="flex items-center justify-between mb-4">
                 <h3 className="font-display font-bold text-lg text-foreground">
-                  Actividad reciente
+                  Recent Activity
                 </h3>
                 <button className="text-sm text-muted-foreground hover:text-foreground flex items-center gap-1">
-                  Ver todo <ChevronRight className="w-4 h-4" />
+                  View all <ChevronRight className="w-4 h-4" />
                 </button>
               </div>
               <div className="space-y-4">
@@ -239,21 +239,21 @@ const Demo = () => {
           >
             <div>
               <h3 className="font-display font-bold text-xl text-background mb-1">
-                ¿Listo para empezar?
+                Ready to get started?
               </h3>
               <p className="text-background/70 text-sm">
-                Activa tu cuenta y automatiza tu negocio hoy mismo.
+                Activate your account and automate your business today.
               </p>
             </div>
             <div className="flex gap-3 flex-shrink-0">
               <Link to="/#pricing">
                 <Button variant="outline" className="border-background/30 text-background hover:bg-background/10">
-                  Ver precios
+                  View pricing
                 </Button>
               </Link>
               <Link to="/auth">
                 <Button className="bg-background text-foreground hover:bg-background/90">
-                  Crear cuenta
+                  Create account
                   <ArrowLeft className="w-4 h-4 ml-2 rotate-180" />
                 </Button>
               </Link>

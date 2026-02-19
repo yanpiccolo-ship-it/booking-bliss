@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Play } from "lucide-react";
+import { Link } from "react-router-dom";
 import { useLanguage } from "@/i18n/LanguageContext";
 
 const HeroVideo = () => {
@@ -61,14 +62,15 @@ const HeroVideo = () => {
                 {t.hero.cta}
                 <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 ml-2" />
               </Button>
-              <Button 
-                size="lg" 
-                variant="outline" 
-                className="border-background/30 text-background hover:bg-background/10 backdrop-blur-sm h-12 sm:h-14 text-sm sm:text-base"
-              >
-                <Play className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
-                {t.hero.ctaSecondary}
-              </Button>
+              <Link to="/demo">
+                <Button 
+                  size="lg" 
+                  className="border border-background/50 bg-transparent text-background hover:bg-background/10 h-12 sm:h-14 text-sm sm:text-base w-full sm:w-auto"
+                >
+                  <Play className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
+                  {t.hero.ctaSecondary}
+                </Button>
+              </Link>
             </div>
           </motion.div>
         </div>

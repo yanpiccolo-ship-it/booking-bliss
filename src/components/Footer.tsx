@@ -22,7 +22,7 @@ const Footer = () => {
                 <Cpu className="w-5 h-5 text-foreground" />
               </div>
               <span className="font-display font-bold text-xl text-background">
-                Booking<span className="text-background/60">Intelligence</span>
+                Flow<span className="text-background/60">Booking</span>
               </span>
             </div>
             <p className="text-background/60 text-sm leading-relaxed mb-6">
