@@ -149,7 +149,7 @@ const Auth = () => {
       } else {
         toast({
           title: "Account created!",
-          description: "Welcome to Booking Intelligence. Redirecting...",
+          description: "Welcome to FlowBooking. Redirecting...",
         });
       }
     } catch (error) {
@@ -221,7 +221,7 @@ const Auth = () => {
             </div>
           </a>
           <h1 className="font-display text-2xl font-bold text-foreground">
-            Booking<span className="text-muted-foreground">Intelligence</span>
+            Flow<span className="text-muted-foreground">Booking</span>
           </h1>
         </div>
 

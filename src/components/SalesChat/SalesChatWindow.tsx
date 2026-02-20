@@ -179,7 +179,7 @@ const SalesChatWindow = () => {
         
         {/* Powered by footer */}
         <p className="text-center text-xs text-muted-foreground mt-3">
-          {t.salesChat?.poweredBy || "Powered by"} Booking Intelligence AI
+          {t.salesChat?.poweredBy || "Powered by"} FlowBooking AI
         </p>
       </form>
     </div>
