@@ -148,7 +148,7 @@ const AdminPanel = () => {
               <Cpu className="w-5 h-5 text-background" />
             </div>
             <div>
-              <span className="font-display font-bold text-sm text-foreground">Booking Intelligence</span>
+              <span className="font-display font-bold text-sm text-foreground">FlowBooking</span>
               <div className="flex items-center gap-1 mt-0.5">
                 <Shield className="w-3 h-3 text-amber-500" />
                 <span className="text-xs text-amber-600 font-semibold">Admin Panel</span>

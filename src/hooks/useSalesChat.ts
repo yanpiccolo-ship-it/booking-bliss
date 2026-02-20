@@ -58,7 +58,7 @@ export const useSalesChat = (): UseSalesChatReturn => {
         setMessages([{
           id: greetingId,
           role: "assistant",
-          content: t.salesChat?.greeting || "¡Hola! 👋 Soy el asistente de Booking Intelligence. ¿En qué puedo ayudarte hoy?",
+          content: t.salesChat?.greeting || "¡Hola! 👋 Soy el asistente de FlowBooking. ¿En qué puedo ayudarte hoy?",
           timestamp: new Date(),
           isTyping: false
         }]);
