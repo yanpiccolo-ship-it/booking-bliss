@@ -1,10 +1,12 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Cpu } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import { useLanguage } from "@/i18n/LanguageContext";
 
 const CTA = () => {
   const { t } = useLanguage();
+  const navigate = useNavigate();
 
   return (
     <section id="contact" className="py-16 sm:py-24 lg:py-32 bg-background relative overflow-hidden">
@@ -48,6 +50,7 @@ const CTA = () => {
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-8 sm:mb-12">
               <Button 
                 size="lg"
+                onClick={() => navigate("/request-demo")}
                 className="bg-background text-foreground hover:bg-background/90 h-12 sm:h-14 px-6 sm:px-8"
               >
                 {t.cta.primaryBtn}
