@@ -694,16 +694,16 @@ const Demo = () => {
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.55 }}
                   className="bg-foreground rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-4">
                   <div>
-                    <h3 className="font-display font-bold text-xl text-background mb-1">Ready to get started?</h3>
-                    <p className="text-background/70 text-sm">Activate your account and automate your business today.</p>
+                    <h3 className="font-display font-bold text-xl text-background mb-1">¿Listo para automatizar tu negocio?</h3>
+                    <p className="text-background/70 text-sm">Activa FlowBooking y empieza a recibir reservas en piloto automático.</p>
                   </div>
                   <div className="flex gap-3 flex-shrink-0">
                     <Link to="/#pricing">
-                      <Button variant="outline" className="border-background/30 text-background hover:bg-background/10">View pricing</Button>
+                      <Button variant="outline" className="border-background/30 text-background hover:bg-background/10">Ver planes</Button>
                     </Link>
                     <Link to="/auth">
                       <Button className="bg-background text-foreground hover:bg-background/90">
-                        Create account <ArrowLeft className="w-4 h-4 ml-2 rotate-180" />
+                        <Zap className="w-4 h-4 mr-2" />Activar sistema en tu negocio
                       </Button>
                     </Link>
                   </div>
