@@ -1,11 +1,12 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Check, Sparkles, ArrowRight, Zap, Clock, Play } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useLanguage } from "@/i18n/LanguageContext";
 
 const Pricing = () => {
   const { t } = useLanguage();
+  const navigate = useNavigate();
 
   const pricingPlans = [
     {
@@ -150,6 +151,7 @@ const Pricing = () => {
               <div className="space-y-2">
                 <Button
                   size="lg"
+                  onClick={() => navigate("/auth")}
                   className={`w-full ${
                     plan.highlighted 
                       ? "bg-background text-foreground hover:bg-background/90" 
@@ -162,6 +164,7 @@ const Pricing = () => {
                 <Button
                   variant="ghost"
                   size="sm"
+                  onClick={() => navigate("/request-demo")}
                   className={`w-full ${
                     plan.highlighted 
                       ? "text-background/70 hover:text-background hover:bg-background/10" 

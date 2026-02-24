@@ -1,11 +1,12 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Play } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useLanguage } from "@/i18n/LanguageContext";
 
 const HeroVideo = () => {
   const { t } = useLanguage();
+  const navigate = useNavigate();
 
   return (
     <section className="relative min-h-screen overflow-hidden">
@@ -57,6 +58,7 @@ const HeroVideo = () => {
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
               <Button 
                 size="lg" 
+                onClick={() => navigate("/request-demo")}
                 className="bg-background text-foreground hover:bg-background/90 font-semibold px-6 sm:px-8 h-12 sm:h-14 text-sm sm:text-base"
               >
                 {t.hero.cta}

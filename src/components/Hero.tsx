@@ -1,9 +1,11 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Play, Cpu, Zap, Globe } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 import ChatPreview from "./ChatPreview";
 
 const Hero = () => {
+  const navigate = useNavigate();
   return (
     <section className="relative min-h-screen bg-gradient-hero pt-20 lg:pt-24 overflow-hidden">
       {/* Premium Background Mesh */}
@@ -70,8 +72,8 @@ const Hero = () => {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-14">
-              <Button variant="hero" size="xl">
-                Solicitar Demo
+              <Button variant="hero" size="xl" onClick={() => navigate("/request-demo")}>
+                Solicitar Demo Estratégica
                 <ArrowRight className="w-5 h-5" />
               </Button>
               <Button variant="heroOutline" size="xl">
