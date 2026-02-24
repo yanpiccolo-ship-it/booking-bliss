@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Cpu } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import LanguageSelector from "./LanguageSelector";
 import { useLanguage } from "@/i18n/LanguageContext";
 
@@ -10,6 +10,7 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const { t } = useLanguage();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -84,6 +85,7 @@ const Navbar = () => {
             </Link>
             <Button 
               size="default"
+              onClick={() => navigate("/request-demo")}
               className={isScrolled 
                 ? "bg-foreground text-background hover:bg-foreground/90" 
                 : "bg-background text-foreground hover:bg-background/90"
@@ -138,7 +140,7 @@ const Navbar = () => {
                     {t.nav.login}
                   </Button>
                 </Link>
-                <Button className="w-full bg-foreground text-background">
+                <Button className="w-full bg-foreground text-background" onClick={() => { setIsOpen(false); navigate("/request-demo"); }}>
                   {t.nav.requestDemo}
                 </Button>
               </div>
