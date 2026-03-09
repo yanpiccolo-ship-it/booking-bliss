@@ -10,11 +10,13 @@ import {
   Clock, DollarSign, Crown, ExternalLink, RefreshCw, Loader2,
   Plus, FileText, MessageSquare, Star, Home, User as UserIcon,
   Utensils, Hotel, Plane, Dumbbell, BookOpen, Package, Globe,
-  ShoppingBag, Zap, Sparkles, ArrowUpRight, X
+  ShoppingBag, Zap, Sparkles, ArrowUpRight, X, Link2
 } from "lucide-react";
+
 import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { STRIPE_TIERS, getTierByProductId, type StripeTier } from "@/lib/stripe-config";
+import IntegrationsPanel from "@/components/dashboard/IntegrationsPanel";
 
 // Feature definitions per plan
 const PLAN_FEATURES: Record<StripeTier, string[]> = {
@@ -48,6 +50,7 @@ const apps: AppItem[] = [
   { id: "ecommerce", name: "Tienda", icon: ShoppingBag, gradient: "from-teal-500 to-teal-600", iconColor: "text-white", minTier: "premium", badge: "Pronto" },
   { id: "multilanguage", name: "Idiomas", icon: Globe, gradient: "from-green-500 to-green-600", iconColor: "text-white", minTier: "professional" },
   { id: "notifications", name: "Alertas", icon: Bell, gradient: "from-red-500 to-red-600", iconColor: "text-white", minTier: "basic" },
+  { id: "integrations", name: "Integrar", icon: Link2, gradient: "from-indigo-400 to-blue-500", iconColor: "text-white", minTier: "basic" },
   { id: "settings", name: "Ajustes", icon: Settings, gradient: "from-slate-500 to-slate-600", iconColor: "text-white", minTier: "basic" },
 ];
 
@@ -569,19 +572,25 @@ const Dashboard = () => {
             </div>
           </div>
 
-          {/* App content placeholder */}
-          <div className="p-6 flex flex-col items-center justify-center min-h-[60vh]">
-            <div className={`w-20 h-20 rounded-[22px] bg-gradient-to-br ${app.gradient} flex items-center justify-center shadow-medium mb-6`}>
-              <app.icon className="w-10 h-10 text-white" />
-            </div>
-            <h3 className="font-display text-xl font-bold text-foreground mb-2">{app.name}</h3>
-            <p className="text-sm text-muted-foreground text-center max-w-xs mb-6">
-              Módulo en desarrollo. Pronto podrás gestionar todo desde aquí.
-            </p>
-            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-muted text-muted-foreground text-xs font-medium">
-              <Sparkles className="w-3 h-3" />
-              Próximamente disponible
-            </div>
+          {/* App content */}
+          <div className="p-6">
+            {app.id === "integrations" ? (
+              <IntegrationsPanel businessId={user?.id || null} onClose={() => setOpenApp(null)} />
+            ) : (
+              <div className="flex flex-col items-center justify-center min-h-[60vh]">
+                <div className={`w-20 h-20 rounded-[22px] bg-gradient-to-br ${app.gradient} flex items-center justify-center shadow-medium mb-6`}>
+                  <app.icon className="w-10 h-10 text-white" />
+                </div>
+                <h3 className="font-display text-xl font-bold text-foreground mb-2">{app.name}</h3>
+                <p className="text-sm text-muted-foreground text-center max-w-xs mb-6">
+                  Módulo en desarrollo. Pronto podrás gestionar todo desde aquí.
+                </p>
+                <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-muted text-muted-foreground text-xs font-medium">
+                  <Sparkles className="w-3 h-3" />
+                  Próximamente disponible
+                </div>
+              </div>
+            )}
           </div>
         </motion.div>
       </AnimatePresence>
