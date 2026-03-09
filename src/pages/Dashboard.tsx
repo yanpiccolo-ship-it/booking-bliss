@@ -572,19 +572,25 @@ const Dashboard = () => {
             </div>
           </div>
 
-          {/* App content placeholder */}
-          <div className="p-6 flex flex-col items-center justify-center min-h-[60vh]">
-            <div className={`w-20 h-20 rounded-[22px] bg-gradient-to-br ${app.gradient} flex items-center justify-center shadow-medium mb-6`}>
-              <app.icon className="w-10 h-10 text-white" />
-            </div>
-            <h3 className="font-display text-xl font-bold text-foreground mb-2">{app.name}</h3>
-            <p className="text-sm text-muted-foreground text-center max-w-xs mb-6">
-              Módulo en desarrollo. Pronto podrás gestionar todo desde aquí.
-            </p>
-            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-muted text-muted-foreground text-xs font-medium">
-              <Sparkles className="w-3 h-3" />
-              Próximamente disponible
-            </div>
+          {/* App content */}
+          <div className="p-6">
+            {app.id === "integrations" ? (
+              <IntegrationsPanel businessId={user?.id || null} onClose={() => setOpenApp(null)} />
+            ) : (
+              <div className="flex flex-col items-center justify-center min-h-[60vh]">
+                <div className={`w-20 h-20 rounded-[22px] bg-gradient-to-br ${app.gradient} flex items-center justify-center shadow-medium mb-6`}>
+                  <app.icon className="w-10 h-10 text-white" />
+                </div>
+                <h3 className="font-display text-xl font-bold text-foreground mb-2">{app.name}</h3>
+                <p className="text-sm text-muted-foreground text-center max-w-xs mb-6">
+                  Módulo en desarrollo. Pronto podrás gestionar todo desde aquí.
+                </p>
+                <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-muted text-muted-foreground text-xs font-medium">
+                  <Sparkles className="w-3 h-3" />
+                  Próximamente disponible
+                </div>
+              </div>
+            )}
           </div>
         </motion.div>
       </AnimatePresence>
