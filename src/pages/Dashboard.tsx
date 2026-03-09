@@ -50,6 +50,7 @@ const apps: AppItem[] = [
   { id: "ecommerce", name: "Tienda", icon: ShoppingBag, gradient: "from-teal-500 to-teal-600", iconColor: "text-white", minTier: "premium", badge: "Pronto" },
   { id: "multilanguage", name: "Idiomas", icon: Globe, gradient: "from-green-500 to-green-600", iconColor: "text-white", minTier: "professional" },
   { id: "notifications", name: "Alertas", icon: Bell, gradient: "from-red-500 to-red-600", iconColor: "text-white", minTier: "basic" },
+  { id: "integrations", name: "Integrar", icon: Link2, gradient: "from-indigo-400 to-blue-500", iconColor: "text-white", minTier: "basic" },
   { id: "settings", name: "Ajustes", icon: Settings, gradient: "from-slate-500 to-slate-600", iconColor: "text-white", minTier: "basic" },
 ];
 
