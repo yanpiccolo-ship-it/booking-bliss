@@ -10,8 +10,9 @@ import {
   Clock, DollarSign, Crown, ExternalLink, RefreshCw, Loader2,
   Plus, FileText, MessageSquare, Star, Home, User as UserIcon,
   Utensils, Hotel, Plane, Dumbbell, BookOpen, Package, Globe,
-  ShoppingBag, Zap, Sparkles, ArrowUpRight, X
+  ShoppingBag, Zap, Sparkles, ArrowUpRight, X, Link2
 } from "lucide-react";
+
 import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { STRIPE_TIERS, getTierByProductId, type StripeTier } from "@/lib/stripe-config";
