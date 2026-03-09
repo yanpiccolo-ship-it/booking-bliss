@@ -80,6 +80,8 @@ export type Database = {
           contact_whatsapp: string | null
           country: string | null
           created_at: string
+          description: string | null
+          gallery_urls: Json | null
           id: string
           is_active: boolean | null
           language: string | null
@@ -88,6 +90,9 @@ export type Database = {
           name: string
           owner_id: string
           postal_code: string | null
+          slug: string | null
+          social_links: Json | null
+          theme_color: string | null
           timezone: string | null
           updated_at: string
           vertical: Database["public"]["Enums"]["business_vertical"]
@@ -100,6 +105,8 @@ export type Database = {
           contact_whatsapp?: string | null
           country?: string | null
           created_at?: string
+          description?: string | null
+          gallery_urls?: Json | null
           id?: string
           is_active?: boolean | null
           language?: string | null
@@ -108,6 +115,9 @@ export type Database = {
           name: string
           owner_id: string
           postal_code?: string | null
+          slug?: string | null
+          social_links?: Json | null
+          theme_color?: string | null
           timezone?: string | null
           updated_at?: string
           vertical: Database["public"]["Enums"]["business_vertical"]
@@ -120,6 +130,8 @@ export type Database = {
           contact_whatsapp?: string | null
           country?: string | null
           created_at?: string
+          description?: string | null
+          gallery_urls?: Json | null
           id?: string
           is_active?: boolean | null
           language?: string | null
@@ -128,6 +140,9 @@ export type Database = {
           name?: string
           owner_id?: string
           postal_code?: string | null
+          slug?: string | null
+          social_links?: Json | null
+          theme_color?: string | null
           timezone?: string | null
           updated_at?: string
           vertical?: Database["public"]["Enums"]["business_vertical"]
@@ -380,6 +395,47 @@ export type Database = {
             columns: ["service_id"]
             isOneToOne: false
             referencedRelation: "services"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      reviews: {
+        Row: {
+          business_id: string
+          comment: string | null
+          created_at: string
+          customer_email: string | null
+          customer_name: string
+          id: string
+          is_visible: boolean | null
+          rating: number
+        }
+        Insert: {
+          business_id: string
+          comment?: string | null
+          created_at?: string
+          customer_email?: string | null
+          customer_name: string
+          id?: string
+          is_visible?: boolean | null
+          rating?: number
+        }
+        Update: {
+          business_id?: string
+          comment?: string | null
+          created_at?: string
+          customer_email?: string | null
+          customer_name?: string
+          id?: string
+          is_visible?: boolean | null
+          rating?: number
+        }
+        Relationships: [
+          {
+            foreignKeyName: "reviews_business_id_fkey"
+            columns: ["business_id"]
+            isOneToOne: false
+            referencedRelation: "businesses"
             referencedColumns: ["id"]
           },
         ]
