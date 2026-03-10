@@ -86,6 +86,16 @@ const Dashboard = () => {
     } catch {}
   }, []);
 
+  // Handle ?checkout=success param
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get("checkout") === "success") {
+      toast({ title: "¡Pago completado!", description: "Tu suscripción está activa." });
+      window.history.replaceState({}, "", "/dashboard");
+      checkSubscription();
+    }
+  }, []);
+
   useEffect(() => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, sess) => {
       setSession(sess);

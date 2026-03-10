@@ -180,13 +180,17 @@ const Pricing = () => {
               <div className="space-y-2">
                 <Button
                   size="lg"
-                  onClick={() => navigate("/auth")}
+                  onClick={() => handlePlanClick(index)}
+                  disabled={checkingOut === PLAN_PRICE_IDS[index]}
                   className={`w-full ${
                     plan.highlighted 
                       ? "bg-background text-foreground hover:bg-background/90" 
                       : "bg-foreground text-background hover:bg-foreground/90"
                   }`}
                 >
+                  {checkingOut === PLAN_PRICE_IDS[index] ? (
+                    <Loader2 className="w-4 h-4 animate-spin mr-2" />
+                  ) : null}
                   {t.pricing.ctaStart}
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
