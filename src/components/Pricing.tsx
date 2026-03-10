@@ -1,40 +1,21 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Check, Sparkles, ArrowRight, Zap, Clock, Play, Loader2 } from "lucide-react";
+import { Check, Sparkles, ArrowRight, Zap, Clock, Play } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useLanguage } from "@/i18n/LanguageContext";
-import { supabase } from "@/integrations/supabase/client";
-import { STRIPE_TIERS } from "@/lib/stripe-config";
 
-const PLAN_PRICE_IDS = [
-  STRIPE_TIERS.basic.price_id,
-  STRIPE_TIERS.professional.price_id,
-  STRIPE_TIERS.premium.price_id,
+const PAYMENT_LINKS = [
+  "https://buy.stripe.com/14AeVdd62cMkeqNcQt1kA00", // Basic
+  "https://buy.stripe.com/aFa14n6HEfYwbeB2bP1kA01", // Professional
+  "https://buy.stripe.com/14AeVdd62cMkeqNcQt1kA00", // Premium
 ];
 
 const Pricing = () => {
   const { t } = useLanguage();
   const navigate = useNavigate();
-  const [checkingOut, setCheckingOut] = useState<string | null>(null);
 
-  const handlePlanClick = async (planIndex: number) => {
-    const priceId = PLAN_PRICE_IDS[planIndex];
-    const { data: { session } } = await supabase.auth.getSession();
-    if (!session) {
-      navigate(`/auth?plan=${planIndex}`);
-      return;
-    }
-    setCheckingOut(priceId);
-    try {
-      const { data, error } = await supabase.functions.invoke("create-checkout", { body: { priceId } });
-      if (error) throw error;
-      if (data?.url) window.open(data.url, "_blank");
-    } catch {
-      navigate("/dashboard");
-    } finally {
-      setCheckingOut(null);
-    }
+  const handlePlanClick = (planIndex: number) => {
+    window.open(PAYMENT_LINKS[planIndex], "_blank");
   };
 
   const pricingPlans = [
@@ -181,16 +162,12 @@ const Pricing = () => {
                 <Button
                   size="lg"
                   onClick={() => handlePlanClick(index)}
-                  disabled={checkingOut === PLAN_PRICE_IDS[index]}
                   className={`w-full ${
                     plan.highlighted 
                       ? "bg-background text-foreground hover:bg-background/90" 
                       : "bg-foreground text-background hover:bg-foreground/90"
                   }`}
                 >
-                  {checkingOut === PLAN_PRICE_IDS[index] ? (
-                    <Loader2 className="w-4 h-4 animate-spin mr-2" />
-                  ) : null}
                   {t.pricing.ctaStart}
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>
