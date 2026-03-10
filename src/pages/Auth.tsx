@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { motion } from "framer-motion";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -9,14 +9,22 @@ import { Cpu, ArrowLeft, Mail, Lock, User, Eye, EyeOff, Loader2 } from "lucide-r
 import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { z } from "zod";
+import { STRIPE_TIERS } from "@/lib/stripe-config";
 
 const emailSchema = z.string().email("Invalid email address");
 const passwordSchema = z.string().min(6, "Password must be at least 6 characters");
+
+const PLAN_PRICE_IDS = [
+  STRIPE_TIERS.basic.price_id,
+  STRIPE_TIERS.professional.price_id,
+  STRIPE_TIERS.premium.price_id,
+];
 
 type AuthMode = "login" | "signup" | "forgot-password";
 
 const Auth = () => {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const { toast } = useToast();
   const { t } = useLanguage();
   
@@ -29,22 +37,42 @@ const Auth = () => {
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
+  const pendingPlan = searchParams.get("plan");
+
+  // After login, redirect to dashboard or trigger checkout for selected plan
+  const handlePostAuth = async () => {
+    if (pendingPlan !== null) {
+      const planIndex = parseInt(pendingPlan);
+      const priceId = PLAN_PRICE_IDS[planIndex];
+      if (priceId) {
+        try {
+          const { data, error } = await supabase.functions.invoke("create-checkout", { body: { priceId } });
+          if (!error && data?.url) {
+            window.location.href = data.url;
+            return;
+          }
+        } catch {}
+      }
+    }
+    navigate("/dashboard");
+  };
+
   // Check if user is already logged in
   useEffect(() => {
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
-      if (session?.user) {
-        navigate("/dashboard");
+      if (session?.user && (event === "SIGNED_IN" || event === "TOKEN_REFRESHED")) {
+        handlePostAuth();
       }
     });
 
     supabase.auth.getSession().then(({ data: { session } }) => {
       if (session?.user) {
-        navigate("/dashboard");
+        handlePostAuth();
       }
     });
 
     return () => subscription.unsubscribe();
-  }, [navigate]);
+  }, [navigate, pendingPlan]);
 
   const validateForm = (): boolean => {
     const newErrors: Record<string, string> = {};
