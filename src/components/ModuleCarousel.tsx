@@ -59,7 +59,7 @@ const ModuleCarousel = () => {
       id: "coworking",
       title: t.modules.items.coworking.title,
       description: t.modules.items.coworking.description,
-      image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80",
+      image: moduleCoworking,
       icon: Building2,
       color: "from-blue-500/20 to-cyan-500/20",
     },
