@@ -51,7 +51,7 @@ const ModuleCarousel = () => {
       id: "workshops",
       title: t.modules.items.workshop.title,
       description: t.modules.items.workshop.description,
-      image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&q=80",
+      image: moduleWorkshop,
       icon: GraduationCap,
       color: "from-violet-500/20 to-purple-500/20",
     },
