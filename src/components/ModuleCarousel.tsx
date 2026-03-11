@@ -27,7 +27,7 @@ const ModuleCarousel = () => {
       id: "spa",
       title: t.modules.items.spa.title,
       description: t.modules.items.spa.description,
-      image: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&q=80",
+      image: moduleSpa,
       icon: Sparkles,
       color: "from-rose-500/20 to-pink-500/20",
     },
