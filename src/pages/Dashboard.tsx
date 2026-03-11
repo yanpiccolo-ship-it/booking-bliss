@@ -131,7 +131,10 @@ const Dashboard = () => {
       setUser(sess?.user ?? null);
       setLoading(false);
       if (!sess) navigate("/auth");
-      if (sess) checkSubscription();
+      if (sess) {
+        checkSubscription();
+        loadBusinessData(sess.user.id);
+      }
     });
 
     supabase.auth.getSession().then(({ data: { session: sess } }) => {
@@ -139,7 +142,10 @@ const Dashboard = () => {
       setUser(sess?.user ?? null);
       setLoading(false);
       if (!sess) navigate("/auth");
-      if (sess) checkSubscription();
+      if (sess) {
+        checkSubscription();
+        loadBusinessData(sess.user.id);
+      }
     });
 
     return () => subscription.unsubscribe();
