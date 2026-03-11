@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 import editorialFoodImage from "@/assets/editorial-food.jpg";
+import editorialWellness from "@/assets/editorial-wellness.jpg";
 
 const EditorialSection = () => {
   const { t } = useLanguage();
