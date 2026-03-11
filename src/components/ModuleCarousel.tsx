@@ -67,7 +67,7 @@ const ModuleCarousel = () => {
       id: "experiences",
       title: t.modules.items.experiences.title,
       description: t.modules.items.experiences.description,
-      image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80",
+      image: moduleExperiences,
       icon: Palmtree,
       color: "from-lime-500/20 to-green-500/20",
     },
