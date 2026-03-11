@@ -19,7 +19,7 @@ const HeroVideo = () => {
           loop
           playsInline
           className="w-full h-full object-cover"
-          poster="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=1920&q=80"
+          poster={heroPoster}
         >
           <source 
             src="https://player.vimeo.com/external/449623542.sd.mp4?s=1b7c00dd42a3ddb5f50a81b46a5c2f0d8c4f3fb9&profile_id=164&oauth2_token_id=57447761" 
