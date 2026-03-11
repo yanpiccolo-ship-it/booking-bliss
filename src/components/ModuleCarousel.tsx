@@ -11,6 +11,12 @@ import {
   ChevronRight
 } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
+import moduleSpa from "@/assets/module-spa.jpg";
+import moduleRestaurant from "@/assets/module-restaurant.jpg";
+import moduleTravel from "@/assets/module-travel.jpg";
+import moduleWorkshop from "@/assets/module-workshop.jpg";
+import moduleCoworking from "@/assets/module-coworking.jpg";
+import moduleExperiences from "@/assets/module-experiences.jpg";
 
 const ModuleCarousel = () => {
   const { t } = useLanguage();
