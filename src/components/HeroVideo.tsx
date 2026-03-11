@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Play } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useLanguage } from "@/i18n/LanguageContext";
+import heroPoster from "@/assets/hero-poster.jpg";
 
 const HeroVideo = () => {
   const { t } = useLanguage();
