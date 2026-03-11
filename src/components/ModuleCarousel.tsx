@@ -11,6 +11,12 @@ import {
   ChevronRight
 } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
+import moduleSpa from "@/assets/module-spa.jpg";
+import moduleRestaurant from "@/assets/module-restaurant.jpg";
+import moduleTravel from "@/assets/module-travel.jpg";
+import moduleWorkshop from "@/assets/module-workshop.jpg";
+import moduleCoworking from "@/assets/module-coworking.jpg";
+import moduleExperiences from "@/assets/module-experiences.jpg";
 
 const ModuleCarousel = () => {
   const { t } = useLanguage();
@@ -21,7 +27,7 @@ const ModuleCarousel = () => {
       id: "spa",
       title: t.modules.items.spa.title,
       description: t.modules.items.spa.description,
-      image: "https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=600&q=80",
+      image: moduleSpa,
       icon: Sparkles,
       color: "from-rose-500/20 to-pink-500/20",
     },
@@ -29,7 +35,7 @@ const ModuleCarousel = () => {
       id: "restaurant",
       title: t.modules.items.restaurant.title,
       description: t.modules.items.restaurant.description,
-      image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&q=80",
+      image: moduleRestaurant,
       icon: UtensilsCrossed,
       color: "from-amber-500/20 to-orange-500/20",
     },
@@ -37,7 +43,7 @@ const ModuleCarousel = () => {
       id: "travel",
       title: t.modules.items.travel.title,
       description: t.modules.items.travel.description,
-      image: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=600&q=80",
+      image: moduleTravel,
       icon: Compass,
       color: "from-emerald-500/20 to-teal-500/20",
     },
@@ -45,7 +51,7 @@ const ModuleCarousel = () => {
       id: "workshops",
       title: t.modules.items.workshop.title,
       description: t.modules.items.workshop.description,
-      image: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&q=80",
+      image: moduleWorkshop,
       icon: GraduationCap,
       color: "from-violet-500/20 to-purple-500/20",
     },
@@ -53,7 +59,7 @@ const ModuleCarousel = () => {
       id: "coworking",
       title: t.modules.items.coworking.title,
       description: t.modules.items.coworking.description,
-      image: "https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&q=80",
+      image: moduleCoworking,
       icon: Building2,
       color: "from-blue-500/20 to-cyan-500/20",
     },
@@ -61,7 +67,7 @@ const ModuleCarousel = () => {
       id: "experiences",
       title: t.modules.items.experiences.title,
       description: t.modules.items.experiences.description,
-      image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&q=80",
+      image: moduleExperiences,
       icon: Palmtree,
       color: "from-lime-500/20 to-green-500/20",
     },

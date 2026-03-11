@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 import editorialFoodImage from "@/assets/editorial-food.jpg";
+import editorialWellness from "@/assets/editorial-wellness.jpg";
 
 const EditorialSection = () => {
   const { t } = useLanguage();
@@ -69,7 +70,7 @@ const EditorialSection = () => {
 
         <div className="relative min-h-[50vh] sm:min-h-[60vh] lg:min-h-[80vh]">
           <img
-            src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?w=1200&q=80"
+            src={editorialWellness}
             alt="Wellness experience"
             className="w-full h-full object-cover"
           />
