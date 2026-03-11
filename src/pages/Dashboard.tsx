@@ -77,6 +77,30 @@ const Dashboard = () => {
 
   const unlockedApps = subscriptionTier ? PLAN_FEATURES[subscriptionTier] : PLAN_FEATURES.basic;
 
+  const loadBusinessData = useCallback(async (userId: string) => {
+    // Get business owned by this user
+    const { data: biz } = await supabase
+      .from("businesses")
+      .select("id, slug, name")
+      .eq("owner_id", userId)
+      .limit(1)
+      .maybeSingle();
+    
+    if (biz) {
+      setBusinessId(biz.id);
+      setBusinessSlug(biz.slug);
+      setBusinessName(biz.name);
+      
+      // Load recent reservations & services
+      const [resRes, svcRes] = await Promise.all([
+        supabase.from("reservations").select("*, services(name)").eq("business_id", biz.id).order("created_at", { ascending: false }).limit(20),
+        supabase.from("services").select("*").eq("business_id", biz.id).eq("is_active", true),
+      ]);
+      setReservations(resRes.data || []);
+      setServices(svcRes.data || []);
+    }
+  }, []);
+
   const checkSubscription = useCallback(async () => {
     try {
       const { data, error } = await supabase.functions.invoke("check-subscription");
