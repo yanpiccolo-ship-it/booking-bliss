@@ -3,6 +3,7 @@ import { ArrowRight } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 import editorialFoodImage from "@/assets/editorial-food.jpg";
 import editorialWellness from "@/assets/editorial-wellness.jpg";
+import editorialHospitality from "@/assets/editorial-hospitality.jpg";
 
 const EditorialSection = () => {
   const { t } = useLanguage();
@@ -48,7 +49,7 @@ const EditorialSection = () => {
       <div className="grid lg:grid-cols-2">
         <div className="relative min-h-[50vh] sm:min-h-[60vh] lg:min-h-[80vh]">
           <img
-            src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1200&q=80"
+            src={editorialHospitality}
             alt="Hotel lobby"
             className="w-full h-full object-cover"
           />
