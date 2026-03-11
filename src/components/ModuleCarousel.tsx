@@ -43,7 +43,7 @@ const ModuleCarousel = () => {
       id: "travel",
       title: t.modules.items.travel.title,
       description: t.modules.items.travel.description,
-      image: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=600&q=80",
+      image: moduleTravel,
       icon: Compass,
       color: "from-emerald-500/20 to-teal-500/20",
     },
