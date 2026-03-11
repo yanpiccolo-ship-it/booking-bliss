@@ -35,7 +35,7 @@ const ModuleCarousel = () => {
       id: "restaurant",
       title: t.modules.items.restaurant.title,
       description: t.modules.items.restaurant.description,
-      image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&q=80",
+      image: moduleRestaurant,
       icon: UtensilsCrossed,
       color: "from-amber-500/20 to-orange-500/20",
     },
