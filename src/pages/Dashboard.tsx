@@ -69,6 +69,11 @@ const Dashboard = () => {
   const [checkingOut, setCheckingOut] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<Tab>("home");
   const [openApp, setOpenApp] = useState<string | null>(null);
+  const [businessId, setBusinessId] = useState<string | null>(null);
+  const [businessSlug, setBusinessSlug] = useState<string | null>(null);
+  const [businessName, setBusinessName] = useState<string | null>(null);
+  const [reservations, setReservations] = useState<any[]>([]);
+  const [services, setServices] = useState<any[]>([]);
 
   const unlockedApps = subscriptionTier ? PLAN_FEATURES[subscriptionTier] : PLAN_FEATURES.basic;
 
