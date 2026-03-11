@@ -3,6 +3,7 @@ import { ArrowRight } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 import editorialFoodImage from "@/assets/editorial-food.jpg";
 import editorialWellness from "@/assets/editorial-wellness.jpg";
+import editorialHospitality from "@/assets/editorial-hospitality.jpg";
 
 const EditorialSection = () => {
   const { t } = useLanguage();
