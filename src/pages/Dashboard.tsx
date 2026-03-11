@@ -69,8 +69,37 @@ const Dashboard = () => {
   const [checkingOut, setCheckingOut] = useState<string | null>(null);
   const [activeTab, setActiveTab] = useState<Tab>("home");
   const [openApp, setOpenApp] = useState<string | null>(null);
+  const [businessId, setBusinessId] = useState<string | null>(null);
+  const [businessSlug, setBusinessSlug] = useState<string | null>(null);
+  const [businessName, setBusinessName] = useState<string | null>(null);
+  const [reservations, setReservations] = useState<any[]>([]);
+  const [services, setServices] = useState<any[]>([]);
 
   const unlockedApps = subscriptionTier ? PLAN_FEATURES[subscriptionTier] : PLAN_FEATURES.basic;
+
+  const loadBusinessData = useCallback(async (userId: string) => {
+    // Get business owned by this user
+    const { data: biz } = await supabase
+      .from("businesses")
+      .select("id, slug, name")
+      .eq("owner_id", userId)
+      .limit(1)
+      .maybeSingle();
+    
+    if (biz) {
+      setBusinessId(biz.id);
+      setBusinessSlug(biz.slug);
+      setBusinessName(biz.name);
+      
+      // Load recent reservations & services
+      const [resRes, svcRes] = await Promise.all([
+        supabase.from("reservations").select("*, services(name)").eq("business_id", biz.id).order("created_at", { ascending: false }).limit(20),
+        supabase.from("services").select("*").eq("business_id", biz.id).eq("is_active", true),
+      ]);
+      setReservations(resRes.data || []);
+      setServices(svcRes.data || []);
+    }
+  }, []);
 
   const checkSubscription = useCallback(async () => {
     try {
@@ -102,7 +131,10 @@ const Dashboard = () => {
       setUser(sess?.user ?? null);
       setLoading(false);
       if (!sess) navigate("/auth");
-      if (sess) checkSubscription();
+      if (sess) {
+        checkSubscription();
+        loadBusinessData(sess.user.id);
+      }
     });
 
     supabase.auth.getSession().then(({ data: { session: sess } }) => {
@@ -110,7 +142,10 @@ const Dashboard = () => {
       setUser(sess?.user ?? null);
       setLoading(false);
       if (!sess) navigate("/auth");
-      if (sess) checkSubscription();
+      if (sess) {
+        checkSubscription();
+        loadBusinessData(sess.user.id);
+      }
     });
 
     return () => subscription.unsubscribe();
@@ -273,6 +308,87 @@ const Dashboard = () => {
           })}
         </div>
       </div>
+
+      {/* Micro-site card */}
+      {businessId && (
+        <div className="px-5 mb-8">
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="rounded-2xl border border-border bg-card p-4 shadow-soft"
+          >
+            <div className="flex items-center gap-3 mb-3">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center">
+                <Globe className="w-5 h-5 text-white" />
+              </div>
+              <div className="flex-1">
+                <p className="text-sm font-semibold text-foreground">Mi Micro-sitio</p>
+                <p className="text-xs text-muted-foreground">{businessName || "Tu página pública de reservas"}</p>
+              </div>
+            </div>
+            <div className="flex gap-2">
+              <a
+                href={`/b/${businessSlug || businessId}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors"
+              >
+                <ExternalLink className="w-4 h-4" />
+                Ver sitio
+              </a>
+              <button
+                onClick={() => setOpenApp("integrations")}
+                className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-muted text-foreground text-sm font-medium hover:bg-muted/80 transition-colors"
+              >
+                <Link2 className="w-4 h-4" />
+                Integrar
+              </button>
+            </div>
+          </motion.div>
+        </div>
+      )}
+
+      {/* Recent reservations */}
+      {reservations.length > 0 && (
+        <div className="px-5 mb-8">
+          <div className="flex items-center justify-between mb-3">
+            <h2 className="font-display font-bold text-foreground">Reservas recientes</h2>
+            <button onClick={() => setOpenApp("bookings")} className="text-xs text-muted-foreground flex items-center gap-1">
+              Ver todas <ChevronRight className="w-3 h-3" />
+            </button>
+          </div>
+          <div className="space-y-2">
+            {reservations.slice(0, 3).map((res, i) => (
+              <motion.div
+                key={res.id}
+                initial={{ opacity: 0, x: -10 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.3 + i * 0.06 }}
+                className="flex items-center gap-3 p-3 rounded-2xl bg-card border border-border shadow-xs"
+              >
+                <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 ${
+                  res.status === "confirmed" ? "bg-emerald-500" : res.status === "pending" ? "bg-amber-500" : "bg-muted"
+                }`}>
+                  <Calendar className="w-5 h-5 text-white" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-medium text-foreground truncate">{res.customer_name || "Sin nombre"}</p>
+                  <p className="text-xs text-muted-foreground truncate">{res.services?.name} · {res.reservation_date} {res.reservation_time?.slice(0, 5)}</p>
+                </div>
+                <span className={`text-[10px] px-2 py-0.5 rounded-full font-medium ${
+                  res.status === "confirmed" ? "bg-emerald-100 text-emerald-700" :
+                  res.status === "pending" ? "bg-amber-100 text-amber-700" :
+                  res.status === "cancelled" ? "bg-red-100 text-red-700" :
+                  "bg-muted text-muted-foreground"
+                }`}>
+                  {res.status === "confirmed" ? "Confirmada" : res.status === "pending" ? "Pendiente" : res.status === "cancelled" ? "Cancelada" : res.status}
+                </span>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Recent activity */}
       <div className="px-5">
@@ -583,9 +699,70 @@ const Dashboard = () => {
           </div>
 
           {/* App content */}
-          <div className="p-6">
+          <div className="p-6 overflow-y-auto" style={{ maxHeight: "calc(100vh - 56px)" }}>
             {app.id === "integrations" ? (
-              <IntegrationsPanel businessId={user?.id || null} onClose={() => setOpenApp(null)} />
+              <IntegrationsPanel businessId={businessId || user?.id || null} onClose={() => setOpenApp(null)} />
+            ) : app.id === "bookings" && businessId ? (
+              <div className="space-y-6">
+                {/* Link to micro-site booking */}
+                <div className="p-4 rounded-2xl border border-border bg-card">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-emerald-500 to-emerald-600 flex items-center justify-center">
+                      <Globe className="w-5 h-5 text-white" />
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold text-foreground">Calendario público</p>
+                      <p className="text-xs text-muted-foreground">Así ven tus clientes el sistema de reservas</p>
+                    </div>
+                  </div>
+                  <a
+                    href={`/b/${businessSlug || businessId}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2 w-full px-4 py-2.5 rounded-xl bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors"
+                  >
+                    <ExternalLink className="w-4 h-4" />
+                    Ver micro-sitio con calendario
+                  </a>
+                </div>
+
+                {/* Reservations list */}
+                <div>
+                  <h3 className="font-display font-bold text-foreground mb-3">Todas las reservas</h3>
+                  {reservations.length === 0 ? (
+                    <div className="text-center py-12 text-muted-foreground">
+                      <Calendar className="w-10 h-10 mx-auto mb-3 opacity-30" />
+                      <p className="text-sm">Aún no tienes reservas</p>
+                    </div>
+                  ) : (
+                    <div className="space-y-2">
+                      {reservations.map((res) => (
+                        <div key={res.id} className="flex items-center gap-3 p-3 rounded-2xl bg-card border border-border">
+                          <div className={`w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0 ${
+                            res.status === "confirmed" ? "bg-emerald-500" : res.status === "pending" ? "bg-amber-500" : res.status === "cancelled" ? "bg-red-500" : "bg-muted"
+                          }`}>
+                            <Calendar className="w-5 h-5 text-white" />
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-sm font-medium text-foreground truncate">{res.customer_name || "Sin nombre"}</p>
+                            <p className="text-xs text-muted-foreground truncate">{res.services?.name} · {res.reservation_date} {res.reservation_time?.slice(0, 5)}</p>
+                            {res.customer_email && <p className="text-xs text-muted-foreground truncate">{res.customer_email}</p>}
+                          </div>
+                          <span className={`text-[10px] px-2 py-0.5 rounded-full font-medium flex-shrink-0 ${
+                            res.status === "confirmed" ? "bg-emerald-100 text-emerald-700" :
+                            res.status === "pending" ? "bg-amber-100 text-amber-700" :
+                            res.status === "cancelled" ? "bg-red-100 text-red-700" :
+                            res.status === "completed" ? "bg-blue-100 text-blue-700" :
+                            "bg-muted text-muted-foreground"
+                          }`}>
+                            {res.status === "confirmed" ? "Confirmada" : res.status === "pending" ? "Pendiente" : res.status === "cancelled" ? "Cancelada" : res.status === "completed" ? "Completada" : res.status}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
             ) : (
               <div className="flex flex-col items-center justify-center min-h-[60vh]">
                 <div className={`w-20 h-20 rounded-[22px] bg-gradient-to-br ${app.gradient} flex items-center justify-center shadow-medium mb-6`}>
