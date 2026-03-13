@@ -704,6 +704,8 @@ const Dashboard = () => {
           <div className="p-6 overflow-y-auto" style={{ maxHeight: "calc(100vh - 56px)" }}>
             {app.id === "integrations" ? (
               <IntegrationsPanel businessId={businessId || user?.id || null} onClose={() => setOpenApp(null)} />
+            ) : app.id === "voice" && businessId ? (
+              <VoiceBookingManager businessId={businessId} />
             ) : app.id === "bookings" && businessId ? (
               <div className="space-y-6">
                 {/* Link to micro-site booking */}
