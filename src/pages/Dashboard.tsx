@@ -10,7 +10,7 @@ import {
   Clock, DollarSign, Crown, ExternalLink, RefreshCw, Loader2,
   Plus, FileText, MessageSquare, Star, Home, User as UserIcon,
   Utensils, Hotel, Plane, Dumbbell, BookOpen, Package, Globe,
-  ShoppingBag, Zap, Sparkles, ArrowUpRight, X, Link2
+  ShoppingBag, Zap, Sparkles, ArrowUpRight, X, Link2, Mic
 } from "lucide-react";
 
 import { useToast } from "@/hooks/use-toast";
