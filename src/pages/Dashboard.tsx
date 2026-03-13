@@ -21,9 +21,9 @@ import VoiceBookingManager from "@/components/dashboard/VoiceBookingManager";
 
 // Feature definitions per plan
 const PLAN_FEATURES: Record<StripeTier, string[]> = {
-  basic: ["bookings", "payments", "clients", "notifications", "settings"],
-  professional: ["bookings", "payments", "clients", "reports", "restaurant", "hospitality", "wellness", "workshops", "marketing", "multilanguage", "notifications", "settings"],
-  premium: ["bookings", "payments", "clients", "reports", "restaurant", "hospitality", "wellness", "travel", "workshops", "inventory", "marketing", "ecommerce", "multilanguage", "notifications", "settings"],
+  basic: ["bookings", "payments", "clients", "voice", "notifications", "settings"],
+  professional: ["bookings", "payments", "clients", "voice", "reports", "restaurant", "hospitality", "wellness", "workshops", "marketing", "multilanguage", "notifications", "settings"],
+  premium: ["bookings", "payments", "clients", "voice", "reports", "restaurant", "hospitality", "wellness", "travel", "workshops", "inventory", "marketing", "ecommerce", "multilanguage", "notifications", "settings"],
 };
 
 interface AppItem {
