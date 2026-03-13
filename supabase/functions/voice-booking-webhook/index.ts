@@ -11,12 +11,36 @@ Deno.serve(async (req) => {
     return new Response(null, { headers: corsHeaders });
   }
 
+  // Only accept POST requests
+  if (req.method !== "POST") {
+    return new Response(
+      JSON.stringify({ error: "Method not allowed. Send a POST request with JSON body." }),
+      { status: 405, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+    );
+  }
+
   try {
     const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
     const serviceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
     const supabase = createClient(supabaseUrl, serviceRoleKey);
 
-    const body = await req.json();
+    const text = await req.text();
+    if (!text || text.trim() === "") {
+      return new Response(
+        JSON.stringify({ error: "Empty body. Send a JSON payload with booking data." }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    let body: any;
+    try {
+      body = JSON.parse(text);
+    } catch {
+      return new Response(
+        JSON.stringify({ error: "Invalid JSON body." }),
+        { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
 
     // Support both flat format and nested Vapi/Retell format
     const customerName =
