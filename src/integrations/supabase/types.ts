@@ -337,11 +337,14 @@ export type Database = {
           customer_name: string | null
           customer_phone: string | null
           id: string
+          language_code: string | null
           metadata: Json | null
           notes: string | null
+          raw_transcript: string | null
           reservation_date: string
           reservation_time: string
           service_id: string
+          source: string | null
           status: Database["public"]["Enums"]["reservation_status"] | null
           stripe_payment_id: string | null
           updated_at: string
@@ -355,11 +358,14 @@ export type Database = {
           customer_name?: string | null
           customer_phone?: string | null
           id?: string
+          language_code?: string | null
           metadata?: Json | null
           notes?: string | null
+          raw_transcript?: string | null
           reservation_date: string
           reservation_time: string
           service_id: string
+          source?: string | null
           status?: Database["public"]["Enums"]["reservation_status"] | null
           stripe_payment_id?: string | null
           updated_at?: string
@@ -373,11 +379,14 @@ export type Database = {
           customer_name?: string | null
           customer_phone?: string | null
           id?: string
+          language_code?: string | null
           metadata?: Json | null
           notes?: string | null
+          raw_transcript?: string | null
           reservation_date?: string
           reservation_time?: string
           service_id?: string
+          source?: string | null
           status?: Database["public"]["Enums"]["reservation_status"] | null
           stripe_payment_id?: string | null
           updated_at?: string

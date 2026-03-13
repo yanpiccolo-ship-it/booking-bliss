@@ -10,19 +10,20 @@ import {
   Clock, DollarSign, Crown, ExternalLink, RefreshCw, Loader2,
   Plus, FileText, MessageSquare, Star, Home, User as UserIcon,
   Utensils, Hotel, Plane, Dumbbell, BookOpen, Package, Globe,
-  ShoppingBag, Zap, Sparkles, ArrowUpRight, X, Link2
+  ShoppingBag, Zap, Sparkles, ArrowUpRight, X, Link2, Mic
 } from "lucide-react";
 
 import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { STRIPE_TIERS, getTierByProductId, type StripeTier } from "@/lib/stripe-config";
 import IntegrationsPanel from "@/components/dashboard/IntegrationsPanel";
+import VoiceBookingManager from "@/components/dashboard/VoiceBookingManager";
 
 // Feature definitions per plan
 const PLAN_FEATURES: Record<StripeTier, string[]> = {
-  basic: ["bookings", "payments", "clients", "notifications", "settings"],
-  professional: ["bookings", "payments", "clients", "reports", "restaurant", "hospitality", "wellness", "workshops", "marketing", "multilanguage", "notifications", "settings"],
-  premium: ["bookings", "payments", "clients", "reports", "restaurant", "hospitality", "wellness", "travel", "workshops", "inventory", "marketing", "ecommerce", "multilanguage", "notifications", "settings"],
+  basic: ["bookings", "payments", "clients", "voice", "notifications", "settings"],
+  professional: ["bookings", "payments", "clients", "voice", "reports", "restaurant", "hospitality", "wellness", "workshops", "marketing", "multilanguage", "notifications", "settings"],
+  premium: ["bookings", "payments", "clients", "voice", "reports", "restaurant", "hospitality", "wellness", "travel", "workshops", "inventory", "marketing", "ecommerce", "multilanguage", "notifications", "settings"],
 };
 
 interface AppItem {
@@ -50,6 +51,7 @@ const apps: AppItem[] = [
   { id: "ecommerce", name: "Tienda", icon: ShoppingBag, gradient: "from-teal-500 to-teal-600", iconColor: "text-white", minTier: "premium", badge: "Pronto" },
   { id: "multilanguage", name: "Idiomas", icon: Globe, gradient: "from-green-500 to-green-600", iconColor: "text-white", minTier: "professional" },
   { id: "notifications", name: "Alertas", icon: Bell, gradient: "from-red-500 to-red-600", iconColor: "text-white", minTier: "basic" },
+  { id: "voice", name: "Voz IA", icon: Mic, gradient: "from-violet-500 to-purple-600", iconColor: "text-white", minTier: "basic" },
   { id: "integrations", name: "Integrar", icon: Link2, gradient: "from-indigo-400 to-blue-500", iconColor: "text-white", minTier: "basic" },
   { id: "settings", name: "Ajustes", icon: Settings, gradient: "from-slate-500 to-slate-600", iconColor: "text-white", minTier: "basic" },
 ];
@@ -702,6 +704,8 @@ const Dashboard = () => {
           <div className="p-6 overflow-y-auto" style={{ maxHeight: "calc(100vh - 56px)" }}>
             {app.id === "integrations" ? (
               <IntegrationsPanel businessId={businessId || user?.id || null} onClose={() => setOpenApp(null)} />
+            ) : app.id === "voice" && businessId ? (
+              <VoiceBookingManager businessId={businessId} />
             ) : app.id === "bookings" && businessId ? (
               <div className="space-y-6">
                 {/* Link to micro-site booking */}
