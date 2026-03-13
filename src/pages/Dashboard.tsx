@@ -17,6 +17,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { STRIPE_TIERS, getTierByProductId, type StripeTier } from "@/lib/stripe-config";
 import IntegrationsPanel from "@/components/dashboard/IntegrationsPanel";
+import VoiceBookingManager from "@/components/dashboard/VoiceBookingManager";
 
 // Feature definitions per plan
 const PLAN_FEATURES: Record<StripeTier, string[]> = {
