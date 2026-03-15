@@ -57,7 +57,7 @@ const tierLabels: Record<string, { label: string; color: string }> = {
   premium: { label: "Premium / Enterprise", color: "bg-amber-100 text-amber-700" },
 };
 
-type AdminView = "apps" | "users" | "metrics" | "settings";
+type AdminView = "apps" | "users" | "metrics" | "agents" | "settings";
 
 const AdminPanel = () => {
   const navigate = useNavigate();
