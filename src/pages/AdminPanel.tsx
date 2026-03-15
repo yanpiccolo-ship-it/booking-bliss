@@ -124,6 +124,7 @@ const AdminPanel = () => {
   const navItems: { icon: React.ElementType; label: string; view: AdminView }[] = [
     { icon: LayoutGrid, label: "Departamentos", view: "apps" },
     { icon: Users, label: "Usuarios", view: "users" },
+    { icon: Bot, label: "Agentes IA", view: "agents" },
     { icon: BarChart3, label: "Métricas", view: "metrics" },
     { icon: Settings, label: "Configuración", view: "settings" },
   ];
