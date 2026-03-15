@@ -45,8 +45,8 @@ const EditorialSection = () => {
         </div>
       </div>
 
-      {/* Second Panel - Grid with uniform height, gap between, text at bottom-left */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
+      {/* Second Panel - Grid with NO gap, photos stuck together, uniform height */}
+      <div className="grid grid-cols-1 sm:grid-cols-2">
         <div className="relative aspect-[4/5] sm:aspect-[3/4]">
           <img
             src={editorialHospitality}
@@ -92,8 +92,8 @@ const EditorialSection = () => {
         </div>
       </div>
 
-      {/* Third Panel - Full width with text at bottom-left */}
-      <div className="relative aspect-[4/5] sm:aspect-[16/9] lg:aspect-[21/9] mt-2 sm:mt-3">
+      {/* Third Panel - Full width, SAME height as above panels, NO margin/gap */}
+      <div className="relative aspect-[4/5] sm:aspect-[2/1] lg:aspect-[21/9]">
         <div className="absolute inset-0">
           <img
             src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1920&q=80"
