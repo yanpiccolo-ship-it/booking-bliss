@@ -14,6 +14,157 @@ export type Database = {
   }
   public: {
     Tables: {
+      agent_conversations: {
+        Row: {
+          agent_id: string
+          business_id: string
+          created_at: string
+          id: string
+          metadata: Json | null
+          status: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          agent_id: string
+          business_id: string
+          created_at?: string
+          id?: string
+          metadata?: Json | null
+          status?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          agent_id?: string
+          business_id?: string
+          created_at?: string
+          id?: string
+          metadata?: Json | null
+          status?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "agent_conversations_agent_id_fkey"
+            columns: ["agent_id"]
+            isOneToOne: false
+            referencedRelation: "ai_agents"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "agent_conversations_business_id_fkey"
+            columns: ["business_id"]
+            isOneToOne: false
+            referencedRelation: "businesses"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      agent_messages: {
+        Row: {
+          authorized: boolean | null
+          content: string
+          conversation_id: string
+          created_at: string
+          id: string
+          metadata: Json | null
+          requires_authorization: boolean | null
+          role: string
+        }
+        Insert: {
+          authorized?: boolean | null
+          content: string
+          conversation_id: string
+          created_at?: string
+          id?: string
+          metadata?: Json | null
+          requires_authorization?: boolean | null
+          role: string
+        }
+        Update: {
+          authorized?: boolean | null
+          content?: string
+          conversation_id?: string
+          created_at?: string
+          id?: string
+          metadata?: Json | null
+          requires_authorization?: boolean | null
+          role?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "agent_messages_conversation_id_fkey"
+            columns: ["conversation_id"]
+            isOneToOne: false
+            referencedRelation: "agent_conversations"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      ai_agents: {
+        Row: {
+          agent_type: string
+          ai_model: string
+          business_id: string | null
+          color: string | null
+          created_at: string
+          created_by: string
+          description: string | null
+          icon: string | null
+          id: string
+          is_active: boolean
+          metadata: Json | null
+          name: string
+          requires_authorization: boolean
+          system_prompt: string
+          updated_at: string
+        }
+        Insert: {
+          agent_type: string
+          ai_model?: string
+          business_id?: string | null
+          color?: string | null
+          created_at?: string
+          created_by: string
+          description?: string | null
+          icon?: string | null
+          id?: string
+          is_active?: boolean
+          metadata?: Json | null
+          name: string
+          requires_authorization?: boolean
+          system_prompt: string
+          updated_at?: string
+        }
+        Update: {
+          agent_type?: string
+          ai_model?: string
+          business_id?: string | null
+          color?: string | null
+          created_at?: string
+          created_by?: string
+          description?: string | null
+          icon?: string | null
+          id?: string
+          is_active?: boolean
+          metadata?: Json | null
+          name?: string
+          requires_authorization?: boolean
+          system_prompt?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "ai_agents_business_id_fkey"
+            columns: ["business_id"]
+            isOneToOne: false
+            referencedRelation: "businesses"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       business_memberships: {
         Row: {
           business_id: string

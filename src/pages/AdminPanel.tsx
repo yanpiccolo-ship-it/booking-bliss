@@ -8,9 +8,10 @@ import {
   Calendar, ShoppingBag, Utensils, Hotel, Plane, Dumbbell,
   BookOpen, Package, MessageSquare, Bell, Shield,
   ChevronRight, TrendingUp, CheckCircle, XCircle, Clock,
-  LayoutGrid, Search, Menu, X, Star, Zap, Globe
+  LayoutGrid, Search, Menu, X, Star, Zap, Globe, Bot
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import AgentManager from "@/components/dashboard/AgentManager";
 
 // Department app definition
 interface DepartmentApp {
@@ -56,7 +57,7 @@ const tierLabels: Record<string, { label: string; color: string }> = {
   premium: { label: "Premium / Enterprise", color: "bg-amber-100 text-amber-700" },
 };
 
-type AdminView = "apps" | "users" | "metrics" | "settings";
+type AdminView = "apps" | "users" | "metrics" | "agents" | "settings";
 
 const AdminPanel = () => {
   const navigate = useNavigate();
@@ -123,6 +124,7 @@ const AdminPanel = () => {
   const navItems: { icon: React.ElementType; label: string; view: AdminView }[] = [
     { icon: LayoutGrid, label: "Departamentos", view: "apps" },
     { icon: Users, label: "Usuarios", view: "users" },
+    { icon: Bot, label: "Agentes IA", view: "agents" },
     { icon: BarChart3, label: "Métricas", view: "metrics" },
     { icon: Settings, label: "Configuración", view: "settings" },
   ];
@@ -297,7 +299,20 @@ const AdminPanel = () => {
               </motion.div>
             )}
 
-            {/* USERS VIEW */}
+            {/* AGENTS VIEW */}
+            {activeView === "agents" && (
+              <motion.div
+                key="agents"
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -16 }}
+                transition={{ duration: 0.3 }}
+              >
+                <AgentManager />
+              </motion.div>
+            )}
+
+
             {activeView === "users" && (
               <motion.div
                 key="users"
