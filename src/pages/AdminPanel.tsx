@@ -299,7 +299,20 @@ const AdminPanel = () => {
               </motion.div>
             )}
 
-            {/* USERS VIEW */}
+            {/* AGENTS VIEW */}
+            {activeView === "agents" && (
+              <motion.div
+                key="agents"
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -16 }}
+                transition={{ duration: 0.3 }}
+              >
+                <AgentManager />
+              </motion.div>
+            )}
+
+
             {activeView === "users" && (
               <motion.div
                 key="users"
