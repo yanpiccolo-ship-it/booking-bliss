@@ -9,7 +9,7 @@ import {
   Bell, ChevronRight, TrendingUp, Users,
   Clock, DollarSign, Crown, ExternalLink, RefreshCw, Loader2,
   Plus, FileText, MessageSquare, Star, Home, User as UserIcon,
-  Utensils, Hotel, Plane, Dumbbell, BookOpen, Package, Globe,
+  Utensils, Hotel, Plane, Dumbbell, BookOpen, Package, Globe, Bot,
   ShoppingBag, Zap, Sparkles, ArrowUpRight, X, Link2, Mic
 } from "lucide-react";
 
