@@ -8,9 +8,10 @@ import {
   Calendar, ShoppingBag, Utensils, Hotel, Plane, Dumbbell,
   BookOpen, Package, MessageSquare, Bell, Shield,
   ChevronRight, TrendingUp, CheckCircle, XCircle, Clock,
-  LayoutGrid, Search, Menu, X, Star, Zap, Globe
+  LayoutGrid, Search, Menu, X, Star, Zap, Globe, Bot
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import AgentManager from "@/components/dashboard/AgentManager";
 
 // Department app definition
 interface DepartmentApp {
