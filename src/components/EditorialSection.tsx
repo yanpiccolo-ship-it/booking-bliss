@@ -11,7 +11,7 @@ const EditorialSection = () => {
   return (
     <section className="relative overflow-hidden">
       {/* First Panel - Full bleed image with text overlay */}
-      <div className="relative min-h-[60vh] sm:min-h-[70vh] lg:min-h-[80vh] flex items-end">
+      <div className="relative aspect-[4/5] sm:aspect-[3/4] flex items-end">
         <div className="absolute inset-0">
           <img
             src={editorialFoodImage}
