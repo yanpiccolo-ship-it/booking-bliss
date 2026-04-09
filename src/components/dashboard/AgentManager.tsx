@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { supabase } from "@/integrations/supabase/client";
 import {
   Bot, Headphones, Calendar, TrendingUp, Settings as SettingsIcon,
-  Plus, Edit3, Trash2, Save, X, Loader2, Sparkles, ToggleLeft, ToggleRight
+  Plus, Edit3, Trash2, Save, X, Loader2, Sparkles, ToggleLeft, ToggleRight, Mic
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
