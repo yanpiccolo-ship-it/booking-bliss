@@ -1,0 +1,2 @@
+ALTER TABLE public.ai_agents DROP CONSTRAINT ai_agents_agent_type_check;
+ALTER TABLE public.ai_agents ADD CONSTRAINT ai_agents_agent_type_check CHECK (agent_type = ANY (ARRAY['atencion'::text, 'reservas'::text, 'ventas'::text, 'administrativo'::text, 'voz'::text, 'ventas_b2b'::text]));
