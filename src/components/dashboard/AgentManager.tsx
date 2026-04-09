@@ -13,6 +13,7 @@ const AGENT_ICONS: Record<string, React.ElementType> = {
   "trending-up": TrendingUp,
   settings: SettingsIcon,
   bot: Bot,
+  mic: Mic,
 };
 
 const AI_MODELS = [
