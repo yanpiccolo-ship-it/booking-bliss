@@ -12,6 +12,7 @@ import RequestDemo from "./pages/RequestDemo";
 import AdminPanel from "./pages/AdminPanel";
 import NotFound from "./pages/NotFound";
 import BusinessSite from "./pages/BusinessSite";
+import ProgressReport from "./pages/ProgressReport";
 
 const queryClient = new QueryClient();
 
@@ -30,6 +31,7 @@ const App = () => (
             <Route path="/request-demo" element={<RequestDemo />} />
             <Route path="/b/:businessId" element={<BusinessSite />} />
             <Route path="/flowadmin-x7k9" element={<AdminPanel />} />
+            <Route path="/progress" element={<ProgressReport />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
