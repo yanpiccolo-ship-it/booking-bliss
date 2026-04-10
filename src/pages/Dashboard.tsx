@@ -786,6 +786,12 @@ const Dashboard = () => {
                   )}
                 </div>
               </div>
+            ) : app.id === "reports" && businessId ? (
+              <AnalyticsDashboard businessId={businessId} />
+            ) : app.id === "restaurant" && businessId ? (
+              <ResourceManager businessId={businessId} />
+            ) : app.id === "settings" && businessId ? (
+              <ResourceManager businessId={businessId} />
             ) : (
               <div className="flex flex-col items-center justify-center min-h-[60vh]">
                 <div className={`w-20 h-20 rounded-[22px] bg-gradient-to-br ${app.gradient} flex items-center justify-center shadow-medium mb-6`}>
