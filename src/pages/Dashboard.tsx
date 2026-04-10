@@ -19,6 +19,8 @@ import { STRIPE_TIERS, getTierByProductId, type StripeTier } from "@/lib/stripe-
 import IntegrationsPanel from "@/components/dashboard/IntegrationsPanel";
 import VoiceBookingManager from "@/components/dashboard/VoiceBookingManager";
 import AgentChat from "@/components/dashboard/AgentChat";
+import { RoomTypeManager } from "@/components/booking/RoomTypeManager";
+import { MultiDayBookingForm } from "@/components/booking/MultiDayBookingForm";
 
 // Feature definitions per plan
 const PLAN_FEATURES: Record<StripeTier, string[]> = {
@@ -710,6 +712,17 @@ const Dashboard = () => {
               <AgentChat businessId={businessId} onBack={() => setOpenApp(null)} />
             ) : app.id === "voice" && businessId ? (
               <VoiceBookingManager businessId={businessId} />
+            ) : app.id === "hospitality" && businessId ? (
+              <div className="space-y-8">
+                <RoomTypeManager businessId={businessId} />
+                <div className="border-t border-border pt-6">
+                  <h3 className="font-display font-bold text-foreground mb-4">Nueva reserva multi-día</h3>
+                  <MultiDayBookingForm
+                    businessId={businessId}
+                    onSuccess={() => loadBusinessData(user!.id)}
+                  />
+                </div>
+              </div>
             ) : app.id === "bookings" && businessId ? (
               <div className="space-y-6">
                 {/* Link to micro-site booking */}
