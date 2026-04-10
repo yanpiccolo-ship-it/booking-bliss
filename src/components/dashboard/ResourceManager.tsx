@@ -143,7 +143,7 @@ const ResourceManager = ({ businessId }: ResourceManagerProps) => {
 
   const deleteItem = async (table: string, id: string) => {
     if (!confirm("¿Eliminar?")) return;
-    await supabase.from(table).delete().eq("id", id);
+    await (supabase.from(table as any) as any).delete().eq("id", id);
     loadAll();
   };
 
