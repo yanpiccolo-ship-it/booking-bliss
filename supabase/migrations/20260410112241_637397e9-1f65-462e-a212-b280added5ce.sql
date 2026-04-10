@@ -1,0 +1,1 @@
+ALTER FUNCTION public.sync_multiday_reservation() SET search_path = public;
