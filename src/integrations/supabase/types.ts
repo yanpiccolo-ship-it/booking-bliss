@@ -482,64 +482,97 @@ export type Database = {
         Row: {
           amount_paid_cents: number | null
           business_id: string
+          check_in_date: string | null
+          check_out_date: string | null
           created_at: string
           customer_email: string | null
           customer_id: string | null
           customer_name: string | null
           customer_phone: string | null
+          end_time: string | null
           id: string
+          is_multi_day: boolean | null
           language_code: string | null
           metadata: Json | null
+          nights_count: number | null
           notes: string | null
+          party_size: number | null
+          price_per_night: number | null
           raw_transcript: string | null
           reservation_date: string
           reservation_time: string
+          resource_id: string | null
+          room_type_id: string | null
           service_id: string
           source: string | null
+          start_time: string | null
           status: Database["public"]["Enums"]["reservation_status"] | null
           stripe_payment_id: string | null
+          total_price: number | null
           updated_at: string
         }
         Insert: {
           amount_paid_cents?: number | null
           business_id: string
+          check_in_date?: string | null
+          check_out_date?: string | null
           created_at?: string
           customer_email?: string | null
           customer_id?: string | null
           customer_name?: string | null
           customer_phone?: string | null
+          end_time?: string | null
           id?: string
+          is_multi_day?: boolean | null
           language_code?: string | null
           metadata?: Json | null
+          nights_count?: number | null
           notes?: string | null
+          party_size?: number | null
+          price_per_night?: number | null
           raw_transcript?: string | null
           reservation_date: string
           reservation_time: string
+          resource_id?: string | null
+          room_type_id?: string | null
           service_id: string
           source?: string | null
+          start_time?: string | null
           status?: Database["public"]["Enums"]["reservation_status"] | null
           stripe_payment_id?: string | null
+          total_price?: number | null
           updated_at?: string
         }
         Update: {
           amount_paid_cents?: number | null
           business_id?: string
+          check_in_date?: string | null
+          check_out_date?: string | null
           created_at?: string
           customer_email?: string | null
           customer_id?: string | null
           customer_name?: string | null
           customer_phone?: string | null
+          end_time?: string | null
           id?: string
+          is_multi_day?: boolean | null
           language_code?: string | null
           metadata?: Json | null
+          nights_count?: number | null
           notes?: string | null
+          party_size?: number | null
+          price_per_night?: number | null
           raw_transcript?: string | null
           reservation_date?: string
           reservation_time?: string
+          resource_id?: string | null
+          room_type_id?: string | null
           service_id?: string
           source?: string | null
+          start_time?: string | null
           status?: Database["public"]["Enums"]["reservation_status"] | null
           stripe_payment_id?: string | null
+          total_price?: number | null
           updated_at?: string
         }
         Relationships: [
@@ -548,6 +581,13 @@ export type Database = {
             columns: ["business_id"]
             isOneToOne: false
             referencedRelation: "businesses"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "reservations_room_type_id_fkey"
+            columns: ["room_type_id"]
+            isOneToOne: false
+            referencedRelation: "room_types"
             referencedColumns: ["id"]
           },
           {
@@ -593,6 +633,65 @@ export type Database = {
         Relationships: [
           {
             foreignKeyName: "reviews_business_id_fkey"
+            columns: ["business_id"]
+            isOneToOne: false
+            referencedRelation: "businesses"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      room_types: {
+        Row: {
+          amenities: Json | null
+          base_price: number | null
+          business_id: string
+          capacity: number | null
+          check_in_time: string | null
+          check_out_time: string | null
+          created_at: string | null
+          currency: string | null
+          description: string | null
+          id: string
+          images: Json | null
+          is_active: boolean | null
+          name: string
+          updated_at: string | null
+        }
+        Insert: {
+          amenities?: Json | null
+          base_price?: number | null
+          business_id: string
+          capacity?: number | null
+          check_in_time?: string | null
+          check_out_time?: string | null
+          created_at?: string | null
+          currency?: string | null
+          description?: string | null
+          id?: string
+          images?: Json | null
+          is_active?: boolean | null
+          name: string
+          updated_at?: string | null
+        }
+        Update: {
+          amenities?: Json | null
+          base_price?: number | null
+          business_id?: string
+          capacity?: number | null
+          check_in_time?: string | null
+          check_out_time?: string | null
+          created_at?: string | null
+          currency?: string | null
+          description?: string | null
+          id?: string
+          images?: Json | null
+          is_active?: boolean | null
+          name?: string
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "room_types_business_id_fkey"
             columns: ["business_id"]
             isOneToOne: false
             referencedRelation: "businesses"
