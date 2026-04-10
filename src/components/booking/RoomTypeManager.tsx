@@ -39,7 +39,7 @@ interface RoomType {
   capacity: number;
   base_price: number;
   currency: string;
-  amenities: string[];
+  amenities: string[] | any;
   is_active: boolean;
   check_in_time?: string;
   check_out_time?: string;

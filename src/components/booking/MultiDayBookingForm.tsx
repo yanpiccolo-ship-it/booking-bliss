@@ -122,7 +122,7 @@ export const MultiDayBookingForm = ({
       payload.end_time = `${bookingDate}T${bookingTime}:00`;
     }
 
-    const { error } = await supabase.from("reservations").insert(payload);
+    const { error } = await supabase.from("reservations").insert(payload as any);
 
     if (error) {
       toast({ title: "Error al crear reserva", description: error.message, variant: "destructive" });
