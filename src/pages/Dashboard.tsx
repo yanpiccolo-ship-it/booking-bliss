@@ -21,6 +21,8 @@ import VoiceBookingManager from "@/components/dashboard/VoiceBookingManager";
 import AgentChat from "@/components/dashboard/AgentChat";
 import { RoomTypeManager } from "@/components/booking/RoomTypeManager";
 import { MultiDayBookingForm } from "@/components/booking/MultiDayBookingForm";
+import ResourceManager from "@/components/dashboard/ResourceManager";
+import AnalyticsDashboard from "@/components/dashboard/AnalyticsDashboard";
 
 // Feature definitions per plan
 const PLAN_FEATURES: Record<StripeTier, string[]> = {
