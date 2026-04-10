@@ -21,6 +21,8 @@ import VoiceBookingManager from "@/components/dashboard/VoiceBookingManager";
 import AgentChat from "@/components/dashboard/AgentChat";
 import { RoomTypeManager } from "@/components/booking/RoomTypeManager";
 import { MultiDayBookingForm } from "@/components/booking/MultiDayBookingForm";
+import ResourceManager from "@/components/dashboard/ResourceManager";
+import AnalyticsDashboard from "@/components/dashboard/AnalyticsDashboard";
 
 // Feature definitions per plan
 const PLAN_FEATURES: Record<StripeTier, string[]> = {
@@ -784,6 +786,12 @@ const Dashboard = () => {
                   )}
                 </div>
               </div>
+            ) : app.id === "reports" && businessId ? (
+              <AnalyticsDashboard businessId={businessId} />
+            ) : app.id === "restaurant" && businessId ? (
+              <ResourceManager businessId={businessId} />
+            ) : app.id === "settings" && businessId ? (
+              <ResourceManager businessId={businessId} />
             ) : (
               <div className="flex flex-col items-center justify-center min-h-[60vh]">
                 <div className={`w-20 h-20 rounded-[22px] bg-gradient-to-br ${app.gradient} flex items-center justify-center shadow-medium mb-6`}>

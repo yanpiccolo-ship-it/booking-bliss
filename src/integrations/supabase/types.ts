@@ -165,6 +165,60 @@ export type Database = {
           },
         ]
       }
+      availability_rules: {
+        Row: {
+          buffer_after: number | null
+          buffer_before: number | null
+          business_id: string
+          created_at: string | null
+          day_of_week: number
+          end_time: string
+          id: string
+          is_active: boolean | null
+          resource_id: string | null
+          start_time: string
+        }
+        Insert: {
+          buffer_after?: number | null
+          buffer_before?: number | null
+          business_id: string
+          created_at?: string | null
+          day_of_week: number
+          end_time: string
+          id?: string
+          is_active?: boolean | null
+          resource_id?: string | null
+          start_time: string
+        }
+        Update: {
+          buffer_after?: number | null
+          buffer_before?: number | null
+          business_id?: string
+          created_at?: string | null
+          day_of_week?: number
+          end_time?: string
+          id?: string
+          is_active?: boolean | null
+          resource_id?: string | null
+          start_time?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "availability_rules_business_id_fkey"
+            columns: ["business_id"]
+            isOneToOne: false
+            referencedRelation: "businesses"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "availability_rules_resource_id_fkey"
+            columns: ["resource_id"]
+            isOneToOne: false
+            referencedRelation: "resources"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       business_memberships: {
         Row: {
           business_id: string
@@ -599,6 +653,149 @@ export type Database = {
           },
         ]
       }
+      resource_exceptions: {
+        Row: {
+          alt_end_time: string | null
+          alt_start_time: string | null
+          business_id: string
+          created_at: string | null
+          exception_date: string
+          id: string
+          is_closed: boolean | null
+          reason: string | null
+          resource_id: string | null
+        }
+        Insert: {
+          alt_end_time?: string | null
+          alt_start_time?: string | null
+          business_id: string
+          created_at?: string | null
+          exception_date: string
+          id?: string
+          is_closed?: boolean | null
+          reason?: string | null
+          resource_id?: string | null
+        }
+        Update: {
+          alt_end_time?: string | null
+          alt_start_time?: string | null
+          business_id?: string
+          created_at?: string | null
+          exception_date?: string
+          id?: string
+          is_closed?: boolean | null
+          reason?: string | null
+          resource_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "resource_exceptions_business_id_fkey"
+            columns: ["business_id"]
+            isOneToOne: false
+            referencedRelation: "businesses"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "resource_exceptions_resource_id_fkey"
+            columns: ["resource_id"]
+            isOneToOne: false
+            referencedRelation: "resources"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      resource_types: {
+        Row: {
+          business_id: string
+          capacity: number | null
+          created_at: string | null
+          description: string | null
+          id: string
+          metadata: Json | null
+          name: string
+          updated_at: string | null
+        }
+        Insert: {
+          business_id: string
+          capacity?: number | null
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          metadata?: Json | null
+          name: string
+          updated_at?: string | null
+        }
+        Update: {
+          business_id?: string
+          capacity?: number | null
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          metadata?: Json | null
+          name?: string
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "resource_types_business_id_fkey"
+            columns: ["business_id"]
+            isOneToOne: false
+            referencedRelation: "businesses"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      resources: {
+        Row: {
+          business_id: string
+          capacity: number | null
+          created_at: string | null
+          id: string
+          metadata: Json | null
+          name: string
+          resource_type_id: string
+          status: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          business_id: string
+          capacity?: number | null
+          created_at?: string | null
+          id?: string
+          metadata?: Json | null
+          name: string
+          resource_type_id: string
+          status?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          business_id?: string
+          capacity?: number | null
+          created_at?: string | null
+          id?: string
+          metadata?: Json | null
+          name?: string
+          resource_type_id?: string
+          status?: string | null
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "resources_business_id_fkey"
+            columns: ["business_id"]
+            isOneToOne: false
+            referencedRelation: "businesses"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "resources_resource_type_id_fkey"
+            columns: ["resource_type_id"]
+            isOneToOne: false
+            referencedRelation: "resource_types"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       reviews: {
         Row: {
           business_id: string
@@ -701,8 +898,11 @@ export type Database = {
       }
       services: {
         Row: {
+          buffer_after: number | null
+          buffer_before: number | null
           business_id: string
           capacity: number
+          capacity_required: number | null
           category: string | null
           created_at: string
           description: string | null
@@ -713,11 +913,15 @@ export type Database = {
           metadata: Json | null
           name: string
           price_cents: number
+          resource_type_id: string | null
           updated_at: string
         }
         Insert: {
+          buffer_after?: number | null
+          buffer_before?: number | null
           business_id: string
           capacity?: number
+          capacity_required?: number | null
           category?: string | null
           created_at?: string
           description?: string | null
@@ -728,11 +932,15 @@ export type Database = {
           metadata?: Json | null
           name: string
           price_cents?: number
+          resource_type_id?: string | null
           updated_at?: string
         }
         Update: {
+          buffer_after?: number | null
+          buffer_before?: number | null
           business_id?: string
           capacity?: number
+          capacity_required?: number | null
           category?: string | null
           created_at?: string
           description?: string | null
@@ -743,6 +951,7 @@ export type Database = {
           metadata?: Json | null
           name?: string
           price_cents?: number
+          resource_type_id?: string | null
           updated_at?: string
         }
         Relationships: [
@@ -751,6 +960,13 @@ export type Database = {
             columns: ["business_id"]
             isOneToOne: false
             referencedRelation: "businesses"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "services_resource_type_id_fkey"
+            columns: ["resource_type_id"]
+            isOneToOne: false
+            referencedRelation: "resource_types"
             referencedColumns: ["id"]
           },
         ]
@@ -781,6 +997,25 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      assign_best_resource: {
+        Args: {
+          p_business_id: string
+          p_date: string
+          p_party_size?: number
+          p_service_id: string
+          p_start_time: string
+        }
+        Returns: string
+      }
+      check_resource_availability: {
+        Args: {
+          p_date: string
+          p_end_time: string
+          p_resource_id: string
+          p_start_time: string
+        }
+        Returns: boolean
+      }
       has_role: {
         Args: {
           _role: Database["public"]["Enums"]["app_role"]
