@@ -808,19 +808,6 @@ const Dashboard = () => {
 ) : app.id === "ecommerce" && businessId ? (
   <EcommerceApp businessId={businessId} />
 ) : null
-) : app.id === "wellness" && businessId ? (
-  <WellnessApp businessId={businessId} />
-) : app.id === "inventory" && businessId ? (
-  <InventarioApp businessId={businessId} />
-) : app.id === "travel" && businessId ? (
-  <TravelApp businessId={businessId} />
-) : app.id === "workshops" && businessId ? (
-  <CoursesApp businessId={businessId} />
-) : app.id === "marketing" && businessId ? (
-  <MarketingApp businessId={businessId} />
-) : app.id === "ecommerce" && businessId ? (
-  <EcommerceApp businessId={businessId} />
-) : null
             ) : app.id === "wellness" && businessId ? (
               <WellnessApp businessId={businessId} />
             ) : app.id === "inventory" && businessId ? (
