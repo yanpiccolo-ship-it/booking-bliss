@@ -145,7 +145,6 @@ const Dashboard = () => {
       setSession(sess);
       setUser(sess?.user ?? null);
       setLoading(false);
-      if (!sess) navigate("/auth");
       if (sess) {
         checkSubscription();
         loadBusinessData(sess.user.id);
@@ -156,7 +155,6 @@ const Dashboard = () => {
       setSession(sess);
       setUser(sess?.user ?? null);
       setLoading(false);
-      if (!sess) navigate("/auth");
       if (sess) {
         checkSubscription();
         loadBusinessData(sess.user.id);
