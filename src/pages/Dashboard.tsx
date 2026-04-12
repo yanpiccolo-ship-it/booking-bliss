@@ -23,6 +23,13 @@ import { RoomTypeManager } from "@/components/booking/RoomTypeManager";
 import { MultiDayBookingForm } from "@/components/booking/MultiDayBookingForm";
 import ResourceManager from "@/components/dashboard/ResourceManager";
 import AnalyticsDashboard from "@/components/dashboard/AnalyticsDashboard";
+import RestauranteApp from "@/components/RestauranteApp";
+import WellnessApp from "@/components/WellnessApp";
+import InventarioApp from "@/components/InventarioApp";
+import TravelApp from "@/components/TravelApp";
+import CoursesApp from "@/components/CoursesApp";
+import MarketingApp from "@/components/MarketingApp";
+import EcommerceApp from "@/components/EcommerceApp";
 
 // Feature definitions per plan
 const PLAN_FEATURES: Record<StripeTier, string[]> = {
@@ -789,7 +796,19 @@ const Dashboard = () => {
             ) : app.id === "reports" && businessId ? (
               <AnalyticsDashboard businessId={businessId} />
             ) : app.id === "restaurant" && businessId ? (
-              <ResourceManager businessId={businessId} />
+              <RestauranteApp businessId={businessId} />
+            ) : app.id === "wellness" && businessId ? (
+              <WellnessApp businessId={businessId} />
+            ) : app.id === "inventory" && businessId ? (
+              <InventarioApp businessId={businessId} />
+            ) : app.id === "travel" && businessId ? (
+              <TravelApp businessId={businessId} />
+            ) : app.id === "workshops" && businessId ? (
+              <CoursesApp businessId={businessId} />
+            ) : app.id === "marketing" && businessId ? (
+              <MarketingApp businessId={businessId} />
+            ) : app.id === "ecommerce" && businessId ? (
+              <EcommerceApp businessId={businessId} />
             ) : app.id === "settings" && businessId ? (
               <ResourceManager businessId={businessId} />
             ) : (
