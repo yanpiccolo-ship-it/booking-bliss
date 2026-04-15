@@ -5,18 +5,21 @@ export const STRIPE_TIERS = {
     price_id: "price_1T2xfbEGKumAbgWwOFOQCfvN",
     name: "Basic",
     monthlyPrice: 49,
+    setupPrice: 390,
   },
   professional: {
     product_id: "prod_U0zg0kxz3sqccL",
     price_id: "price_1T2xgkEGKumAbgWwyX01T662",
     name: "Professional",
     monthlyPrice: 149,
+    setupPrice: 990,
   },
   premium: {
     product_id: "prod_U0zhQ6qsR6xoSz",
     price_id: "price_1T2xhhEGKumAbgWwAoXY60No",
     name: "Premium",
     monthlyPrice: 299,
+    setupPrice: 2900,
   },
 } as const;
 

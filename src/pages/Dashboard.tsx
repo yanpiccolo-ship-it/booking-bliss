@@ -608,7 +608,8 @@ const Dashboard = () => {
                   <span className="text-xs text-muted-foreground">/mes</span>
                 </div>
               </div>
-              <p className="text-xs text-muted-foreground mb-4">{featureCount} módulos incluidos</p>
+              <p className="text-xs text-muted-foreground mb-1">{featureCount} módulos incluidos</p>
+              <p className="text-[10px] text-muted-foreground/70 mb-4">Setup: €{config.setupPrice.toLocaleString()}</p>
               {!isCurrent && (
                 <Button
                   onClick={() => handleCheckout(config.price_id)}
