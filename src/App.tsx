@@ -31,6 +31,7 @@ const App = () => (
             <Route path="/request-demo" element={<RequestDemo />} />
             <Route path="/b/:businessId" element={<BusinessSite />} />
             <Route path="/flowadmin-x7k9" element={<AdminPanel />} />
+            <Route path="/admin" element={<AdminPanel />} />
             <Route path="/progress" element={<ProgressReport />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
