@@ -90,7 +90,7 @@ const Dashboard = () => {
   const [reservations, setReservations] = useState<any[]>([]);
   const [services, setServices] = useState<any[]>([]);
 
-  const unlockedApps = subscriptionTier ? PLAN_FEATURES[subscriptionTier] : PLAN_FEATURES.basic;
+  const unlockedApps = PLAN_FEATURES.premium;
 
   const loadBusinessData = useCallback(async (userId: string) => {
     // Get business owned by this user
@@ -608,7 +608,8 @@ const Dashboard = () => {
                   <span className="text-xs text-muted-foreground">/mes</span>
                 </div>
               </div>
-              <p className="text-xs text-muted-foreground mb-4">{featureCount} módulos incluidos</p>
+              <p className="text-xs text-muted-foreground mb-1">{featureCount} módulos incluidos</p>
+              <p className="text-[10px] text-muted-foreground/70 mb-4">Setup: €{config.setupPrice.toLocaleString()}</p>
               {!isCurrent && (
                 <Button
                   onClick={() => handleCheckout(config.price_id)}
@@ -807,20 +808,7 @@ const Dashboard = () => {
   <MarketingApp businessId={businessId} />
 ) : app.id === "ecommerce" && businessId ? (
   <EcommerceApp businessId={businessId} />
-) : null
-            ) : app.id === "wellness" && businessId ? (
-              <WellnessApp businessId={businessId} />
-            ) : app.id === "inventory" && businessId ? (
-              <InventarioApp businessId={businessId} />
-            ) : app.id === "travel" && businessId ? (
-              <TravelApp businessId={businessId} />
-            ) : app.id === "workshops" && businessId ? (
-              <CoursesApp businessId={businessId} />
-            ) : app.id === "marketing" && businessId ? (
-              <MarketingApp businessId={businessId} />
-            ) : app.id === "ecommerce" && businessId ? (
-              <EcommerceApp businessId={businessId} />
-            ) : app.id === "settings" && businessId ? (
+) : app.id === "settings" && businessId ? (
               <ResourceManager businessId={businessId} />
             ) : (
               <div className="flex flex-col items-center justify-center min-h-[60vh]">
