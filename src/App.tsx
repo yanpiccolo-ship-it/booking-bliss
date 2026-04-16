@@ -13,6 +13,9 @@ import AdminPanel from "./pages/AdminPanel";
 import NotFound from "./pages/NotFound";
 import BusinessSite from "./pages/BusinessSite";
 import ProgressReport from "./pages/ProgressReport";
+import Terms from "./pages/Terms";
+import Privacy from "./pages/Privacy";
+import CookieBanner from "./components/CookieBanner";
 
 const queryClient = new QueryClient();
 
@@ -33,9 +36,12 @@ const App = () => (
             <Route path="/flowadmin-x7k9" element={<AdminPanel />} />
             <Route path="/admin" element={<AdminPanel />} />
             <Route path="/progress" element={<ProgressReport />} />
+            <Route path="/terms" element={<Terms />} />
+            <Route path="/privacy" element={<Privacy />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
+          <CookieBanner />
         </BrowserRouter>
       </TooltipProvider>
     </LanguageProvider>
