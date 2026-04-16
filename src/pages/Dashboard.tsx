@@ -843,6 +843,7 @@ const Dashboard = () => {
 
   return (
     <div className="min-h-screen bg-background max-w-lg mx-auto relative">
+      <WelcomeModal />
       {/* Content */}
       <AnimatePresence mode="wait">
         <motion.div
