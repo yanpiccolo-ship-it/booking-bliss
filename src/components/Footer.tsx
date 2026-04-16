@@ -68,13 +68,16 @@ const Footer = () => {
             <p className="text-background/40 text-sm text-center md:text-left">
               {t.footer.copyright}
             </p>
-            <div className="flex gap-4 sm:gap-6 text-sm text-background/40">
-              <span>EN</span>
-              <span>ES</span>
-              <span>IT</span>
-              <span>FR</span>
-              <span>PT</span>
-              <span>DE</span>
+            <div className="flex gap-4 sm:gap-6 text-sm">
+              <a href="/terms" className="text-background/40 hover:text-background/70 transition-colors">Términos</a>
+              <a href="/privacy" className="text-background/40 hover:text-background/70 transition-colors">Privacidad</a>
+              <span className="text-background/20">|</span>
+              <span className="text-background/40">EN</span>
+              <span className="text-background/40">ES</span>
+              <span className="text-background/40">IT</span>
+              <span className="text-background/40">FR</span>
+              <span className="text-background/40">PT</span>
+              <span className="text-background/40">DE</span>
             </div>
           </div>
         </div>

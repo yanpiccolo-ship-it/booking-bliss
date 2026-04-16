@@ -30,7 +30,7 @@ import TravelApp from "@/components/TravelApp";
 import CoursesApp from "@/components/CoursesApp";
 import MarketingApp from "@/components/MarketingApp";
 import EcommerceApp from "@/components/EcommerceApp";
-
+import WelcomeModal from "@/components/WelcomeModal";
 // Feature definitions per plan
 const PLAN_FEATURES: Record<StripeTier, string[]> = {
   basic: ["bookings", "payments", "clients", "voice", "agents", "notifications", "settings"],
