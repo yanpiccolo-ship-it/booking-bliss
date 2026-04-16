@@ -794,20 +794,20 @@ const Dashboard = () => {
               </div>
             ) : app.id === "reports" && businessId ? (
               <AnalyticsDashboard businessId={businessId} />
-            ) : app.id === "restaurant" && businessId ? (
-  <RestauranteApp businessId={businessId} />
-) : app.id === "wellness" && businessId ? (
-  <WellnessApp businessId={businessId} />
-) : app.id === "inventory" && businessId ? (
-  <InventarioApp businessId={businessId} />
-) : app.id === "travel" && businessId ? (
-  <TravelApp businessId={businessId} />
-) : app.id === "workshops" && businessId ? (
-  <CoursesApp businessId={businessId} />
-) : app.id === "marketing" && businessId ? (
-  <MarketingApp businessId={businessId} />
-) : app.id === "ecommerce" && businessId ? (
-  <EcommerceApp businessId={businessId} />
+            ) : app.id === "restaurant" ? (
+  <RestauranteApp businessId={businessId || "demo"} />
+) : app.id === "wellness" ? (
+  <WellnessApp businessId={businessId || "demo"} />
+) : app.id === "inventory" ? (
+  <InventarioApp businessId={businessId || "demo"} />
+) : app.id === "travel" ? (
+  <TravelApp businessId={businessId || "demo"} />
+) : app.id === "workshops" ? (
+  <CoursesApp businessId={businessId || "demo"} />
+) : app.id === "marketing" ? (
+  <MarketingApp businessId={businessId || "demo"} />
+) : app.id === "ecommerce" ? (
+  <EcommerceApp businessId={businessId || "demo"} />
 ) : app.id === "settings" && businessId ? (
               <ResourceManager businessId={businessId} />
             ) : (
