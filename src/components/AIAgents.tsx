@@ -60,7 +60,7 @@ const AIAgents = () => {
   ];
 
   return (
-    <section className="py-16 sm:py-24 lg:py-32 bg-background relative overflow-hidden">
+    <section id="agents" className="py-16 sm:py-24 lg:py-32 bg-background relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-gradient-mesh opacity-50 pointer-events-none" />
       

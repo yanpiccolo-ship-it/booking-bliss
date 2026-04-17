@@ -46,12 +46,12 @@ const Privacy = () => {
             </p>
           </section>
 
-          <section>
+          <section id="cookies">
             <h2 className="font-display text-lg font-bold text-foreground">5. Cookies</h2>
             <p>Usamos cookies para mejorar la experiencia, analizar el tráfico y personalizar el contenido. Puedes gestionar tus preferencias desde el banner de cookies al acceder al sitio.</p>
           </section>
 
-          <section>
+          <section id="gdpr">
             <h2 className="font-display text-lg font-bold text-foreground">6. Derechos del Usuario</h2>
             <p>Conforme al RGPD, tienes derecho de acceso, rectificación, eliminación y portabilidad de tus datos. Para ejercer estos derechos, contacta a: <a href="mailto:privacy@flowbooking.com" className="text-primary underline">privacy@flowbooking.com</a></p>
           </section>
