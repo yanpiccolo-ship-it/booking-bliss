@@ -20,3 +20,9 @@ verify_jwt = false
 
 [functions.agent-chat]
 verify_jwt = false
+
+[functions.flowcore-create-reservation]
+verify_jwt = false
+
+[functions.support-chat]
+verify_jwt = false
