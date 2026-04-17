@@ -165,6 +165,111 @@ export type Database = {
           },
         ]
       }
+      analytics_logs: {
+        Row: {
+          business_id: string
+          dimensions: Json | null
+          id: string
+          metric_type: string
+          metric_value: number | null
+          recorded_at: string | null
+        }
+        Insert: {
+          business_id: string
+          dimensions?: Json | null
+          id?: string
+          metric_type: string
+          metric_value?: number | null
+          recorded_at?: string | null
+        }
+        Update: {
+          business_id?: string
+          dimensions?: Json | null
+          id?: string
+          metric_type?: string
+          metric_value?: number | null
+          recorded_at?: string | null
+        }
+        Relationships: []
+      }
+      automation_logs: {
+        Row: {
+          business_id: string
+          error_message: string | null
+          executed_at: string | null
+          id: string
+          payload: Json | null
+          result: string | null
+          rule_id: string | null
+          trigger_event: string | null
+        }
+        Insert: {
+          business_id: string
+          error_message?: string | null
+          executed_at?: string | null
+          id?: string
+          payload?: Json | null
+          result?: string | null
+          rule_id?: string | null
+          trigger_event?: string | null
+        }
+        Update: {
+          business_id?: string
+          error_message?: string | null
+          executed_at?: string | null
+          id?: string
+          payload?: Json | null
+          result?: string | null
+          rule_id?: string | null
+          trigger_event?: string | null
+        }
+        Relationships: []
+      }
+      automation_rules: {
+        Row: {
+          actions: Json | null
+          business_id: string
+          conditions: Json | null
+          created_at: string | null
+          description: string | null
+          execution_count: number | null
+          id: string
+          is_active: boolean | null
+          last_executed_at: string | null
+          name: string
+          trigger_event: string
+          updated_at: string | null
+        }
+        Insert: {
+          actions?: Json | null
+          business_id: string
+          conditions?: Json | null
+          created_at?: string | null
+          description?: string | null
+          execution_count?: number | null
+          id?: string
+          is_active?: boolean | null
+          last_executed_at?: string | null
+          name: string
+          trigger_event: string
+          updated_at?: string | null
+        }
+        Update: {
+          actions?: Json | null
+          business_id?: string
+          conditions?: Json | null
+          created_at?: string | null
+          description?: string | null
+          execution_count?: number | null
+          id?: string
+          is_active?: boolean | null
+          last_executed_at?: string | null
+          name?: string
+          trigger_event?: string
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
       availability_rules: {
         Row: {
           buffer_after: number | null
@@ -449,6 +554,330 @@ export type Database = {
           },
         ]
       }
+      customer_scores: {
+        Row: {
+          business_id: string
+          cancellations: number | null
+          completed: number | null
+          created_at: string | null
+          customer_email: string | null
+          customer_id: string | null
+          id: string
+          no_shows: number | null
+          reliability_score: number
+          total_reservations: number | null
+          updated_at: string | null
+        }
+        Insert: {
+          business_id: string
+          cancellations?: number | null
+          completed?: number | null
+          created_at?: string | null
+          customer_email?: string | null
+          customer_id?: string | null
+          id?: string
+          no_shows?: number | null
+          reliability_score?: number
+          total_reservations?: number | null
+          updated_at?: string | null
+        }
+        Update: {
+          business_id?: string
+          cancellations?: number | null
+          completed?: number | null
+          created_at?: string | null
+          customer_email?: string | null
+          customer_id?: string | null
+          id?: string
+          no_shows?: number | null
+          reliability_score?: number
+          total_reservations?: number | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      delivery_orders: {
+        Row: {
+          assigned_at: string | null
+          business_id: string
+          created_at: string | null
+          delivered_at: string | null
+          delivery_address: string | null
+          delivery_lat: number | null
+          delivery_lng: number | null
+          driver_id: string | null
+          estimated_minutes: number | null
+          id: string
+          notes: string | null
+          order_id: string
+          picked_up_at: string | null
+          status: string | null
+        }
+        Insert: {
+          assigned_at?: string | null
+          business_id: string
+          created_at?: string | null
+          delivered_at?: string | null
+          delivery_address?: string | null
+          delivery_lat?: number | null
+          delivery_lng?: number | null
+          driver_id?: string | null
+          estimated_minutes?: number | null
+          id?: string
+          notes?: string | null
+          order_id: string
+          picked_up_at?: string | null
+          status?: string | null
+        }
+        Update: {
+          assigned_at?: string | null
+          business_id?: string
+          created_at?: string | null
+          delivered_at?: string | null
+          delivery_address?: string | null
+          delivery_lat?: number | null
+          delivery_lng?: number | null
+          driver_id?: string | null
+          estimated_minutes?: number | null
+          id?: string
+          notes?: string | null
+          order_id?: string
+          picked_up_at?: string | null
+          status?: string | null
+        }
+        Relationships: []
+      }
+      demand_predictions: {
+        Row: {
+          business_id: string
+          confidence_score: number | null
+          created_at: string | null
+          id: string
+          model_version: string | null
+          predicted_date: string
+          predicted_demand: number | null
+          service_id: string | null
+        }
+        Insert: {
+          business_id: string
+          confidence_score?: number | null
+          created_at?: string | null
+          id?: string
+          model_version?: string | null
+          predicted_date: string
+          predicted_demand?: number | null
+          service_id?: string | null
+        }
+        Update: {
+          business_id?: string
+          confidence_score?: number | null
+          created_at?: string | null
+          id?: string
+          model_version?: string | null
+          predicted_date?: string
+          predicted_demand?: number | null
+          service_id?: string | null
+        }
+        Relationships: []
+      }
+      drivers: {
+        Row: {
+          business_id: string
+          created_at: string | null
+          id: string
+          is_active: boolean | null
+          name: string
+          phone: string | null
+          status: string | null
+          vehicle: string | null
+        }
+        Insert: {
+          business_id: string
+          created_at?: string | null
+          id?: string
+          is_active?: boolean | null
+          name: string
+          phone?: string | null
+          status?: string | null
+          vehicle?: string | null
+        }
+        Update: {
+          business_id?: string
+          created_at?: string | null
+          id?: string
+          is_active?: boolean | null
+          name?: string
+          phone?: string | null
+          status?: string | null
+          vehicle?: string | null
+        }
+        Relationships: []
+      }
+      dynamic_pricing_rules: {
+        Row: {
+          base_multiplier: number | null
+          business_id: string
+          created_at: string | null
+          day_of_week: number | null
+          end_date: string | null
+          end_time: string | null
+          event_multiplier: number | null
+          id: string
+          is_active: boolean | null
+          name: string | null
+          service_id: string | null
+          start_date: string | null
+          start_time: string | null
+        }
+        Insert: {
+          base_multiplier?: number | null
+          business_id: string
+          created_at?: string | null
+          day_of_week?: number | null
+          end_date?: string | null
+          end_time?: string | null
+          event_multiplier?: number | null
+          id?: string
+          is_active?: boolean | null
+          name?: string | null
+          service_id?: string | null
+          start_date?: string | null
+          start_time?: string | null
+        }
+        Update: {
+          base_multiplier?: number | null
+          business_id?: string
+          created_at?: string | null
+          day_of_week?: number | null
+          end_date?: string | null
+          end_time?: string | null
+          event_multiplier?: number | null
+          id?: string
+          is_active?: boolean | null
+          name?: string | null
+          service_id?: string | null
+          start_date?: string | null
+          start_time?: string | null
+        }
+        Relationships: []
+      }
+      inventory_items: {
+        Row: {
+          business_id: string
+          created_at: string | null
+          current_stock: number | null
+          id: string
+          is_active: boolean | null
+          last_restock_at: string | null
+          max_stock: number | null
+          min_stock: number | null
+          name: string
+          sku: string | null
+          supplier_id: string | null
+          unit: string | null
+          unit_cost_cents: number | null
+          updated_at: string | null
+        }
+        Insert: {
+          business_id: string
+          created_at?: string | null
+          current_stock?: number | null
+          id?: string
+          is_active?: boolean | null
+          last_restock_at?: string | null
+          max_stock?: number | null
+          min_stock?: number | null
+          name: string
+          sku?: string | null
+          supplier_id?: string | null
+          unit?: string | null
+          unit_cost_cents?: number | null
+          updated_at?: string | null
+        }
+        Update: {
+          business_id?: string
+          created_at?: string | null
+          current_stock?: number | null
+          id?: string
+          is_active?: boolean | null
+          last_restock_at?: string | null
+          max_stock?: number | null
+          min_stock?: number | null
+          name?: string
+          sku?: string | null
+          supplier_id?: string | null
+          unit?: string | null
+          unit_cost_cents?: number | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      kitchen_orders: {
+        Row: {
+          business_id: string
+          created_at: string | null
+          id: string
+          notes: string | null
+          order_id: string
+          priority: number | null
+          ready_at: string | null
+          started_at: string | null
+          station_id: string | null
+          status: string | null
+        }
+        Insert: {
+          business_id: string
+          created_at?: string | null
+          id?: string
+          notes?: string | null
+          order_id: string
+          priority?: number | null
+          ready_at?: string | null
+          started_at?: string | null
+          station_id?: string | null
+          status?: string | null
+        }
+        Update: {
+          business_id?: string
+          created_at?: string | null
+          id?: string
+          notes?: string | null
+          order_id?: string
+          priority?: number | null
+          ready_at?: string | null
+          started_at?: string | null
+          station_id?: string | null
+          status?: string | null
+        }
+        Relationships: []
+      }
+      kitchen_stations: {
+        Row: {
+          business_id: string
+          created_at: string | null
+          id: string
+          is_active: boolean | null
+          name: string
+          type: string | null
+        }
+        Insert: {
+          business_id: string
+          created_at?: string | null
+          id?: string
+          is_active?: boolean | null
+          name: string
+          type?: string | null
+        }
+        Update: {
+          business_id?: string
+          created_at?: string | null
+          id?: string
+          is_active?: boolean | null
+          name?: string
+          type?: string | null
+        }
+        Relationships: []
+      }
       memberships: {
         Row: {
           created_at: string
@@ -485,6 +914,243 @@ export type Database = {
           price_cents?: number
           tier?: Database["public"]["Enums"]["membership_tier"]
           updated_at?: string
+        }
+        Relationships: []
+      }
+      menu_items: {
+        Row: {
+          allergens: Json | null
+          business_id: string
+          category: string | null
+          created_at: string | null
+          description: string | null
+          display_order: number | null
+          id: string
+          image_url: string | null
+          is_available: boolean | null
+          menu_id: string
+          name: string
+          price_cents: number
+        }
+        Insert: {
+          allergens?: Json | null
+          business_id: string
+          category?: string | null
+          created_at?: string | null
+          description?: string | null
+          display_order?: number | null
+          id?: string
+          image_url?: string | null
+          is_available?: boolean | null
+          menu_id: string
+          name: string
+          price_cents?: number
+        }
+        Update: {
+          allergens?: Json | null
+          business_id?: string
+          category?: string | null
+          created_at?: string | null
+          description?: string | null
+          display_order?: number | null
+          id?: string
+          image_url?: string | null
+          is_available?: boolean | null
+          menu_id?: string
+          name?: string
+          price_cents?: number
+        }
+        Relationships: []
+      }
+      menus: {
+        Row: {
+          business_id: string
+          created_at: string | null
+          description: string | null
+          id: string
+          is_active: boolean | null
+          name: string
+          updated_at: string | null
+          valid_from: string | null
+          valid_to: string | null
+        }
+        Insert: {
+          business_id: string
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          is_active?: boolean | null
+          name: string
+          updated_at?: string | null
+          valid_from?: string | null
+          valid_to?: string | null
+        }
+        Update: {
+          business_id?: string
+          created_at?: string | null
+          description?: string | null
+          id?: string
+          is_active?: boolean | null
+          name?: string
+          updated_at?: string | null
+          valid_from?: string | null
+          valid_to?: string | null
+        }
+        Relationships: []
+      }
+      order_items: {
+        Row: {
+          business_id: string
+          created_at: string | null
+          id: string
+          menu_item_id: string | null
+          name: string
+          notes: string | null
+          order_id: string
+          quantity: number
+          status: string | null
+          unit_price_cents: number
+        }
+        Insert: {
+          business_id: string
+          created_at?: string | null
+          id?: string
+          menu_item_id?: string | null
+          name: string
+          notes?: string | null
+          order_id: string
+          quantity?: number
+          status?: string | null
+          unit_price_cents?: number
+        }
+        Update: {
+          business_id?: string
+          created_at?: string | null
+          id?: string
+          menu_item_id?: string | null
+          name?: string
+          notes?: string | null
+          order_id?: string
+          quantity?: number
+          status?: string | null
+          unit_price_cents?: number
+        }
+        Relationships: []
+      }
+      orders: {
+        Row: {
+          business_id: string
+          created_at: string | null
+          customer_email: string | null
+          customer_id: string | null
+          customer_name: string | null
+          id: string
+          notes: string | null
+          payment_id: string | null
+          payment_status: string | null
+          reservation_id: string | null
+          source: string | null
+          status: string | null
+          table_number: string | null
+          total_cents: number | null
+          updated_at: string | null
+        }
+        Insert: {
+          business_id: string
+          created_at?: string | null
+          customer_email?: string | null
+          customer_id?: string | null
+          customer_name?: string | null
+          id?: string
+          notes?: string | null
+          payment_id?: string | null
+          payment_status?: string | null
+          reservation_id?: string | null
+          source?: string | null
+          status?: string | null
+          table_number?: string | null
+          total_cents?: number | null
+          updated_at?: string | null
+        }
+        Update: {
+          business_id?: string
+          created_at?: string | null
+          customer_email?: string | null
+          customer_id?: string | null
+          customer_name?: string | null
+          id?: string
+          notes?: string | null
+          payment_id?: string | null
+          payment_status?: string | null
+          reservation_id?: string | null
+          source?: string | null
+          status?: string | null
+          table_number?: string | null
+          total_cents?: number | null
+          updated_at?: string | null
+        }
+        Relationships: []
+      }
+      overbooking_settings: {
+        Row: {
+          business_id: string
+          created_at: string | null
+          id: string
+          is_active: boolean | null
+          overbooking_percentage: number | null
+          resource_type_id: string | null
+        }
+        Insert: {
+          business_id: string
+          created_at?: string | null
+          id?: string
+          is_active?: boolean | null
+          overbooking_percentage?: number | null
+          resource_type_id?: string | null
+        }
+        Update: {
+          business_id?: string
+          created_at?: string | null
+          id?: string
+          is_active?: boolean | null
+          overbooking_percentage?: number | null
+          resource_type_id?: string | null
+        }
+        Relationships: []
+      }
+      pricing_adjustments: {
+        Row: {
+          adjustment_time: string | null
+          applied_by: string | null
+          business_id: string
+          id: string
+          metadata: Json | null
+          new_price: number | null
+          old_price: number | null
+          reason: string | null
+          service_id: string | null
+        }
+        Insert: {
+          adjustment_time?: string | null
+          applied_by?: string | null
+          business_id: string
+          id?: string
+          metadata?: Json | null
+          new_price?: number | null
+          old_price?: number | null
+          reason?: string | null
+          service_id?: string | null
+        }
+        Update: {
+          adjustment_time?: string | null
+          applied_by?: string | null
+          business_id?: string
+          id?: string
+          metadata?: Json | null
+          new_price?: number | null
+          old_price?: number | null
+          reason?: string | null
+          service_id?: string | null
         }
         Relationships: []
       }
@@ -531,6 +1197,120 @@ export type Database = {
             referencedColumns: ["id"]
           },
         ]
+      }
+      purchase_orders: {
+        Row: {
+          business_id: string
+          created_at: string | null
+          expected_at: string | null
+          id: string
+          items: Json | null
+          notes: string | null
+          ordered_at: string | null
+          received_at: string | null
+          status: string | null
+          supplier_id: string
+          total_cents: number | null
+        }
+        Insert: {
+          business_id: string
+          created_at?: string | null
+          expected_at?: string | null
+          id?: string
+          items?: Json | null
+          notes?: string | null
+          ordered_at?: string | null
+          received_at?: string | null
+          status?: string | null
+          supplier_id: string
+          total_cents?: number | null
+        }
+        Update: {
+          business_id?: string
+          created_at?: string | null
+          expected_at?: string | null
+          id?: string
+          items?: Json | null
+          notes?: string | null
+          ordered_at?: string | null
+          received_at?: string | null
+          status?: string | null
+          supplier_id?: string
+          total_cents?: number | null
+        }
+        Relationships: []
+      }
+      qr_codes: {
+        Row: {
+          business_id: string
+          code: string
+          created_at: string | null
+          id: string
+          is_active: boolean | null
+          label: string | null
+          scans: number | null
+          target_id: string | null
+          type: string | null
+        }
+        Insert: {
+          business_id: string
+          code: string
+          created_at?: string | null
+          id?: string
+          is_active?: boolean | null
+          label?: string | null
+          scans?: number | null
+          target_id?: string | null
+          type?: string | null
+        }
+        Update: {
+          business_id?: string
+          code?: string
+          created_at?: string | null
+          id?: string
+          is_active?: boolean | null
+          label?: string | null
+          scans?: number | null
+          target_id?: string | null
+          type?: string | null
+        }
+        Relationships: []
+      }
+      reservation_confirmations: {
+        Row: {
+          business_id: string
+          channel: string | null
+          created_at: string | null
+          id: string
+          metadata: Json | null
+          reservation_id: string
+          responded_at: string | null
+          sent_at: string | null
+          status: string
+        }
+        Insert: {
+          business_id: string
+          channel?: string | null
+          created_at?: string | null
+          id?: string
+          metadata?: Json | null
+          reservation_id: string
+          responded_at?: string | null
+          sent_at?: string | null
+          status?: string
+        }
+        Update: {
+          business_id?: string
+          channel?: string | null
+          created_at?: string | null
+          id?: string
+          metadata?: Json | null
+          reservation_id?: string
+          responded_at?: string | null
+          sent_at?: string | null
+          status?: string
+        }
+        Relationships: []
       }
       reservations: {
         Row: {
@@ -896,6 +1676,42 @@ export type Database = {
           },
         ]
       }
+      seasonal_pricing: {
+        Row: {
+          business_id: string
+          created_at: string | null
+          end_date: string | null
+          id: string
+          is_active: boolean | null
+          name: string | null
+          price_per_night: number | null
+          room_type_id: string | null
+          start_date: string | null
+        }
+        Insert: {
+          business_id: string
+          created_at?: string | null
+          end_date?: string | null
+          id?: string
+          is_active?: boolean | null
+          name?: string | null
+          price_per_night?: number | null
+          room_type_id?: string | null
+          start_date?: string | null
+        }
+        Update: {
+          business_id?: string
+          created_at?: string | null
+          end_date?: string | null
+          id?: string
+          is_active?: boolean | null
+          name?: string | null
+          price_per_night?: number | null
+          room_type_id?: string | null
+          start_date?: string | null
+        }
+        Relationships: []
+      }
       services: {
         Row: {
           buffer_after: number | null
@@ -971,6 +1787,123 @@ export type Database = {
           },
         ]
       }
+      suppliers: {
+        Row: {
+          address: string | null
+          business_id: string
+          contact_email: string | null
+          contact_phone: string | null
+          created_at: string | null
+          id: string
+          is_active: boolean | null
+          name: string
+          notes: string | null
+        }
+        Insert: {
+          address?: string | null
+          business_id: string
+          contact_email?: string | null
+          contact_phone?: string | null
+          created_at?: string | null
+          id?: string
+          is_active?: boolean | null
+          name: string
+          notes?: string | null
+        }
+        Update: {
+          address?: string | null
+          business_id?: string
+          contact_email?: string | null
+          contact_phone?: string | null
+          created_at?: string | null
+          id?: string
+          is_active?: boolean | null
+          name?: string
+          notes?: string | null
+        }
+        Relationships: []
+      }
+      support_messages: {
+        Row: {
+          content: string
+          created_at: string | null
+          id: string
+          metadata: Json | null
+          sender_id: string | null
+          sender_role: string | null
+          ticket_id: string
+        }
+        Insert: {
+          content: string
+          created_at?: string | null
+          id?: string
+          metadata?: Json | null
+          sender_id?: string | null
+          sender_role?: string | null
+          ticket_id: string
+        }
+        Update: {
+          content?: string
+          created_at?: string | null
+          id?: string
+          metadata?: Json | null
+          sender_id?: string | null
+          sender_role?: string | null
+          ticket_id?: string
+        }
+        Relationships: []
+      }
+      support_tickets: {
+        Row: {
+          assigned_to: string | null
+          business_id: string | null
+          category: string | null
+          created_at: string | null
+          id: string
+          message: string
+          metadata: Json | null
+          priority: string | null
+          resolved_at: string | null
+          satisfaction_score: number | null
+          status: string | null
+          subject: string
+          updated_at: string | null
+          user_id: string | null
+        }
+        Insert: {
+          assigned_to?: string | null
+          business_id?: string | null
+          category?: string | null
+          created_at?: string | null
+          id?: string
+          message: string
+          metadata?: Json | null
+          priority?: string | null
+          resolved_at?: string | null
+          satisfaction_score?: number | null
+          status?: string | null
+          subject: string
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          assigned_to?: string | null
+          business_id?: string | null
+          category?: string | null
+          created_at?: string | null
+          id?: string
+          message?: string
+          metadata?: Json | null
+          priority?: string | null
+          resolved_at?: string | null
+          satisfaction_score?: number | null
+          status?: string | null
+          subject?: string
+          updated_at?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       user_roles: {
         Row: {
           created_at: string
@@ -989,6 +1922,93 @@ export type Database = {
           id?: string
           role?: Database["public"]["Enums"]["app_role"]
           user_id?: string
+        }
+        Relationships: []
+      }
+      waitlist_notifications: {
+        Row: {
+          business_id: string
+          channel: string | null
+          id: string
+          metadata: Json | null
+          responded: boolean | null
+          response_action: string | null
+          sent_at: string | null
+          waitlist_id: string
+        }
+        Insert: {
+          business_id: string
+          channel?: string | null
+          id?: string
+          metadata?: Json | null
+          responded?: boolean | null
+          response_action?: string | null
+          sent_at?: string | null
+          waitlist_id: string
+        }
+        Update: {
+          business_id?: string
+          channel?: string | null
+          id?: string
+          metadata?: Json | null
+          responded?: boolean | null
+          response_action?: string | null
+          sent_at?: string | null
+          waitlist_id?: string
+        }
+        Relationships: []
+      }
+      waitlists: {
+        Row: {
+          business_id: string
+          created_at: string | null
+          customer_email: string | null
+          customer_id: string | null
+          customer_name: string | null
+          customer_phone: string | null
+          id: string
+          metadata: Json | null
+          party_size: number | null
+          priority: number | null
+          requested_date: string | null
+          requested_time: string | null
+          service_id: string | null
+          status: string | null
+          updated_at: string | null
+        }
+        Insert: {
+          business_id: string
+          created_at?: string | null
+          customer_email?: string | null
+          customer_id?: string | null
+          customer_name?: string | null
+          customer_phone?: string | null
+          id?: string
+          metadata?: Json | null
+          party_size?: number | null
+          priority?: number | null
+          requested_date?: string | null
+          requested_time?: string | null
+          service_id?: string | null
+          status?: string | null
+          updated_at?: string | null
+        }
+        Update: {
+          business_id?: string
+          created_at?: string | null
+          customer_email?: string | null
+          customer_id?: string | null
+          customer_name?: string | null
+          customer_phone?: string | null
+          id?: string
+          metadata?: Json | null
+          party_size?: number | null
+          priority?: number | null
+          requested_date?: string | null
+          requested_time?: string | null
+          service_id?: string | null
+          status?: string | null
+          updated_at?: string | null
         }
         Relationships: []
       }
@@ -1015,6 +2035,22 @@ export type Database = {
           p_start_time: string
         }
         Returns: boolean
+      }
+      flowcore_create_reservation: {
+        Args: {
+          p_business_id: string
+          p_customer_email?: string
+          p_customer_id?: string
+          p_customer_name?: string
+          p_customer_phone?: string
+          p_notes?: string
+          p_party_size?: number
+          p_requested_date: string
+          p_requested_time: string
+          p_service_id: string
+          p_source?: string
+        }
+        Returns: Json
       }
       has_role: {
         Args: {
