@@ -88,19 +88,6 @@ const Footer = () => {
             <p className="text-background/60 text-sm leading-relaxed mb-6">
               {t.footer.description}
             </p>
-            <div className="rounded-2xl border border-background/10 bg-background/5 p-4">
-              <p className="text-xs uppercase tracking-[0.18em] text-background/40 mb-2">
-                {t.footer.categories.legal.title}
-              </p>
-              <div className="space-y-2 text-sm">
-                <Link to="/privacy" className="block text-background/70 hover:text-background transition-colors">
-                  {t.footer.categories.legal.links[0]}
-                </Link>
-                <Link to="/terms" className="block text-background/70 hover:text-background transition-colors">
-                  {t.footer.categories.legal.links[1]}
-                </Link>
-              </div>
-            </div>
           </div>
 
           {footerSections.map((section) => (
@@ -120,13 +107,7 @@ const Footer = () => {
             <p className="text-background/40 text-sm text-center lg:text-left">
               {t.footer.copyright}
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-4 text-sm">
-              <Link to="/terms" className="text-background/40 hover:text-background/70 transition-colors">
-                {t.footer.categories.legal.links[1]}
-              </Link>
-              <Link to="/privacy" className="text-background/40 hover:text-background/70 transition-colors">
-                {t.footer.categories.legal.links[0]}
-              </Link>
+            <div className="flex items-center justify-center gap-4 text-sm">
               <LanguageSelector isScrolled={false} />
             </div>
           </div>
