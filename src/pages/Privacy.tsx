@@ -7,58 +7,52 @@ const Privacy = () => {
     <div className="min-h-screen bg-background">
       <div className="max-w-3xl mx-auto px-5 py-12">
         <button onClick={() => navigate(-1)} className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground mb-8">
-          <ArrowLeft className="w-4 h-4" /> Volver
+          <ArrowLeft className="w-4 h-4" /> Back
         </button>
 
-        <h1 className="font-display text-3xl font-bold text-foreground mb-2">Política de Privacidad</h1>
-        <p className="text-sm text-muted-foreground mb-10">Última actualización: Abril 2026</p>
+        <h1 className="font-display text-3xl font-bold text-foreground mb-2">Privacy Policy</h1>
+        <p className="text-sm text-muted-foreground mb-10">Last updated: April 2026</p>
 
         <div className="prose prose-sm max-w-none text-foreground/80 space-y-8">
           <section>
-            <h2 className="font-display text-lg font-bold text-foreground">1. Datos que Recopilamos</h2>
-            <p>Recopilamos datos necesarios para el funcionamiento del servicio: nombre, email, teléfono, datos del negocio, historial de reservas, y conversaciones con agentes IA.</p>
+            <h2 className="font-display text-lg font-bold text-foreground">1. Data We Collect</h2>
+            <p>We collect data required to operate the service: name, email, phone, business information, reservation history, and conversations with AI agents.</p>
           </section>
 
           <section>
-            <h2 className="font-display text-lg font-bold text-foreground">2. Uso de los Datos</h2>
+            <h2 className="font-display text-lg font-bold text-foreground">2. Use of Data</h2>
             <ul className="list-disc pl-5 space-y-1">
-              <li>Gestión de reservas y comunicaciones automatizadas</li>
-              <li>Mejora del servicio y entrenamiento de modelos IA</li>
-              <li>Generación de informes analíticos para el negocio</li>
-              <li>Envío de notificaciones operativas (confirmaciones, recordatorios)</li>
+              <li>Reservation management and automated communications</li>
+              <li>Service improvement and AI model training</li>
+              <li>Analytical reports for the business</li>
+              <li>Operational notifications (confirmations, reminders)</li>
             </ul>
           </section>
 
           <section>
-            <h2 className="font-display text-lg font-bold text-foreground">3. Almacenamiento de Conversaciones IA</h2>
-            <p>
-              Las conversaciones gestionadas por agentes de inteligencia artificial pueden ser almacenadas para mejorar la calidad del servicio. El Usuario puede solicitar la eliminación de sus conversaciones en cualquier momento.
-            </p>
+            <h2 className="font-display text-lg font-bold text-foreground">3. AI Conversation Storage</h2>
+            <p>Conversations handled by AI agents may be stored to improve service quality. Users can request deletion of their conversations at any time.</p>
           </section>
 
           <section>
-            <h2 className="font-display text-lg font-bold text-foreground">4. Suscripción y Datos de Pago</h2>
-            <p>
-              La suscripción se renueva automáticamente al inicio de cada período facturado (mensual o anual) hasta que el Usuario la cancele. El cobro se realiza mediante el método de pago registrado a través de Stripe.
-            </p>
-            <p>
-              En caso de impago, el acceso al Servicio se suspenderá automáticamente a los 7 días de la fecha de vencimiento. Los datos del Usuario se conservarán durante 30 días adicionales para facilitar la reactivación.
-            </p>
+            <h2 className="font-display text-lg font-bold text-foreground">4. Subscription and Payment Data</h2>
+            <p>Subscriptions renew automatically at the start of each billing period (monthly or annually) until cancelled by the User. Payments are processed through Stripe using the registered payment method.</p>
+            <p>In case of non-payment, access to the Service will be automatically suspended 7 days after the due date. User data will be retained for 30 additional days to facilitate reactivation.</p>
           </section>
 
           <section id="cookies">
             <h2 className="font-display text-lg font-bold text-foreground">5. Cookies</h2>
-            <p>Usamos cookies para mejorar la experiencia, analizar el tráfico y personalizar el contenido. Puedes gestionar tus preferencias desde el banner de cookies al acceder al sitio.</p>
+            <p>We use cookies to improve your experience, analyze traffic and personalize content. You can manage your preferences from the cookie banner when accessing the site.</p>
           </section>
 
           <section id="gdpr">
-            <h2 className="font-display text-lg font-bold text-foreground">6. Derechos del Usuario</h2>
-            <p>Conforme al RGPD, tienes derecho de acceso, rectificación, eliminación y portabilidad de tus datos. Para ejercer estos derechos, contacta a: <a href="mailto:privacy@flowbooking.com" className="text-primary underline">privacy@flowbooking.com</a></p>
+            <h2 className="font-display text-lg font-bold text-foreground">6. User Rights</h2>
+            <p>Under GDPR, you have the right to access, rectify, delete and port your data. To exercise these rights, contact: <a href="mailto:privacy@flowbooking.com" className="text-primary underline">privacy@flowbooking.com</a></p>
           </section>
 
           <section>
-            <h2 className="font-display text-lg font-bold text-foreground">7. Seguridad</h2>
-            <p>Tus datos se almacenan en servidores seguros con cifrado en tránsito y en reposo. Implementamos medidas técnicas y organizativas para proteger tu información.</p>
+            <h2 className="font-display text-lg font-bold text-foreground">7. Security</h2>
+            <p>Your data is stored on secure servers with encryption in transit and at rest. We implement technical and organizational measures to protect your information.</p>
           </section>
         </div>
       </div>
