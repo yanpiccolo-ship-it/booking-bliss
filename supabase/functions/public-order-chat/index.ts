@@ -112,11 +112,10 @@ async function runTool(name: string, args: any, businessId: string) {
         business_id: businessId,
         customer_name: args.customer_name,
         customer_email: args.customer_email ?? null,
-        customer_phone: args.customer_phone ?? null,
         total_cents: total,
         status: "pending",
         source: "public_chat",
-        notes: args.notes ?? null,
+        notes: [args.notes, args.customer_phone ? `Phone: ${args.customer_phone}` : null].filter(Boolean).join(" | ") || null,
       })
       .select()
       .single();
@@ -125,10 +124,12 @@ async function runTool(name: string, args: any, businessId: string) {
       const row = priceMap.get(it.menu_item_id)!;
       return {
         order_id: order.id,
+        business_id: businessId,
         menu_item_id: it.menu_item_id,
         quantity: it.quantity,
         unit_price_cents: row.price_cents ?? 0,
-        item_name: row.name,
+        name: row.name,
+        status: "pending",
       };
     });
     const { error: iErr } = await supabase.from("order_items").insert(orderItems);
