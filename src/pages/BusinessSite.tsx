@@ -334,6 +334,8 @@ const BusinessSite = () => {
       <div className="text-center py-4 text-xs text-muted-foreground border-t border-border">
         Powered by <span className="font-medium">FlowBooking</span>
       </div>
+
+      {business && <PublicOrderChat businessId={business.id} businessName={business.name} />}
     </div>
   );
 };
