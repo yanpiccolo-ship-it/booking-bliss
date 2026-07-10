@@ -5,6 +5,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { MapPin, Phone, Mail, MessageCircle, Star, Clock, Calendar, ChevronRight, Loader2, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import BookingCalendar from "@/components/booking/BookingCalendar";
+import PublicOrderChat from "@/components/PublicOrderChat";
 
 interface BusinessData {
   id: string;
@@ -333,6 +334,8 @@ const BusinessSite = () => {
       <div className="text-center py-4 text-xs text-muted-foreground border-t border-border">
         Powered by <span className="font-medium">FlowBooking</span>
       </div>
+
+      {business && <PublicOrderChat businessId={business.id} businessName={business.name} />}
     </div>
   );
 };
