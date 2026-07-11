@@ -1,45 +1,66 @@
 import { motion } from "framer-motion";
-import { Check, Sparkles } from "lucide-react";
+import { Check, Sparkles, Utensils, Hotel, Leaf, Ticket, Briefcase, Plus, MapPin, Calendar, Cable, Bot } from "lucide-react";
+
+const categories = [
+  { icon: Utensils, label: "Gastronomy" },
+  { icon: Hotel, label: "Travel & Hospitality" },
+  { icon: Leaf, label: "Wellness" },
+  { icon: Ticket, label: "Events" },
+  { icon: Briefcase, label: "Services" },
+  { icon: Plus, label: "Custom category" },
+];
+
+const capabilities = [
+  { icon: MapPin, label: "Region / Country / City / Delivery & operating zones" },
+  { icon: Calendar, label: "Google Calendar sync" },
+  { icon: Cable, label: "MCP native connection" },
+  { icon: Bot, label: "Agent connectivity (Claude, Google, ChatGPT…)" },
+];
 
 const tiers = [
   {
-    name: "Listed",
-    price: "€29",
+    name: "Flow Partner · Basic",
+    price: "€49",
     period: "/month",
-    tagline: "Get discovered.",
+    tagline: "Get discovered across the FlowBooking network.",
     features: [
       "Public supplier profile",
-      "Category & region tags",
-      "Contact form + email leads",
-      "Basic analytics",
+      "Category tag",
+      "Location & contact",
+      "Appears in platform search",
+      "Black Friday promotions",
     ],
     highlight: false,
   },
   {
-    name: "Featured",
-    price: "€89",
+    name: "Featured Partner",
+    price: "€99",
     period: "/month",
-    tagline: "Stand out in your category.",
+    tagline: "Stand out in your category and region.",
     features: [
-      "Everything in Listed",
-      "Priority ranking in search",
-      "Editorial cover photo",
-      "Verified badge",
-      "Direct chat with buyers",
+      "Everything in Basic",
+      "Featured profile placement",
+      "Extended image gallery",
+      "Portfolio section",
+      "Regional priority ranking",
+      "Performance analytics",
+      "Black Friday promotions",
     ],
     highlight: true,
   },
   {
-    name: "Signature",
-    price: "€249",
+    name: "Premium Partner",
+    price: "€199",
     period: "/month",
-    tagline: "Full editorial treatment.",
+    tagline: "Full editorial treatment inside the ecosystem.",
     features: [
       "Everything in Featured",
-      "Homepage rotation",
-      "Custom brand page",
-      "Dedicated editorial feature",
-      "Concierge account manager",
+      "Highlighted in Experiences",
+      "Editorial content feature",
+      "Cross-ecosystem campaigns",
+      "Priority qualified leads",
+      "Dedicated account manager",
+      "Black Friday promotions",
     ],
     highlight: false,
   },
@@ -56,7 +77,7 @@ const Marketplace = () => {
           className="max-w-3xl mb-14"
         >
           <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-4">
-            Marketplace
+            Marketplace · Experiences, Hospitality &amp; Services
           </p>
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif tracking-tight text-foreground">
             The premium directory of hospitality suppliers.
@@ -66,6 +87,38 @@ const Marketplace = () => {
             connected directly with the venues that trust FlowBooking.
           </p>
         </motion.div>
+
+        {/* Categories */}
+        <div className="mb-10 flex flex-wrap gap-2 sm:gap-3">
+          {categories.map((c) => {
+            const Icon = c.icon;
+            return (
+              <span
+                key={c.label}
+                className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-4 py-2 text-sm text-foreground"
+              >
+                <Icon className="w-3.5 h-3.5" />
+                {c.label}
+              </span>
+            );
+          })}
+        </div>
+
+        {/* Capabilities */}
+        <div className="mb-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          {capabilities.map((c) => {
+            const Icon = c.icon;
+            return (
+              <div
+                key={c.label}
+                className="flex items-start gap-3 rounded-2xl border border-border bg-background/60 p-4"
+              >
+                <Icon className="w-4 h-4 mt-0.5 text-foreground shrink-0" />
+                <span className="text-sm text-muted-foreground">{c.label}</span>
+              </div>
+            );
+          })}
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
           {tiers.map((tier, i) => (
@@ -111,7 +164,7 @@ const Marketplace = () => {
               </ul>
 
               <a
-                href="#"
+                href="/request-demo"
                 className={`mt-8 inline-flex items-center justify-center px-5 py-3 rounded-full text-sm font-medium transition-opacity hover:opacity-90 ${
                   tier.highlight
                     ? "bg-background text-foreground"

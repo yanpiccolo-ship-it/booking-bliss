@@ -77,41 +77,38 @@ const SocialProof = () => {
           </h2>
         </motion.div>
 
-        {/* Testimonials Grid */}
-        <div className="grid lg:grid-cols-3 gap-6 sm:gap-8">
-          {testimonials.map((testimonial, index) => (
-            <motion.div
-              key={testimonial.author}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-card rounded-2xl p-6 sm:p-8 border border-border shadow-soft hover:shadow-medium transition-shadow duration-300"
-            >
-              {/* Quote Icon */}
-              <Quote className="w-8 h-8 sm:w-10 sm:h-10 text-muted-foreground/30 mb-4" />
-
-              {/* Quote */}
-              <blockquote className="text-foreground leading-relaxed mb-6 sm:mb-8 text-base sm:text-lg">
-                "{testimonial.quote}"
-              </blockquote>
-
-              {/* Author */}
-              <div className="flex items-center gap-3 sm:gap-4">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-foreground flex items-center justify-center text-background font-semibold text-sm sm:text-base">
-                  {testimonial.avatar}
-                </div>
-                <div>
-                  <div className="font-semibold text-foreground text-sm sm:text-base">
-                    {testimonial.author}
+        {/* Testimonials Carousel */}
+        <div className="overflow-x-auto scrollbar-hide -mx-4 sm:-mx-6 lg:-mx-8">
+          <div className="flex gap-5 sm:gap-6 px-4 sm:px-6 lg:px-8 snap-x snap-mandatory">
+            {testimonials.map((testimonial, index) => (
+              <motion.div
+                key={testimonial.author}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.08 }}
+                className="snap-start shrink-0 w-[85vw] sm:w-[420px] bg-card rounded-2xl p-6 sm:p-7 border border-border shadow-soft hover:shadow-medium transition-shadow duration-300"
+              >
+                <Quote className="w-7 h-7 text-muted-foreground/30 mb-3" />
+                <blockquote className="text-foreground leading-relaxed mb-6 text-base">
+                  "{testimonial.quote}"
+                </blockquote>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-foreground flex items-center justify-center text-background font-semibold text-sm">
+                    {testimonial.avatar}
                   </div>
-                  <div className="text-xs sm:text-sm text-muted-foreground">
-                    {testimonial.role}
+                  <div>
+                    <div className="font-semibold text-foreground text-sm">
+                      {testimonial.author}
+                    </div>
+                    <div className="text-xs text-muted-foreground">
+                      {testimonial.role}
+                    </div>
                   </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

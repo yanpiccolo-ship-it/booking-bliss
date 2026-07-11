@@ -20,7 +20,7 @@ const items = [
     eyebrow: "Menu Experience",
     title: "Taste Flow",
     subtitle: "Cinematic digital menus for restaurants & hotels.",
-    href: "https://vercel.com/yaninas-projects-401c572e/taste-flow",
+    href: "https://taste-flow-sepia.vercel.app",
     front: s1.url,
     back: s2.url,
   },
