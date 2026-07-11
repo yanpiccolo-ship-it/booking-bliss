@@ -3,9 +3,12 @@ import HeroVideo from "@/components/HeroVideo";
 import ModuleCarousel from "@/components/ModuleCarousel";
 import EditorialSection from "@/components/EditorialSection";
 import AIAgents from "@/components/AIAgents";
+import ShowcaseTrio from "@/components/ShowcaseTrio";
 import Verticals from "@/components/Verticals";
 import Pricing from "@/components/Pricing";
 import SocialProof from "@/components/SocialProof";
+import EditorialNotesCarousel from "@/components/EditorialNotesCarousel";
+import Marketplace from "@/components/Marketplace";
 import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
 import { SalesChatWidget } from "@/components/SalesChat";
@@ -18,12 +21,15 @@ const Index = () => {
       <ModuleCarousel />
       <EditorialSection />
       <AIAgents />
+      <ShowcaseTrio />
       <Verticals />
-      <SocialProof />
       <Pricing />
+      <EditorialNotesCarousel />
+      <Marketplace />
       <CTA />
+      <SocialProof />
       <Footer />
-      
+
       {/* AI Sales Agent Chat Widget */}
       <SalesChatWidget />
     </div>
