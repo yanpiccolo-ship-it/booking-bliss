@@ -1,48 +1,48 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import s1 from "@/assets/showcase-1.jpg.asset.json";
-import s2 from "@/assets/showcase-2.jpg.asset.json";
-import s3 from "@/assets/showcase-3.jpg.asset.json";
-import s4 from "@/assets/showcase-4.jpg.asset.json";
-import s5 from "@/assets/showcase-5.jpg.asset.json";
-import s6 from "@/assets/showcase-6.jpg.asset.json";
+import beauty from "@/assets/editorial-beauty.png.asset.json";
+import food from "@/assets/editorial-food.png.asset.json";
+import lifestyle from "@/assets/editorial-lifestyle.png.asset.json";
+import travel from "@/assets/editorial-travel.png.asset.json";
+import wellness from "@/assets/editorial-wellness.png.asset.json";
+import style from "@/assets/editorial-style.png.asset.json";
 
 const notes = [
   {
     cat: "Beauty",
     title: "The new grammar of luxury salons",
     excerpt: "Booking rituals, quiet interiors and the return of the personal assistant.",
-    image: s5.url,
+    image: beauty.url,
   },
   {
     cat: "Food",
     title: "Cinematic menus & the return of the ritual",
     excerpt: "Why the world's best restaurants are trading PDFs for editorial digital menus.",
-    image: s1.url,
+    image: food.url,
   },
   {
     cat: "Lifestyle",
     title: "Slow tech for fast lives",
     excerpt: "Software that disappears — and gives hospitality teams their attention back.",
-    image: s2.url,
+    image: lifestyle.url,
   },
   {
     cat: "Travel",
     title: "Micro-stays, macro experiences",
     excerpt: "Independent hotels are winning the weekend with tighter, richer stays.",
-    image: s4.url,
+    image: travel.url,
   },
   {
     cat: "Wellness",
     title: "Silence is the new amenity",
     excerpt: "How wellness venues design silence into every touchpoint of the guest journey.",
-    image: s6.url,
+    image: wellness.url,
   },
   {
     cat: "Style",
     title: "Interiors that book themselves",
     excerpt: "The rise of design-first venues where the space itself is the reservation.",
-    image: s3.url,
+    image: style.url,
   },
 ];
 
