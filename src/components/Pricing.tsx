@@ -68,7 +68,7 @@ const Pricing = () => {
         </motion.div>
 
         {/* Pricing Cards */}
-        <div className="grid lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-6 max-w-6xl mx-auto">
           {pricingPlans.map((plan, index) => (
             <motion.div
               key={plan.name}
@@ -76,30 +76,30 @@ const Pricing = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className={`relative rounded-2xl sm:rounded-3xl p-6 sm:p-8 ${
+              className={`relative rounded-2xl sm:rounded-3xl p-5 sm:p-6 lg:p-8 flex flex-col ${
                 plan.highlighted
-                  ? "bg-foreground text-background shadow-float lg:scale-[1.02]"
+                  ? "bg-foreground text-background shadow-float md:scale-[1.02]"
                   : "bg-card border border-border shadow-soft"
               }`}
             >
               {/* Popular Badge */}
               {plan.highlighted && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2">
-                  <span className="inline-flex items-center gap-1.5 px-4 py-1.5 bg-background text-foreground text-xs sm:text-sm font-semibold rounded-full shadow-medium">
-                    <Sparkles className="w-3 h-3 sm:w-4 sm:h-4" />
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-background text-foreground text-[11px] sm:text-xs font-semibold rounded-full shadow-medium">
+                    <Sparkles className="w-3 h-3" />
                     {t.pricing.popular}
                   </span>
                 </div>
               )}
 
               {/* Plan Header */}
-              <div className="mb-6 sm:mb-8">
-                <h3 className={`font-display font-bold text-xl sm:text-2xl mb-2 ${
+              <div className="mb-4 sm:mb-6">
+                <h3 className={`font-display font-bold text-lg sm:text-xl lg:text-2xl mb-1.5 ${
                   plan.highlighted ? "text-background" : "text-foreground"
                 }`}>
                   {plan.name}
                 </h3>
-                <p className={`text-sm ${
+                <p className={`text-xs sm:text-sm ${
                   plan.highlighted ? "text-background/70" : "text-muted-foreground"
                 }`}>
                   {plan.description}
@@ -107,13 +107,13 @@ const Pricing = () => {
               </div>
 
               {/* Pricing - Setup */}
-              <div className="mb-4">
-                <div className={`text-xs uppercase tracking-wider font-semibold mb-1 ${
+              <div className="mb-3">
+                <div className={`text-[11px] uppercase tracking-wider font-semibold mb-1 ${
                   plan.highlighted ? "text-background/50" : "text-muted-foreground"
                 }`}>
                   {t.pricing.setupLabel}
                 </div>
-                <div className={`text-2xl sm:text-3xl font-bold font-display ${
+                <div className={`text-xl sm:text-2xl lg:text-3xl font-bold font-display ${
                   plan.highlighted ? "text-background" : "text-foreground"
                 }`}>
                   {plan.setupPrice}
@@ -121,19 +121,19 @@ const Pricing = () => {
               </div>
 
               {/* Pricing - Monthly */}
-              <div className="mb-6 sm:mb-8">
-                <div className={`text-xs uppercase tracking-wider font-semibold mb-1 ${
+              <div className="mb-5 sm:mb-6">
+                <div className={`text-[11px] uppercase tracking-wider font-semibold mb-1 ${
                   plan.highlighted ? "text-background/50" : "text-muted-foreground"
                 }`}>
                   {t.pricing.monthlyLabel}
                 </div>
                 <div className="flex items-baseline gap-1">
-                  <span className={`text-xl sm:text-2xl font-bold font-display ${
+                  <span className={`text-lg sm:text-xl lg:text-2xl font-bold font-display ${
                     plan.highlighted ? "text-background" : "text-foreground"
                   }`}>
                     {plan.monthlyPrice}
                   </span>
-                  <span className={`text-sm ${
+                  <span className={`text-xs sm:text-sm ${
                     plan.highlighted ? "text-background/60" : "text-muted-foreground"
                   }`}>
                     / {t.pricing.perMonth}
@@ -142,13 +142,13 @@ const Pricing = () => {
               </div>
 
               {/* Features */}
-              <ul className="space-y-3 mb-6 sm:mb-8">
+              <ul className="space-y-2.5 mb-5 sm:mb-6 flex-1">
                 {plan.features.map((feature) => (
-                  <li key={feature} className="flex items-start gap-3">
-                    <Check className={`w-4 h-4 sm:w-5 sm:h-5 mt-0.5 flex-shrink-0 ${
+                  <li key={feature} className="flex items-start gap-2.5">
+                    <Check className={`w-4 h-4 mt-0.5 flex-shrink-0 ${
                       plan.highlighted ? "text-background" : "text-foreground"
                     }`} />
-                    <span className={`text-sm ${
+                    <span className={`text-xs sm:text-sm ${
                       plan.highlighted ? "text-background/90" : "text-muted-foreground"
                     }`}>
                       {feature}
@@ -158,9 +158,9 @@ const Pricing = () => {
               </ul>
 
               {/* CTA Buttons */}
-              <div className="space-y-2">
+              <div className="space-y-2 mt-auto">
                 <Button
-                  size="lg"
+                  size="sm"
                   onClick={() => handlePlanClick(index)}
                   className={`w-full ${
                     plan.highlighted 
