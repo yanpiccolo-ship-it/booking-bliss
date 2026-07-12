@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Check, Sparkles, Utensils, Hotel, Leaf, Ticket, Briefcase, Plus, MapPin, Calendar, Cable, Bot } from "lucide-react";
+import { Check, Sparkles, Utensils, Hotel, Leaf, Ticket, Briefcase, Plus, MapPin, Calendar, Cable, Bot, Wine, Coffee, Cake, Fish, Beef, Salad, Music, Camera, Flower2, Palette, Scissors, Dumbbell, Waves, Mountain, Car, Palmtree, Building2, Gem, ShoppingBag, Shirt, BookOpen, GraduationCap, Baby, Dog, Wrench, Sparkle, ArrowRight } from "lucide-react";
 
 const categories = [
   { icon: Utensils, label: "Gastronomy" },
@@ -7,6 +7,38 @@ const categories = [
   { icon: Leaf, label: "Wellness" },
   { icon: Ticket, label: "Events" },
   { icon: Briefcase, label: "Services" },
+  { icon: Plus, label: "Custom category" },
+];
+
+const directoryCategories = [
+  { icon: Wine, label: "Wineries" },
+  { icon: Coffee, label: "Coffee & Tea" },
+  { icon: Cake, label: "Bakery & Pastry" },
+  { icon: Fish, label: "Seafood" },
+  { icon: Beef, label: "Butchers" },
+  { icon: Salad, label: "Organic & Farm" },
+  { icon: Hotel, label: "Boutique Hotels" },
+  { icon: Palmtree, label: "Resorts & Villas" },
+  { icon: Mountain, label: "Rural & Retreats" },
+  { icon: Waves, label: "Spa & Thermal" },
+  { icon: Flower2, label: "Florists" },
+  { icon: Palette, label: "Interior Design" },
+  { icon: Building2, label: "Architecture" },
+  { icon: Music, label: "Live Music & DJ" },
+  { icon: Camera, label: "Photo & Video" },
+  { icon: Ticket, label: "Events & Weddings" },
+  { icon: Scissors, label: "Beauty & Salons" },
+  { icon: Dumbbell, label: "Fitness Studios" },
+  { icon: Gem, label: "Jewelry & Craft" },
+  { icon: Shirt, label: "Fashion & Uniforms" },
+  { icon: ShoppingBag, label: "Local Retail" },
+  { icon: BookOpen, label: "Cultural Venues" },
+  { icon: GraduationCap, label: "Academies" },
+  { icon: Baby, label: "Family & Kids" },
+  { icon: Dog, label: "Pet-friendly Services" },
+  { icon: Car, label: "Transfers & Mobility" },
+  { icon: Wrench, label: "Maintenance & Ops" },
+  { icon: Sparkle, label: "Cleaning & Linen" },
   { icon: Plus, label: "Custom category" },
 ];
 
