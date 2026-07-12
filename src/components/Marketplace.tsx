@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Check, Sparkles, Utensils, Hotel, Leaf, Ticket, Briefcase, Plus, MapPin, Calendar, Cable, Bot } from "lucide-react";
+import { Check, Sparkles, Utensils, Hotel, Leaf, Ticket, Briefcase, Plus, MapPin, Calendar, Cable, Bot, Wine, Coffee, Cake, Fish, Beef, Salad, Music, Camera, Flower2, Palette, Scissors, Dumbbell, Waves, Mountain, Car, Palmtree, Building2, Gem, ShoppingBag, Shirt, BookOpen, GraduationCap, Baby, Dog, Wrench, Sparkle, ArrowRight } from "lucide-react";
 
 const categories = [
   { icon: Utensils, label: "Gastronomy" },
@@ -7,6 +7,38 @@ const categories = [
   { icon: Leaf, label: "Wellness" },
   { icon: Ticket, label: "Events" },
   { icon: Briefcase, label: "Services" },
+  { icon: Plus, label: "Custom category" },
+];
+
+const directoryCategories = [
+  { icon: Wine, label: "Wineries" },
+  { icon: Coffee, label: "Coffee & Tea" },
+  { icon: Cake, label: "Bakery & Pastry" },
+  { icon: Fish, label: "Seafood" },
+  { icon: Beef, label: "Butchers" },
+  { icon: Salad, label: "Organic & Farm" },
+  { icon: Hotel, label: "Boutique Hotels" },
+  { icon: Palmtree, label: "Resorts & Villas" },
+  { icon: Mountain, label: "Rural & Retreats" },
+  { icon: Waves, label: "Spa & Thermal" },
+  { icon: Flower2, label: "Florists" },
+  { icon: Palette, label: "Interior Design" },
+  { icon: Building2, label: "Architecture" },
+  { icon: Music, label: "Live Music & DJ" },
+  { icon: Camera, label: "Photo & Video" },
+  { icon: Ticket, label: "Events & Weddings" },
+  { icon: Scissors, label: "Beauty & Salons" },
+  { icon: Dumbbell, label: "Fitness Studios" },
+  { icon: Gem, label: "Jewelry & Craft" },
+  { icon: Shirt, label: "Fashion & Uniforms" },
+  { icon: ShoppingBag, label: "Local Retail" },
+  { icon: BookOpen, label: "Cultural Venues" },
+  { icon: GraduationCap, label: "Academies" },
+  { icon: Baby, label: "Family & Kids" },
+  { icon: Dog, label: "Pet-friendly Services" },
+  { icon: Car, label: "Transfers & Mobility" },
+  { icon: Wrench, label: "Maintenance & Ops" },
+  { icon: Sparkle, label: "Cleaning & Linen" },
   { icon: Plus, label: "Custom category" },
 ];
 
@@ -175,6 +207,53 @@ const Marketplace = () => {
               </a>
             </motion.div>
           ))}
+        </div>
+
+        {/* Directory categories carousel */}
+        <div className="mt-20 sm:mt-28">
+          <div className="flex items-end justify-between gap-6 mb-8">
+            <div>
+              <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-3">
+                Directory · Categories
+              </p>
+              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-serif tracking-tight text-foreground max-w-2xl">
+                Explore the premium directory of hospitality suppliers.
+              </h3>
+            </div>
+            <a
+              href="#marketplace-featured"
+              className="hidden sm:inline-flex items-center gap-2 text-sm font-medium text-foreground hover:opacity-70 transition-opacity shrink-0"
+            >
+              All featured profiles <ArrowRight className="w-4 h-4" />
+            </a>
+          </div>
+
+          <div className="overflow-x-auto scrollbar-hide -mx-4 sm:-mx-6 lg:-mx-8">
+            <div className="flex gap-3 sm:gap-4 px-4 sm:px-6 lg:px-8 pb-4">
+              {directoryCategories.map((c, i) => {
+                const Icon = c.icon;
+                const slug = c.label.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+                return (
+                  <motion.a
+                    key={c.label}
+                    href={`#marketplace-featured-${slug}`}
+                    initial={{ opacity: 0, y: 12 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: Math.min(i * 0.02, 0.3) }}
+                    className="group shrink-0 w-[130px] sm:w-[150px] aspect-square rounded-2xl bg-background border border-border p-4 flex flex-col items-center justify-center text-center gap-3 hover:border-foreground/40 hover:shadow-md transition-all"
+                  >
+                    <span className="w-11 h-11 rounded-full bg-muted flex items-center justify-center group-hover:bg-foreground group-hover:text-background transition-colors">
+                      <Icon className="w-5 h-5" />
+                    </span>
+                    <span className="text-xs sm:text-sm font-medium text-foreground leading-tight">
+                      {c.label}
+                    </span>
+                  </motion.a>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </div>
     </section>
