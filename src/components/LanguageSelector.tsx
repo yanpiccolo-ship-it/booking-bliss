@@ -1,6 +1,6 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Globe } from "lucide-react";
+import { Globe, Check } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { languages } from "@/i18n/translations";
 
@@ -9,75 +9,72 @@ interface LanguageSelectorProps {
 }
 
 const LanguageSelector = ({ isScrolled = true }: LanguageSelectorProps) => {
-  const [isHovered, setIsHovered] = useState(false);
+  const [open, setOpen] = useState(false);
   const { language, setLanguage } = useLanguage();
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
+    };
+    if (open) document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, [open]);
 
   return (
-    <div 
-      className="relative"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      {/* Trigger Button - Minimal & Subtle */}
+    <div className="relative" ref={ref}>
       <button
-        className={`flex items-center gap-1 px-2 py-1 text-xs font-medium transition-all duration-300 rounded-full ${
-          isScrolled 
-            ? "text-muted-foreground hover:text-foreground" 
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        aria-haspopup="listbox"
+        aria-expanded={open}
+        className={`flex items-center gap-1.5 px-2 py-1 text-xs font-medium transition-all duration-300 rounded-full ${
+          isScrolled
+            ? "text-muted-foreground hover:text-foreground"
             : "text-background/70 hover:text-background"
         }`}
       >
-        <Globe className={`w-3 h-3 transition-transform duration-300 ${isHovered ? 'rotate-12 scale-110' : ''}`} />
+        <Globe className="w-3.5 h-3.5" />
         <span className="uppercase tracking-wide">{language}</span>
       </button>
 
-      {/* Dropdown - Appears on Hover */}
       <AnimatePresence>
-        {isHovered && (
+        {open && (
           <motion.div
-            initial={{ opacity: 0, y: -4, scale: 0.95 }}
+            initial={{ opacity: 0, y: -4, scale: 0.96 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -4, scale: 0.95 }}
-            transition={{ 
-              duration: 0.2, 
-              ease: [0.4, 0, 0.2, 1] 
-            }}
-            className="absolute right-0 top-full mt-1 z-50"
+            exit={{ opacity: 0, y: -4, scale: 0.96 }}
+            transition={{ duration: 0.18, ease: [0.4, 0, 0.2, 1] }}
+            className="absolute right-0 top-full mt-2 z-50"
           >
-            {/* Glass Card */}
-            <motion.div 
-              className="glass border border-border/50 rounded-xl shadow-medium overflow-hidden backdrop-blur-xl"
-              initial={{ backdropFilter: "blur(0px)" }}
-              animate={{ backdropFilter: "blur(20px)" }}
-            >
-              <div className="flex flex-col py-1">
-                {languages.map((lang, index) => (
-                  <motion.button
-                    key={lang.code}
-                    initial={{ opacity: 0, x: -8 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.03, duration: 0.15 }}
-                    onClick={() => setLanguage(lang.code)}
-                    className={`flex items-center gap-2 px-3 py-1.5 text-xs transition-all duration-200 hover:bg-muted/50 min-w-[100px] ${
-                      language === lang.code 
-                        ? "bg-muted/70 text-foreground font-semibold" 
-                        : "text-muted-foreground hover:text-foreground"
-                    }`}
-                  >
-                    <span className="w-5 font-semibold text-[10px] uppercase tracking-wider opacity-60">
-                      {lang.label}
-                    </span>
-                    <span className="text-xs">{lang.name}</span>
-                    {language === lang.code && (
-                      <motion.div
-                        layoutId="activeLanguage"
-                        className="ml-auto w-1 h-1 rounded-full bg-foreground"
-                        transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                      />
-                    )}
-                  </motion.button>
-                ))}
+            <div className="bg-background/95 backdrop-blur-xl border border-border/60 rounded-xl shadow-lg overflow-hidden min-w-[160px]">
+              <div className="flex flex-col py-1" role="listbox">
+                {languages.map((lang) => {
+                  const active = language === lang.code;
+                  return (
+                    <button
+                      key={lang.code}
+                      type="button"
+                      role="option"
+                      aria-selected={active}
+                      onClick={() => {
+                        setLanguage(lang.code);
+                        setOpen(false);
+                      }}
+                      className={`flex items-center gap-3 px-3 py-2 text-sm transition-colors hover:bg-muted/70 ${
+                        active ? "text-foreground font-semibold" : "text-muted-foreground"
+                      }`}
+                    >
+                      <span className="w-6 text-[10px] uppercase tracking-wider opacity-60">
+                        {lang.label}
+                      </span>
+                      <span className="flex-1 text-left">{lang.name}</span>
+                      {active && <Check className="w-3.5 h-3.5" />}
+                    </button>
+                  );
+                })}
               </div>
-            </motion.div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

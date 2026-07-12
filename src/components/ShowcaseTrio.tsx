@@ -56,7 +56,7 @@ const ShowcaseTrio = () => {
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-5 lg:gap-8 items-stretch">
           {items.map((it, i) => (
             <motion.a
               key={it.title}
