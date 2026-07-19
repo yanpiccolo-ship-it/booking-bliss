@@ -39,9 +39,16 @@ const Auth = () => {
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   const pendingPlan = searchParams.get("plan");
+  const rawNext = searchParams.get("next");
+  // Only accept same-origin relative paths for `next`.
+  const nextPath = rawNext && rawNext.startsWith("/") && !rawNext.startsWith("//") ? rawNext : null;
 
-  // After login, redirect to dashboard or trigger checkout for selected plan
+  // After login, honor `next` (e.g. OAuth consent return), then plan checkout, else dashboard.
   const handlePostAuth = async () => {
+    if (nextPath) {
+      window.location.href = nextPath;
+      return;
+    }
     if (pendingPlan !== null) {
       const planIndex = parseInt(pendingPlan);
       const priceId = PLAN_PRICE_IDS[planIndex];

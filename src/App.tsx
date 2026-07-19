@@ -15,6 +15,7 @@ import BusinessSite from "./pages/BusinessSite";
 import ProgressReport from "./pages/ProgressReport";
 import Terms from "./pages/Terms";
 import Privacy from "./pages/Privacy";
+import OAuthConsent from "./pages/OAuthConsent";
 import CookieBanner from "./components/CookieBanner";
 
 const queryClient = new QueryClient();
@@ -38,6 +39,7 @@ const App = () => (
             <Route path="/progress" element={<ProgressReport />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/privacy" element={<Privacy />} />
+            <Route path="/.lovable/oauth/consent" element={<OAuthConsent />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
