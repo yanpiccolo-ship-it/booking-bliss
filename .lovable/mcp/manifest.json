@@ -1,0 +1,95 @@
+{
+  "version": 1,
+  "sdk_version": "0.23.0",
+  "path": "/functions/v1/mcp",
+  "auth": {
+    "type": "oauth",
+    "issuer": "https://grmgmnqxtliocfzvkekb.supabase.co/auth/v1",
+    "accepted_audiences": [
+      "authenticated"
+    ]
+  },
+  "mcp": {
+    "server": {
+      "name": "flowbooking-mcp",
+      "version": "0.1.0",
+      "title": "FlowBooking"
+    },
+    "tools": [
+      {
+        "name": "list_my_businesses",
+        "title": "List my businesses",
+        "description": "List FlowBooking businesses owned by the signed-in user.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "$schema": "http://json-schema.org/draft-07/schema#",
+          "type": "object",
+          "properties": {}
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "list_reservations",
+        "title": "List reservations",
+        "description": "List upcoming reservations for a business owned by the signed-in user.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "business_id": {
+              "type": "string",
+              "format": "uuid",
+              "description": "The business id."
+            },
+            "limit": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 100,
+              "description": "Max rows (default 20)."
+            }
+          },
+          "required": [
+            "business_id"
+          ],
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      },
+      {
+        "name": "list_services",
+        "title": "List services",
+        "description": "List services offered by a business.",
+        "annotations": {
+          "readOnlyHint": true,
+          "idempotentHint": true,
+          "openWorldHint": false
+        },
+        "inputSchema": {
+          "type": "object",
+          "properties": {
+            "business_id": {
+              "type": "string",
+              "format": "uuid",
+              "description": "The business id."
+            }
+          },
+          "required": [
+            "business_id"
+          ],
+          "additionalProperties": false,
+          "$schema": "http://json-schema.org/draft-07/schema#"
+        },
+        "outputSchema": null
+      }
+    ]
+  }
+}

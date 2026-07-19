@@ -39,9 +39,16 @@ const Auth = () => {
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   const pendingPlan = searchParams.get("plan");
+  const rawNext = searchParams.get("next");
+  // Only accept same-origin relative paths for `next`.
+  const nextPath = rawNext && rawNext.startsWith("/") && !rawNext.startsWith("//") ? rawNext : null;
 
-  // After login, redirect to dashboard or trigger checkout for selected plan
+  // After login, honor `next` (e.g. OAuth consent return), then plan checkout, else dashboard.
   const handlePostAuth = async () => {
+    if (nextPath) {
+      window.location.href = nextPath;
+      return;
+    }
     if (pendingPlan !== null) {
       const planIndex = parseInt(pendingPlan);
       const priceId = PLAN_PRICE_IDS[planIndex];
@@ -147,7 +154,7 @@ const Auth = () => {
 
     setLoading(true);
     try {
-      const redirectUrl = `${window.location.origin}/dashboard`;
+      const redirectUrl = nextPath ? `${window.location.origin}${nextPath}` : `${window.location.origin}/dashboard`;
       
       const { error } = await supabase.auth.signUp({
         email,
@@ -444,7 +451,7 @@ const Auth = () => {
                 onClick={async () => {
                   try {
                     await lovable.auth.signInWithOAuth("google", {
-                      redirect_uri: `${window.location.origin}/dashboard`,
+                      redirect_uri: nextPath ? `${window.location.origin}${nextPath}` : `${window.location.origin}/dashboard`,
                     });
                   } catch (err) {
                     toast({
