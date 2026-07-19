@@ -154,7 +154,7 @@ const Auth = () => {
 
     setLoading(true);
     try {
-      const redirectUrl = `${window.location.origin}/dashboard`;
+      const redirectUrl = nextPath ? `${window.location.origin}${nextPath}` : `${window.location.origin}/dashboard`;
       
       const { error } = await supabase.auth.signUp({
         email,
@@ -451,7 +451,7 @@ const Auth = () => {
                 onClick={async () => {
                   try {
                     await lovable.auth.signInWithOAuth("google", {
-                      redirect_uri: `${window.location.origin}/dashboard`,
+                      redirect_uri: nextPath ? `${window.location.origin}${nextPath}` : `${window.location.origin}/dashboard`,
                     });
                   } catch (err) {
                     toast({
