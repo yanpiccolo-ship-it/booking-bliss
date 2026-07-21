@@ -10,6 +10,7 @@ import SocialProof from "@/components/SocialProof";
 import EditorialNotesCarousel from "@/components/EditorialNotesCarousel";
 import Marketplace from "@/components/Marketplace";
 import CTA from "@/components/CTA";
+import FAQ from "@/components/FAQ";
 import Footer from "@/components/Footer";
 import { SalesChatWidget } from "@/components/SalesChat";
 
@@ -28,6 +29,7 @@ const Index = () => {
       <Marketplace />
       <CTA />
       <SocialProof />
+      <FAQ />
       <Footer />
 
       {/* AI Sales Agent Chat Widget */}
