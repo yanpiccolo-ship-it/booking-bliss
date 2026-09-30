@@ -9,14 +9,14 @@ const EditorialSection = () => {
   const { t } = useLanguage();
 
   return (
-    <section className="relative overflow-hidden">
+    <section className="relative overflow-hidden bg-foreground flex flex-col">
       {/* First Panel - Full bleed image with text overlay */}
       <div className="relative aspect-[4/5] sm:aspect-[3/4] flex items-end">
         <div className="absolute inset-0">
           <img
             src={editorialFoodImage}
             alt="Restaurant ambiance"
-            className="w-full h-full object-cover"
+            className="block w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-foreground/80 via-foreground/30 to-transparent" />
         </div>
@@ -46,12 +46,12 @@ const EditorialSection = () => {
       </div>
 
       {/* Second Panel - Grid with NO gap, photos stuck together, uniform height */}
-      <div className="grid grid-cols-1 sm:grid-cols-2">
+      <div className="grid grid-cols-1 sm:grid-cols-2 -mt-px -mb-px">
         <div className="relative aspect-[4/5] sm:aspect-[3/4]">
           <img
             src={editorialHospitality}
             alt="Hotel lobby"
-            className="w-full h-full object-cover"
+            className="block w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-foreground/70 via-transparent to-transparent" />
           <motion.div
@@ -73,7 +73,7 @@ const EditorialSection = () => {
           <img
             src={editorialWellness}
             alt="Wellness experience"
-            className="w-full h-full object-cover"
+            className="block w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-foreground/70 via-transparent to-transparent" />
           <motion.div
@@ -98,7 +98,7 @@ const EditorialSection = () => {
           <img
             src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=1920&q=80"
             alt="Travel experience"
-            className="w-full h-full object-cover"
+            className="block w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-foreground/70 via-transparent to-transparent" />
         </div>
