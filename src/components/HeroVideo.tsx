@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Play } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { useLanguage } from "@/i18n/LanguageContext";
-import heroPoster from "@/assets/hero-poster.jpg";
+import heroRiviera from "@/assets/hero-riviera.jpg.asset.json";
 
 const HeroVideo = () => {
   const { t } = useLanguage();
@@ -11,21 +11,13 @@ const HeroVideo = () => {
 
   return (
     <section className="relative min-h-screen overflow-hidden">
-      {/* Video Background */}
+      {/* Header Image Background */}
       <div className="absolute inset-0 z-0">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
+        <img
+          src={heroRiviera.url}
+          alt="Riviera lifestyle"
           className="w-full h-full object-cover"
-          poster={heroPoster}
-        >
-          <source 
-            src="https://player.vimeo.com/external/449623542.sd.mp4?s=1b7c00dd42a3ddb5f50a81b46a5c2f0d8c4f3fb9&profile_id=164&oauth2_token_id=57447761" 
-            type="video/mp4" 
-          />
-        </video>
+        />
         {/* Overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-foreground/60 via-foreground/40 to-foreground/80" />
       </div>
