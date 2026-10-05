@@ -1,0 +1,13 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1791215766371,
+      "tag": "0000_stage2_stage3_voice_security",
+      "breakpoints": true
+    }
+  ]
+}
