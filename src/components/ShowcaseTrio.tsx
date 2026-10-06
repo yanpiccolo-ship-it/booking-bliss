@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import { useLanguage } from "@/i18n/LanguageContext";
+import { getSections } from "@/i18n/sections";
 import s1 from "@/assets/showcase-1.jpg.asset.json";
 import s2 from "@/assets/showcase-2.jpg.asset.json";
 import s3 from "@/assets/showcase-3.jpg.asset.json";
@@ -7,7 +9,7 @@ import s4 from "@/assets/showcase-4.jpg.asset.json";
 import s5 from "@/assets/showcase-5.jpg.asset.json";
 import s6 from "@/assets/showcase-6.jpg.asset.json";
 
-const items = [
+const baseItems = [
   {
     eyebrow: "Live Demo",
     title: "Customize your AI Agent",
@@ -35,6 +37,9 @@ const items = [
 ];
 
 const ShowcaseTrio = () => {
+  const { language } = useLanguage();
+  const tx = getSections(language).showcase;
+  const items = baseItems.map((b, i) => ({ ...b, ...tx.items[i] }));
   return (
     <section className="py-20 sm:py-28 bg-background">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -45,14 +50,13 @@ const ShowcaseTrio = () => {
           className="max-w-3xl mb-14 sm:mb-20"
         >
           <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-4">
-            Live Products
+            {tx.label}
           </p>
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif tracking-tight text-foreground">
-            See it. Touch it. Launch it.
+            {tx.title}
           </h2>
           <p className="mt-5 text-lg text-muted-foreground max-w-2xl">
-            Three real products built on FlowBooking. Hover any card to preview,
-            click to open the live demo.
+            {tx.subtitle}
           </p>
         </motion.div>
 

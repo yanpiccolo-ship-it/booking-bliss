@@ -1,7 +1,9 @@
 import { motion } from "framer-motion";
+import { useLanguage } from "@/i18n/LanguageContext";
+import { getSections } from "@/i18n/sections";
 import { Check, Sparkles, Utensils, Hotel, Leaf, Ticket, Briefcase, Plus, MapPin, Calendar, Cable, Bot, Wine, Coffee, Cake, Fish, Beef, Salad, Music, Camera, Flower2, Palette, Scissors, Dumbbell, Waves, Mountain, Car, Palmtree, Building2, Gem, ShoppingBag, Shirt, BookOpen, GraduationCap, Baby, Dog, Wrench, Sparkle, ArrowRight } from "lucide-react";
 
-const categories = [
+const baseCategories = [
   { icon: Utensils, label: "Gastronomy" },
   { icon: Hotel, label: "Travel & Hospitality" },
   { icon: Leaf, label: "Wellness" },
@@ -10,7 +12,7 @@ const categories = [
   { icon: Plus, label: "Custom category" },
 ];
 
-const directoryCategories = [
+const baseDirectory = [
   { icon: Wine, label: "Wineries" },
   { icon: Coffee, label: "Coffee & Tea" },
   { icon: Cake, label: "Bakery & Pastry" },
@@ -42,14 +44,14 @@ const directoryCategories = [
   { icon: Plus, label: "Custom category" },
 ];
 
-const capabilities = [
+const baseCapabilities = [
   { icon: MapPin, label: "Region / Country / City / Delivery & operating zones" },
   { icon: Calendar, label: "Google Calendar sync" },
   { icon: Cable, label: "MCP native connection" },
   { icon: Bot, label: "Agent connectivity (Claude, Google, ChatGPT…)" },
 ];
 
-const tiers = [
+const baseTiers = [
   {
     name: "Flow Partner · Basic",
     price: "€49",
@@ -99,6 +101,12 @@ const tiers = [
 ];
 
 const Marketplace = () => {
+  const { language } = useLanguage();
+  const tx = getSections(language).market;
+  const categories = baseCategories.map((c, i) => ({ ...c, label: tx.categories[i] }));
+  const capabilities = baseCapabilities.map((c, i) => ({ ...c, label: tx.capabilities[i] }));
+  const directoryCategories = baseDirectory.map((c, i) => ({ ...c, slug: c.label, label: tx.directory[i] }));
+  const tiers = baseTiers.map((t, i) => ({ ...t, ...tx.tiers[i], period: tx.perMonth }));
   return (
     <section id="marketplace" className="py-20 sm:py-28 bg-muted/30 border-t border-border">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -109,14 +117,13 @@ const Marketplace = () => {
           className="max-w-3xl mb-14"
         >
           <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-4">
-            Marketplace · Experiences, Hospitality &amp; Services
+            {tx.label}
           </p>
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif tracking-tight text-foreground">
-            The premium directory of hospitality suppliers.
+            {tx.title}
           </h2>
           <p className="mt-5 text-lg text-muted-foreground max-w-2xl">
-            A curated network of makers, growers, designers and service providers —
-            connected directly with the venues that trust FlowBooking.
+            {tx.subtitle}
           </p>
         </motion.div>
 
@@ -155,7 +162,7 @@ const Marketplace = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
           {tiers.map((tier, i) => (
             <motion.div
-              key={tier.name}
+              key={i}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -168,7 +175,7 @@ const Marketplace = () => {
             >
               {tier.highlight && (
                 <div className="absolute -top-3 left-1/2 -translate-x-1/2 inline-flex items-center gap-1.5 px-3 py-1 bg-background text-foreground text-[11px] font-semibold tracking-wider uppercase rounded-full border border-border">
-                  <Sparkles className="w-3 h-3" /> Most popular
+                  <Sparkles className="w-3 h-3" /> {tx.popular}
                 </div>
               )}
               <div>
@@ -203,7 +210,7 @@ const Marketplace = () => {
                     : "bg-foreground text-background"
                 }`}
               >
-                Join as supplier
+                {tx.join}
               </a>
             </motion.div>
           ))}
@@ -214,17 +221,17 @@ const Marketplace = () => {
           <div className="flex items-end justify-between gap-6 mb-8">
             <div>
               <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-3">
-                Directory · Categories
+                {tx.dirLabel}
               </p>
               <h3 className="text-2xl sm:text-3xl lg:text-4xl font-serif tracking-tight text-foreground max-w-2xl">
-                Explore the premium directory of hospitality suppliers.
+                {tx.dirTitle}
               </h3>
             </div>
             <a
               href="#marketplace-featured"
               className="hidden sm:inline-flex items-center gap-2 text-sm font-medium text-foreground hover:opacity-70 transition-opacity shrink-0"
             >
-              All featured profiles <ArrowRight className="w-4 h-4" />
+              {tx.allFeatured} <ArrowRight className="w-4 h-4" />
             </a>
           </div>
 
@@ -232,10 +239,10 @@ const Marketplace = () => {
             <div className="flex gap-3 sm:gap-4 px-4 sm:px-6 lg:px-8 pb-4">
               {directoryCategories.map((c, i) => {
                 const Icon = c.icon;
-                const slug = c.label.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
+                const slug = c.slug.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
                 return (
                   <motion.a
-                    key={c.label}
+                    key={c.slug}
                     href={`#marketplace-featured-${slug}`}
                     initial={{ opacity: 0, y: 12 }}
                     whileInView={{ opacity: 1, y: 0 }}

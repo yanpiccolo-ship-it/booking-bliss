@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
+import { useLanguage } from "@/i18n/LanguageContext";
+import { getSections } from "@/i18n/sections";
 import beauty from "@/assets/editorial-beauty.png.asset.json";
 import food from "@/assets/editorial-food.png.asset.json";
 import lifestyle from "@/assets/editorial-lifestyle.png.asset.json";
@@ -7,7 +9,7 @@ import travel from "@/assets/editorial-travel.png.asset.json";
 import wellness from "@/assets/editorial-wellness.png.asset.json";
 import style from "@/assets/editorial-style.png.asset.json";
 
-const notes = [
+const baseNotes = [
   {
     cat: "Beauty",
     title: "The new grammar of luxury salons",
@@ -47,19 +49,22 @@ const notes = [
 ];
 
 const EditorialNotesCarousel = () => {
+  const { language } = useLanguage();
+  const tx = getSections(language).editorial;
+  const notes = baseNotes.map((b, i) => ({ ...b, ...tx.notes[i] }));
   return (
     <section className="py-20 sm:py-28 bg-background border-t border-border">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 mb-10 sm:mb-14 flex items-end justify-between gap-6">
         <div>
           <p className="text-xs tracking-[0.2em] uppercase text-muted-foreground mb-4">
-            Editorial
+            {tx.label}
           </p>
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-serif tracking-tight text-foreground max-w-3xl">
-            Notes from the hospitality desk.
+            {tx.title}
           </h2>
         </div>
         <a href="#" className="hidden sm:inline-flex items-center gap-2 text-sm font-medium text-foreground hover:opacity-70 transition-opacity">
-          View all <ArrowRight className="w-4 h-4" />
+          {tx.viewAll} <ArrowRight className="w-4 h-4" />
         </a>
       </div>
 
@@ -67,7 +72,7 @@ const EditorialNotesCarousel = () => {
         <div className="flex gap-5 sm:gap-6 px-4 sm:px-6 lg:px-8 pb-4">
           {notes.map((n, i) => (
             <motion.article
-              key={n.cat}
+              key={n.image}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -91,7 +96,7 @@ const EditorialNotesCarousel = () => {
                   </h3>
                   <p className="mt-3 text-sm opacity-85 line-clamp-2">{n.excerpt}</p>
                   <div className="mt-5 inline-flex items-center gap-2 text-sm font-medium">
-                    Read the note <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                    {tx.read} <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
                   </div>
                 </div>
               </div>
