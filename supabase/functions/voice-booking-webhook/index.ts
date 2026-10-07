@@ -112,6 +112,45 @@ Deno.serve(async (req) => {
       );
     }
 
+    // Real-time availability check (only when the service uses the resource engine)
+    const partySize = Number(body.party_size || body.analysis?.structuredData?.party_size) || 1;
+    const { data: svc } = await supabase.from("services").select("resource_type_id").eq("id", serviceId).maybeSingle();
+    let resourceId: string | null = null;
+    if (svc?.resource_type_id) {
+      const tryTime = async (t: string) => {
+        const { data: r } = await supabase.rpc("assign_best_resource", {
+          p_business_id: businessId, p_service_id: serviceId, p_date: bookingDate, p_start_time: t, p_party_size: partySize,
+        });
+        return r as string | null;
+      };
+      resourceId = await tryTime(bookingTime);
+      if (!resourceId) {
+        const [h, m] = String(bookingTime).split(":").map(Number);
+        const base = h * 60 + (m || 0);
+        const alternatives: string[] = [];
+        for (let step = 1; step <= 16 && alternatives.length < 3; step++) {
+          for (const sign of [1, -1]) {
+            const mins = base + sign * step * 30;
+            if (mins < 0 || mins >= 24 * 60 || alternatives.length >= 3) continue;
+            const t = `${String(Math.floor(mins / 60)).padStart(2, "0")}:${String(mins % 60).padStart(2, "0")}`;
+            if (await tryTime(t)) alternatives.push(t);
+          }
+        }
+        return new Response(
+          JSON.stringify({ success: false, available: false, requested: bookingTime, alternatives: alternatives.sort() }),
+          { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
+    }
+
+    // Allow the voice agent to only check availability before the caller says "yes"
+    if (body.check_only === true) {
+      return new Response(
+        JSON.stringify({ success: true, available: true, requested: bookingTime }),
+        { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
     const { data, error } = await supabase.from("reservations").insert({
       business_id: businessId,
       service_id: serviceId,
@@ -124,6 +163,8 @@ Deno.serve(async (req) => {
       raw_transcript: rawTranscript,
       source: "voice",
       status: "confirmed",
+      party_size: partySize,
+      resource_id: resourceId,
     }).select().single();
 
     if (error) {

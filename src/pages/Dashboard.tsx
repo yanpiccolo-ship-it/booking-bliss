@@ -29,13 +29,14 @@ import InventarioApp from "@/components/InventarioApp";
 import TravelApp from "@/components/TravelApp";
 import CoursesApp from "@/components/CoursesApp";
 import MarketingApp from "@/components/MarketingApp";
+import B2BSalesApp from "@/components/dashboard/B2BSalesApp";
 import EcommerceApp from "@/components/EcommerceApp";
 import WelcomeModal from "@/components/WelcomeModal";
 // Feature definitions per plan
 const PLAN_FEATURES: Record<StripeTier, string[]> = {
   basic: ["bookings", "payments", "clients", "voice", "agents", "notifications", "settings"],
   professional: ["bookings", "payments", "clients", "voice", "agents", "reports", "restaurant", "hospitality", "wellness", "workshops", "marketing", "multilanguage", "notifications", "settings"],
-  premium: ["bookings", "payments", "clients", "voice", "agents", "reports", "restaurant", "hospitality", "wellness", "travel", "workshops", "inventory", "marketing", "ecommerce", "multilanguage", "notifications", "settings"],
+  premium: ["bookings", "payments", "clients", "voice", "agents", "reports", "restaurant", "hospitality", "wellness", "travel", "workshops", "inventory", "marketing", "ecommerce", "multilanguage", "notifications", "settings", "b2b"],
 };
 
 interface AppItem {
@@ -65,6 +66,7 @@ const apps: AppItem[] = [
   { id: "notifications", name: "Alertas", icon: Bell, gradient: "from-red-500 to-red-600", iconColor: "text-white", minTier: "basic" },
   { id: "voice", name: "Voz IA", icon: Mic, gradient: "from-violet-500 to-purple-600", iconColor: "text-white", minTier: "basic" },
   { id: "agents", name: "Agentes IA", icon: Bot, gradient: "from-cyan-500 to-blue-600", iconColor: "text-white", minTier: "basic" },
+  { id: "b2b", name: "Ventas B2B", icon: TrendingUp, gradient: "from-rose-700 to-red-800", iconColor: "text-white", minTier: "premium" },
   { id: "integrations", name: "Integrar", icon: Link2, gradient: "from-indigo-400 to-blue-500", iconColor: "text-white", minTier: "basic" },
   { id: "settings", name: "Ajustes", icon: Settings, gradient: "from-slate-500 to-slate-600", iconColor: "text-white", minTier: "basic" },
 ];
@@ -806,6 +808,8 @@ const Dashboard = () => {
   <CoursesApp businessId={businessId || "demo"} />
 ) : app.id === "marketing" ? (
   <MarketingApp businessId={businessId || "demo"} />
+) : app.id === "b2b" ? (
+  <B2BSalesApp businessId={businessId} />
 ) : app.id === "ecommerce" ? (
   <EcommerceApp businessId={businessId || "demo"} />
 ) : app.id === "settings" && businessId ? (

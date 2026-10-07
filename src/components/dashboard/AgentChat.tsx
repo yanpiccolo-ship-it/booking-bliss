@@ -34,6 +34,8 @@ interface Message {
   requires_authorization?: boolean;
   authorized?: boolean | null;
   message_id?: string;
+  action_id?: string;
+  action_summary?: string;
 }
 
 interface AgentChatProps {
@@ -66,7 +68,11 @@ const AuthorizationBanner = ({
     );
   }
   return (
-    <div className="flex items-center gap-2 mt-3">
+    <div className="mt-3 space-y-2">
+    {message.action_summary && (
+      <p className="text-xs font-medium text-foreground px-3 py-2 rounded-xl border border-border bg-card">Acción propuesta: {message.action_summary}</p>
+    )}
+    <div className="flex items-center gap-2">
       <button
         onClick={onAuthorize}
         className="flex items-center gap-1.5 px-3 py-2 rounded-xl bg-emerald-500 text-white text-xs font-semibold hover:bg-emerald-600 transition-colors"
@@ -79,6 +85,7 @@ const AuthorizationBanner = ({
       >
         <ShieldX className="w-3.5 h-3.5" /> Rechazar
       </button>
+    </div>
     </div>
   );
 };
@@ -114,18 +121,19 @@ const AgentChat = ({ businessId, onBack }: AgentChatProps) => {
   };
 
   const handleAuthorization = async (msgIndex: number, authorized: boolean) => {
-    setMessages(prev => prev.map((m, i) => i === msgIndex ? { ...m, authorized } : m));
-    
     const msg = messages[msgIndex];
-    if (msg.message_id) {
-      await supabase.from("agent_messages").update({ authorized }).eq("id", msg.message_id);
+    if (!msg.action_id) return;
+    const { data, error } = await supabase.functions.invoke("agent-action-execute", {
+      body: { action_id: msg.action_id, decision: authorized ? "approve" : "reject" },
+    });
+    if (error || data?.error) {
+      toast({ variant: "destructive", title: "Error", description: data?.error || error?.message });
+      return;
     }
-    
+    setMessages(prev => prev.map((m, i) => i === msgIndex ? { ...m, authorized } : m));
     toast({
-      title: authorized ? "Acción autorizada" : "Acción rechazada",
-      description: authorized 
-        ? "El agente procederá con la acción propuesta." 
-        : "El agente no ejecutará esta acción.",
+      title: authorized ? (data?.status === "failed" ? "La acción falló" : "Acción ejecutada") : "Acción rechazada",
+      description: authorized ? (data?.result?.note || data?.result?.error || "Registrada en el historial.") : "El agente no ejecutará esta acción.",
     });
   };
 
@@ -141,12 +149,15 @@ const AgentChat = ({ businessId, onBack }: AgentChatProps) => {
 
     try {
       const CHAT_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/agent-chat`;
-      
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) throw new Error("Inicia sesión para usar los agentes.");
+
       const resp = await fetch(CHAT_URL, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+          Authorization: `Bearer ${session.access_token}`,
+          apikey: import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY,
         },
         body: JSON.stringify({
           agent_id: selectedAgent.id,
@@ -185,29 +196,26 @@ const AgentChat = ({ businessId, onBack }: AgentChatProps) => {
           if (jsonStr === "[DONE]") continue;
           try {
             const parsed = JSON.parse(jsonStr);
+            if (parsed.flow_action) {
+              const a = parsed.flow_action;
+              setMessages(prev => prev.map((m, i) =>
+                i === prev.length - 1 ? { ...m, requires_authorization: true, authorized: null, action_id: a.id, action_summary: a.summary } : m
+              ));
+              continue;
+            }
             const content = parsed.choices?.[0]?.delta?.content;
             if (content) {
               assistantContent += content;
+              const visible = assistantContent.replace(/```action[\s\S]*?(```|$)/, "").trim();
               setMessages(prev => {
                 const last = prev[prev.length - 1];
                 if (last?.role === "assistant") {
-                  return prev.map((m, i) => i === prev.length - 1 ? { ...m, content: assistantContent } : m);
+                  return prev.map((m, i) => i === prev.length - 1 ? { ...m, content: visible } : m);
                 }
-                return [...prev, { role: "assistant", content: assistantContent }];
+                return [...prev, { role: "assistant", content: visible }];
               });
             }
           } catch {}
-        }
-      }
-
-      // Check if response contains authorization keywords and agent requires authorization
-      if (selectedAgent.requires_authorization && assistantContent) {
-        const authKeywords = ["autorización", "autorizar", "¿desea que", "¿quiere que", "¿procedemos", "¿confirma", "authorize", "shall i", "should i proceed", "do you want me to"];
-        const needsAuth = authKeywords.some(kw => assistantContent.toLowerCase().includes(kw));
-        if (needsAuth) {
-          setMessages(prev => prev.map((m, i) => 
-            i === prev.length - 1 ? { ...m, requires_authorization: true, authorized: null } : m
-          ));
         }
       }
     } catch (e) {
