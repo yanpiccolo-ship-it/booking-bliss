@@ -17,13 +17,20 @@ const AGENT_ICONS: Record<string, React.ElementType> = {
 };
 
 const AI_MODELS = [
-  { value: "google/gemini-3-flash-preview", label: "Gemini 3 Flash (rápido)" },
-  { value: "google/gemini-2.5-flash", label: "Gemini 2.5 Flash (balanced)" },
-  { value: "google/gemini-2.5-pro", label: "Gemini 2.5 Pro (potente)" },
-  { value: "openai/gpt-5-mini", label: "GPT-5 Mini (balanced)" },
-  { value: "openai/gpt-5", label: "GPT-5 (máxima calidad)" },
-  { value: "google/gemini-2.5-flash-image", label: "Nano Banana (imágenes)" },
+  { value: "openai/gpt-6-astra", label: "ChatGPT (atención / ventas)" },
+  { value: "google/gemini-3.8-flash", label: "Gemini (reservas / admin)" },
+  { value: "google/gemini-3.1-flash-image", label: "Nano Banana (imágenes / diseño)" },
+  { value: "xai/grok", label: "Grok — próximamente", disabled: true },
 ];
+
+export const DEFAULT_MODEL_BY_TYPE: Record<string, string> = {
+  atencion: "openai/gpt-6-astra",
+  reservas: "google/gemini-3.8-flash",
+  ventas: "openai/gpt-6-astra",
+  admin: "google/gemini-3.8-flash",
+  voz: "google/gemini-3.8-flash",
+  diseno: "google/gemini-3.1-flash-image",
+};
 
 interface Agent {
   id: string;
@@ -139,9 +146,21 @@ const AgentManager = () => {
               onChange={(e) => setEditingAgent({ ...editingAgent, ai_model: e.target.value })}
               className="w-full px-4 py-2.5 rounded-xl bg-muted text-sm outline-none"
             >
+              {!AI_MODELS.some(m => m.value === editingAgent.ai_model) && (
+                <option value={editingAgent.ai_model}>{editingAgent.ai_model}</option>
+              )}
               {AI_MODELS.map(m => (
-                <option key={m.value} value={m.value}>{m.label}</option>
+                <option key={m.value} value={m.value} disabled={m.disabled}>{m.label}</option>
               ))}
+            </select>
+            <button
+              type="button"
+              onClick={() => setEditingAgent({ ...editingAgent, ai_model: DEFAULT_MODEL_BY_TYPE[editingAgent.agent_type] || "google/gemini-3.8-flash" })}
+              className="mt-2 text-xs underline text-muted-foreground"
+            >
+              Usar modelo recomendado para este tipo de agente
+            </button>
+            <select className="hidden">
             </select>
           </div>
 
