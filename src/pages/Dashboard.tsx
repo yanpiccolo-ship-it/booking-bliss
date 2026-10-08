@@ -96,13 +96,27 @@ const Dashboard = () => {
 
   const loadBusinessData = useCallback(async (userId: string) => {
     // Get business owned by this user
-    const { data: biz } = await supabase
+    let { data: biz } = await supabase
       .from("businesses")
       .select("id, slug, name")
       .eq("owner_id", userId)
       .limit(1)
       .maybeSingle();
-    
+
+    // First visit: create a starter business so every module works
+    if (!biz) {
+      const { data: { user: u } } = await supabase.auth.getUser();
+      const base = (u?.user_metadata?.full_name || u?.email?.split("@")[0] || "my-business") as string;
+      const slug = `${base.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")}-${userId.slice(0, 6)}`;
+      const { data: created, error } = await supabase
+        .from("businesses")
+        .insert({ owner_id: userId, name: base, vertical: "hospitality", slug, contact_email: u?.email ?? null, is_active: true })
+        .select("id, slug, name")
+        .single();
+      if (error) console.error("create business", error);
+      biz = created;
+    }
+
     if (biz) {
       setBusinessId(biz.id);
       setBusinessSlug(biz.slug);
