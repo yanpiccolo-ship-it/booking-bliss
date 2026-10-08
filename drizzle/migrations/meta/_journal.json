@@ -15,6 +15,13 @@
       "when": 1791287069497,
       "tag": "0001_migration",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1791456551890,
+      "tag": "0002_restore_policy_helper_execute",
+      "breakpoints": true
     }
   ]
 }
