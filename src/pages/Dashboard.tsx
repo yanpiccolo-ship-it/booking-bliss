@@ -665,10 +665,10 @@ const Dashboard = () => {
         {/* Settings list */}
         <div className="space-y-2">
           {[
-            { label: "Perfil del negocio", desc: "Nombre, dirección, contacto", icon: Users },
-            { label: "Servicios", desc: "Gestiona tus servicios y precios", icon: Star },
-            { label: "Notificaciones", desc: "Email y preferencias push", icon: Bell },
-            { label: "Integraciones", desc: "Calendario, WhatsApp, Stripe", icon: Zap },
+            { label: "Perfil del negocio", desc: "Nombre, dirección, contacto", icon: Users, action: () => setOpenApp("settings") },
+            { label: "Servicios", desc: "Gestiona tus servicios y precios", icon: Star, action: () => setOpenApp("bookings") },
+            { label: "Notificaciones", desc: "Email y preferencias push", icon: Bell, action: () => setOpenApp("notifications") },
+            { label: "Integraciones", desc: "Calendario, WhatsApp, Stripe", icon: Zap, action: () => setOpenApp("integrations") },
             { label: "Mi plan", desc: "Gestiona tu suscripción", icon: Crown, action: () => setActiveTab("plan") },
           ].map((item) => (
             <button

@@ -39,7 +39,9 @@ serve(async (req) => {
 
     // Require a signed-in user
     const token = (req.headers.get("Authorization") || "").replace("Bearer ", "");
-    const { data: { user } } = await supabase.auth.getUser(token);
+    const authClient = createClient(Deno.env.get("SUPABASE_URL")!, Deno.env.get("SUPABASE_ANON_KEY")!, { global: { headers: { Authorization: `Bearer ${token}` } } });
+    const { data: claimsData } = token ? await authClient.auth.getClaims(token) : { data: null };
+    const user = claimsData?.claims?.sub ? { id: claimsData.claims.sub as string } : null;
     if (!user) return json({ error: "Please sign in to chat with agents." }, 401);
     const userId = user.id;
 
