@@ -29,3 +29,6 @@ verify_jwt = false
 
 [functions.public-order-chat]
 verify_jwt = false
+
+[functions.business-integrations]
+verify_jwt = false

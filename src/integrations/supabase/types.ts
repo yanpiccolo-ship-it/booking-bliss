@@ -456,6 +456,36 @@ export type Database = {
           },
         ]
       }
+      business_integrations: {
+        Row: {
+          business_id: string
+          config_ciphertext: string
+          created_at: string
+          id: string
+          provider: string
+          public_info: Json
+          updated_at: string
+        }
+        Insert: {
+          business_id: string
+          config_ciphertext: string
+          created_at?: string
+          id?: string
+          provider: string
+          public_info?: Json
+          updated_at?: string
+        }
+        Update: {
+          business_id?: string
+          config_ciphertext?: string
+          created_at?: string
+          id?: string
+          provider?: string
+          public_info?: Json
+          updated_at?: string
+        }
+        Relationships: []
+      }
       business_memberships: {
         Row: {
           business_id: string
